@@ -540,6 +540,15 @@ html.projopen{overflow:hidden}
 .totop svg{display:block;width:100%;height:auto;overflow:visible}
 
 .pj-credit{margin:clamp(56px,7vw,110px) 0 0;padding-bottom:14px;text-align:center;color:var(--muted);font-size:clamp(13px,1vw,15px);font-weight:500;letter-spacing:.08em;text-transform:uppercase}
+/* "Exploring" in the menu isn't ready yet: a small black COMING SOON tag on hover or tap, then it fades away */
+.menu a.soon{position:relative}
+.menu a.soon .tip{position:absolute;left:50%;top:calc(100% + 10px);transform:translate(-50%,-6px);padding:9px 14px;border-radius:4px;background:#3A3A38;color:#fff;font-size:13px;font-weight:600;line-height:1;letter-spacing:.1em;text-transform:uppercase;white-space:nowrap;opacity:0;pointer-events:none;transition:opacity .3s ease,transform .3s ease}
+.menu a.soon .tip::before{content:"";position:absolute;left:50%;bottom:100%;transform:translateX(-50%);border:6px solid transparent;border-bottom-color:#3A3A38;border-top:0}
+.menu a.soon:hover .tip,.menu a.soon:focus-visible .tip,.menu a.soon.tipon .tip{opacity:1;transform:translate(-50%,0)}
+@media (hover:none){.menu a.soon:hover .tip{opacity:0}.menu a.soon.tipon .tip{opacity:1}}
+/* project pages: credit sits close to the bottom like the main page */
+.proj .wrap{padding-bottom:0!important}
+.pj-credit{margin-top:clamp(64px,6vw,104px)!important;padding-bottom:clamp(18px,2vw,28px)!important}
 /* technology into reality */
 .pj-ytwrap{position:relative}
 .pj-ytf{position:absolute;left:0;top:0;width:100%;aspect-ratio:16/9;border:0;border-radius:4px;z-index:1;background:#000}
@@ -644,7 +653,7 @@ html.projopen{overflow:hidden}
     <button class="burger" id="burger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="menu"><i></i><i></i><i></i></button>
   </div>
 </header>
-<nav class="menu" id="menu" aria-label="Sections"><a href="#work"><span>Projects</span><span class="pa" aria-hidden="true"><canvas width="204" height="132"></canvas></span></a><a href="#about"><span>About me</span><span class="pa" aria-hidden="true"><canvas width="204" height="132"></canvas></span></a><a href="#" class="soon" aria-disabled="true"><span>Exploring</span><span class="pa" aria-hidden="true"><canvas width="204" height="132"></canvas></span></a><div class="ic"><a href="https://www.linkedin.com/in/sohyun-park-501434200/" target="_blank" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="miter" stroke-linecap="square"><rect class="bx" x="3" y="3" width="18" height="18"/><path d="M8 11v6M8 7.6v.1M11.6 17v-6M11.6 13.6c0-1.7 1.1-2.7 2.4-2.7s2.2.9 2.2 2.7V17"/></svg></a><a href="mailto:sohyunpark08@gmail.com" aria-label="Email"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="miter"><rect class="bx" x="2" y="5" width="20" height="14"/><path d="M2.5 5.8L12 13l9.5-7.2"/></svg></a></div></nav>
+<nav class="menu" id="menu" aria-label="Sections"><a href="#work"><span>Projects</span><span class="pa" aria-hidden="true"><canvas width="204" height="132"></canvas></span></a><a href="#about"><span>About me</span><span class="pa" aria-hidden="true"><canvas width="204" height="132"></canvas></span></a><a href="#" class="soon" aria-disabled="true" aria-describedby="soonTip"><span>Exploring</span><span class="tip" id="soonTip" role="tooltip">Coming soon!</span><span class="pa" aria-hidden="true"><canvas width="204" height="132"></canvas></span></a><div class="ic"><a href="https://www.linkedin.com/in/sohyun-park-501434200/" target="_blank" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="miter" stroke-linecap="square"><rect class="bx" x="3" y="3" width="18" height="18"/><path d="M8 11v6M8 7.6v.1M11.6 17v-6M11.6 13.6c0-1.7 1.1-2.7 2.4-2.7s2.2.9 2.2 2.7V17"/></svg></a><a href="mailto:sohyunpark08@gmail.com" aria-label="Email"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="miter"><rect class="bx" x="2" y="5" width="20" height="14"/><path d="M2.5 5.8L12 13l9.5-7.2"/></svg></a></div></nav>
 
 <main id="top">
   <div class="wrap hero">
@@ -1259,7 +1268,7 @@ addEventListener('scroll',()=>{if(!tk){tk=true;requestAnimationFrame(upd);}},{pa
 const burger=document.getElementById('burger'),menu=document.getElementById('menu');
 function setMenu(open){burger.setAttribute('aria-expanded',open?'true':'false');burger.classList.toggle('x',open);burger.setAttribute('aria-label',open?'Close menu':'Open menu');menu.classList.toggle('open',open);document.documentElement.classList.toggle('locked',open);}
 burger.addEventListener('click',()=>setMenu(burger.getAttribute('aria-expanded')!=='true'));
-menu.querySelectorAll('a').forEach(a=>a.addEventListener('click',e=>{if(a.classList.contains('soon')){e.preventDefault();return;}setMenu(false);}));
+menu.querySelectorAll('a').forEach(a=>a.addEventListener('click',e=>{if(a.classList.contains('soon')){e.preventDefault();a.classList.add('tipon');clearTimeout(a._tt);a._tt=setTimeout(()=>a.classList.remove('tipon'),1600);return;}setMenu(false);}));
 addEventListener('keydown',e=>{if(e.key==='Escape')setMenu(false);});
 
 
