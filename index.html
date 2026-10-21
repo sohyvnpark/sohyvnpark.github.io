@@ -84,7 +84,7 @@ html.locked header{z-index:70}
 
 /* hero */
 .hero{min-height:calc(100svh - var(--hh,64px));max-height:1040px;display:flex;flex-direction:column;justify-content:center;padding-top:clamp(8px,2.5vh,28px);padding-bottom:0;position:relative}   /* sits a touch low so the shooting stars above it balance the screen */
-.poster{margin:0;font-weight:640;font-size:15vw;line-height:.88;letter-spacing:.04em;text-align:center;text-transform:uppercase;cursor:default;user-select:none;-webkit-user-select:none}
+.poster{margin:0;font-weight:560;font-size:15vw;line-height:.88;letter-spacing:.04em;text-align:center;text-transform:uppercase;cursor:default;user-select:none;-webkit-user-select:none}
 .poster .r{display:flex;gap:.25em;justify-content:center}
 .poster .r.split{justify-content:space-between}
 .poster .r.end{justify-content:flex-end}
@@ -103,7 +103,7 @@ html.locked header{z-index:70}
 .poster .c.sp.home{transition:none}
 .poster .c.sp.back{transition:opacity .9s ease}
 .hero{overflow:hidden}
-@media (max-width:600px){.poster{font-weight:900;-webkit-text-stroke:.012em currentColor}}   /* small screens: heavier title so it doesn't look thin */
+@media (max-width:600px){.poster{font-weight:620}}   /* small screens: heavier title so it doesn't look thin */
 @media (min-width:601px){.hero{padding-top:0;padding-bottom:clamp(90px,13vh,150px)}}   /* nudge the title group down so the shooting stars above it have room */
 .horse{position:absolute;left:0;top:0;z-index:0;pointer-events:none;display:block}
 .helix{position:absolute;inset:0;width:100%;height:100%;z-index:0;pointer-events:none;overflow:visible}
