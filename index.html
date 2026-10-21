@@ -546,9 +546,16 @@ html.projopen{overflow:hidden}
 .menu a.soon .tip::before{content:"";position:absolute;left:50%;bottom:100%;transform:translateX(-50%);border:6px solid transparent;border-bottom-color:#3A3A38;border-top:0}
 .menu a.soon:hover .tip,.menu a.soon:focus-visible .tip,.menu a.soon.tipon .tip{opacity:1;transform:translate(-50%,0)}
 @media (hover:none){.menu a.soon:hover .tip{opacity:0}.menu a.soon.tipon .tip{opacity:1}}
+/* mobile menu: fill exactly the visible screen and sit just above its middle, below the header */
+@media (max-width:760px){.menu{bottom:auto;height:100svh;padding-top:var(--hh,54px);padding-bottom:3svh;box-sizing:border-box}}
 /* project pages: credit sits close to the bottom like the main page */
 .proj .wrap{padding-bottom:0!important}
 .pj-credit{margin-top:clamp(64px,6vw,104px)!important;padding-bottom:clamp(18px,2vw,28px)!important}
+/* credit also shows at the bottom of the open menu */
+.menu-credit{position:absolute;left:0;right:0;bottom:calc(14px + env(safe-area-inset-bottom,0px));margin:0;text-align:center;color:var(--muted);font-size:clamp(13px,1vw,15px);font-weight:500;letter-spacing:.08em;text-transform:uppercase}
+/* mobile: the closing credit sits lower, nearer the bottom edge */
+@media (max-width:760px){.contact{min-height:calc(100svh - 34px)}footer .bar{padding-block:4px calc(10px + env(safe-area-inset-bottom,0px))}.menu-credit{bottom:calc(10px + env(safe-area-inset-bottom,0px))}}
+.hrt{display:inline-block;width:1.05em;height:1.05em;vertical-align:-.17em;margin-left:.15em;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linejoin:round}
 /* technology into reality */
 .pj-ytwrap{position:relative}
 .pj-ytf{position:absolute;left:0;top:0;width:100%;aspect-ratio:16/9;border:0;border-radius:4px;z-index:1;background:#000}
@@ -653,7 +660,7 @@ html.projopen{overflow:hidden}
     <button class="burger" id="burger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="menu"><i></i><i></i><i></i></button>
   </div>
 </header>
-<nav class="menu" id="menu" aria-label="Sections"><a href="#work"><span>Projects</span><span class="pa" aria-hidden="true"><canvas width="204" height="132"></canvas></span></a><a href="#about"><span>About me</span><span class="pa" aria-hidden="true"><canvas width="204" height="132"></canvas></span></a><a href="#" class="soon" aria-disabled="true" aria-describedby="soonTip"><span>Exploring</span><span class="tip" id="soonTip" role="tooltip">Coming soon!</span><span class="pa" aria-hidden="true"><canvas width="204" height="132"></canvas></span></a><div class="ic"><a href="https://www.linkedin.com/in/sohyun-park-501434200/" target="_blank" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="miter" stroke-linecap="square"><rect class="bx" x="3" y="3" width="18" height="18"/><path d="M8 11v6M8 7.6v.1M11.6 17v-6M11.6 13.6c0-1.7 1.1-2.7 2.4-2.7s2.2.9 2.2 2.7V17"/></svg></a><a href="mailto:sohyunpark08@gmail.com" aria-label="Email"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="miter"><rect class="bx" x="2" y="5" width="20" height="14"/><path d="M2.5 5.8L12 13l9.5-7.2"/></svg></a></div></nav>
+<nav class="menu" id="menu" aria-label="Sections"><a href="#work"><span>Projects</span><span class="pa" aria-hidden="true"><canvas width="204" height="132"></canvas></span></a><a href="#about"><span>About me</span><span class="pa" aria-hidden="true"><canvas width="204" height="132"></canvas></span></a><a href="#" class="soon" aria-disabled="true" aria-describedby="soonTip"><span>Exploring</span><span class="tip" id="soonTip" role="tooltip">Coming soon!</span><span class="pa" aria-hidden="true"><canvas width="204" height="132"></canvas></span></a><div class="ic"><a href="https://www.linkedin.com/in/sohyun-park-501434200/" target="_blank" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="miter" stroke-linecap="square"><rect class="bx" x="3" y="3" width="18" height="18"/><path d="M8 11v6M8 7.6v.1M11.6 17v-6M11.6 13.6c0-1.7 1.1-2.7 2.4-2.7s2.2.9 2.2 2.7V17"/></svg></a><a href="mailto:sohyunpark08@gmail.com" aria-label="Email"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="miter"><rect class="bx" x="2" y="5" width="20" height="14"/><path d="M2.5 5.8L12 13l9.5-7.2"/></svg></a></div><p class="menu-credit">©Sohyun Park</p></nav>
 
 <main id="top">
   <div class="wrap hero">
@@ -674,12 +681,13 @@ html.projopen{overflow:hidden}
       <h2 aria-label="About me">Ab<span class="px">o</span>ut me</h2>
       <div class="why deck" aria-roledescription="carousel" aria-label="Photos of me">
         <div class="dk-stack" tabindex="0" aria-label="Photo stack. Drag, click or use arrow keys to flip through"><div class="dk-card"><img src="p/about/a2.webp" alt="Sketches on my desk" style="object-position:50% 72%" draggable="false"></div><div class="dk-card"><img src="p/about/a10.webp" alt="My dog cuddling a toy" style="object-position:50% 40%" draggable="false"></div><div class="dk-card"><img src="p/about/a9.webp" alt="Me on a snowy mountain train" style="object-position:60% 40%" draggable="false"></div><div class="dk-card"><img src="p/about/a7.webp" alt="Red buses at Victoria Station, London" style="object-position:50% 68%" draggable="false"></div><div class="dk-card"><img src="p/about/a8.webp" alt="A sunny park by the stream" style="object-position:50% 62%" draggable="false"></div></div>
-        <p class="pj-cap dk-foot">Drag or click to flip!</p>
+        <p class="pj-cap dk-foot">Swipe or click to see more!</p>
       </div>
       <div class="right">
         <p class="hi">Hi! I'm Sohyun :)</p>
         <p class="lead">I'm an Automotive UI/UX Designer from Seoul, currently based in Munich!</p>
-        <p class="body">With 3 years of experience in infotainment design and user research, I've worked on projects for Hyundai and Kia. I love solving complex problems and turning them into interfaces that feel simple on the road. When I'm not designing, I'm probably travelling somewhere new or out on a walk with my dog, Lovey.</p>
+        <p class="body">With 3 years of experience in infotainment design and user research, I've worked on projects for Hyundai and Kia. I love solving complex problems and turning them into interfaces that feel simple on the road. Outside of design, I love travelling and going on walks with Lovey (my dog) <svg class="hrt" viewBox="0 0 24 24" role="img" aria-label="love"><path d="M12 20.5s-7.5-4.6-9.3-9.2C1.5 8.2 3.4 4.8 6.8 4.6c2.1-.1 3.6 1.1 5.2 3 1.6-1.9 3.1-3.1 5.2-3 3.4.2 5.3 3.6 4.1 6.7-1.8 4.6-9.3 9.2-9.3 9.2z"/></svg></p>
+        <p class="body">P.S. My goal this year is to visit three new cities in Europe!</p>
         <a class="btn" href="#contact"><span>Let's connect!</span><span class="pa" aria-hidden="true"><canvas width="102" height="66"></canvas></span></a>
       </div>
     </div>
@@ -1153,7 +1161,7 @@ function drawMini(m,f){const W2=m.c.width,H2=m.c.height,S=m.set,u=S.u||Math.min(
 /* ending: three of the same horses galloping side by side, overlapping, behind "I'm still exploring!" */
 const herdC=document.querySelector('.herd'),herdX=herdC?herdC.getContext('2d'):null;let herdOn=false,HD={w:0,h:0,s:.5,step:0};
 function sizeHerd(){if(!herdC)return;const dpr=Math.min(devicePixelRatio||1,2),W=herdC.parentElement.clientWidth;
-  const hwid=box.x1-box.x0;HD.s=Math.min(.52,(W*.98)/(hwid*2.5));const cs=cell*HD.s;HD.step=Math.max(Math.round(hwid*.74/cell)*cs,Math.floor((W-hwid*HD.s-cs*4)/2/cs)*cs);
+  const hwid=box.x1-box.x0;let cs;if(W<700){HD.s=(W*.98)/(hwid*3.55);cs=cell*HD.s;HD.step=Math.round(hwid*1.25/cell)*cs;}else{HD.s=Math.min(.52,(W*.98)/(hwid*2.5));cs=cell*HD.s;HD.step=Math.max(Math.round(hwid*.74/cell)*cs,Math.floor((W-hwid*HD.s-cs*4)/2/cs)*cs);}
   HD.w=Math.min(W,hwid*HD.s+HD.step*2+cell*4);HD.h=(box.y1-box.y0)*HD.s+cell*2;
   herdC.style.width=HD.w+'px';herdC.style.height=HD.h+'px';herdC.width=HD.w*dpr;herdC.height=HD.h*dpr;HD.dpr=dpr;}
 function drawHerd(t){const g=herdX,dpr=HD.dpr||1;g.setTransform(dpr,0,0,dpr,0,0);g.clearRect(0,0,HD.w,HD.h);g.fillStyle='#1E36C8';
@@ -1162,6 +1170,8 @@ function drawHerd(t){const g=herdX,dpr=HD.dpr||1;g.setTransform(dpr,0,0,dpr,0,0)
     for(const [cx,cy,r,a] of f){g.globalAlpha=a*.22;g.beginPath();g.arc(ox+cx*HD.s,oy+cy*HD.s,r*HD.s,0,6.283);g.fill();}});
   g.globalAlpha=1;}
 if(herdC){sizeHerd();addEventListener('resize',()=>setTimeout(sizeHerd,260));new IntersectionObserver(e=>herdOn=e[0].isIntersecting).observe(herdC);}
+/* loose dots: [x,y as a share of the horse's box, size, phase, speed] */
+const DOTS=[[.06,.04,1,0,1.4],[1.02,.06,.7,1.8,1.1],[1.12,.14,.9,3.2,.9],[.1,.97,.75,4.4,1.6],[.92,1.02,1,2.3,1.2]];
 /* hover: the horse eases down to a slower canter, then picks the pace back up */
 let hov=false,rate=1,clock=0,last=0;
 addEventListener('pointermove',e=>{if(e.pointerType==='touch')return;const r=hc.getBoundingClientRect(),pad=cell;
@@ -1176,6 +1186,11 @@ function tick(now){
     const t=calm?0:clock,f=frames[Math.floor(t/.085)%NF]||[];   /* stepped, film-like cadence */
     hx.fillStyle='#1E36C8';
     for(const [cx,cy,r,a] of f){hx.globalAlpha=a*.26;hx.beginPath();hx.arc(hx0+cx,cy,r,0,6.283);hx.fill();}
+    /* five loose dots, the same round dots as the horse, scattered around it like stars and twinkling softly */
+    {const bw=box.x1-box.x0,bh=box.y1-box.y0,tt=calm?0:now/1000,pr=document.getElementById('poster').getBoundingClientRect(),cr=hc.getBoundingClientRect();
+     DOTS.forEach(([fx,fy,sz,ph,sp])=>{const x=hx0+box.x0+Math.round(fx*bw/cell)*cell,y=Math.max(cell,box.y0+Math.round(fy*bh/cell)*cell),R=cell*.46*sz;
+       const sx=cr.left+x,sy=cr.top+y;if(sx>pr.left-R&&sx<pr.right+R&&sy>pr.top-R&&sy<pr.bottom+R)return;   /* never over the title */
+       const k=calm?.7:.45+.55*(.5+.5*Math.sin(tt*sp+ph));hx.globalAlpha=.26*k;hx.beginPath();hx.arc(x,y,R*(.8+.2*k),0,6.283);hx.fill();});}
     hx.globalAlpha=1;
   }
   if(herdOn&&!document.hidden)drawHerd(calm?0:clock);
