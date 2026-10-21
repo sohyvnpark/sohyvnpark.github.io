@@ -7,7 +7,7 @@
 <title>SOHYUN PARK</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700;900&family=Pixelify+Sans:wght@500&family=Instrument+Serif:ital@1&family=Doto:ROND,wght@100,900&family=IBM+Plex+Mono:wght@400&family=Ballet&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400..900&family=Pixelify+Sans:wght@500&family=Instrument+Serif:ital@1&family=Doto:ROND,wght@100,900&family=IBM+Plex+Mono:wght@400&family=Ballet&display=swap">
 <style>
 /* Layout: one bold sentence anchored to the bottom of the first screen (letters pixelate on hover), then a plain project list, about, contact. Single light look by choice. */
 :root{
@@ -84,7 +84,7 @@ html.locked header{z-index:70}
 
 /* hero */
 .hero{min-height:calc(100svh - var(--hh,64px));max-height:1040px;display:flex;flex-direction:column;justify-content:center;padding-top:clamp(8px,2.5vh,28px);padding-bottom:0;position:relative}   /* sits a touch low so the shooting stars above it balance the screen */
-.poster{margin:0;font-weight:700;font-size:15vw;line-height:.88;letter-spacing:.04em;text-align:center;text-transform:uppercase;cursor:default;user-select:none;-webkit-user-select:none}
+.poster{margin:0;font-weight:640;font-size:15vw;line-height:.88;letter-spacing:.04em;text-align:center;text-transform:uppercase;cursor:default;user-select:none;-webkit-user-select:none}
 .poster .r{display:flex;gap:.25em;justify-content:center}
 .poster .r.split{justify-content:space-between}
 .poster .r.end{justify-content:flex-end}
@@ -966,7 +966,8 @@ const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
 po.querySelectorAll('.w').forEach(w=>{w.setAttribute('aria-hidden','true');w.innerHTML=[...w.textContent].map(ch=>ch===' '?'<span class="c">&nbsp;</span>':`<span class="c"><span class="n">${ch}</span><span class="p">${ch}</span></span>`).join('');});
 const cs=[...po.querySelectorAll('.c')];
 /* scale the type so EXPLORER spans the full width */
-function fit(){po.style.fontSize='100px';const rows=[...po.querySelectorAll('.w')];const w=Math.max(...rows.map(r=>r.scrollWidth));const avail=po.clientWidth*(innerWidth>900?.7:innerWidth>600?.85:.96);po.style.fontSize=Math.min(260,100*avail/w*0.985)+'px';   /* calmer on large screens */}
+function fit(){po.style.fontSize='100px';const rows=[...po.querySelectorAll('.w')];const w=Math.max(...rows.map(r=>r.scrollWidth));const avail=po.clientWidth*(innerWidth>900?.7:innerWidth>600?.85:.96);const byH=(innerHeight-(document.querySelector('header').offsetHeight||64))*.24;   /* short windows: keep the title (and the horse sized from it) inside the first screen */
+  po.style.fontSize=Math.min(260,100*avail/w*0.985,innerWidth>600?byH:1e9)+'px';   /* calmer on large screens */}
 fit();(document.fonts?document.fonts.ready:Promise.resolve()).then(fit);addEventListener('resize',()=>{clearTimeout(fit.t);fit.t=setTimeout(fit,100);});
 /* U and X: stacked alternates in other faces and colours, swapped without moving the line */
 const HUES=['#56C9A6','#FFD95E'];
@@ -1087,7 +1088,7 @@ const hx=hc.getContext('2d');let HW=0,HH=0,frames=[],cell=5,hw=0;const NF=12;
 let box={x0:0,x1:0,y0:0,y1:0},hx0=0,TOP=0;
 function build(){
   const dpr=Math.min(devicePixelRatio||1,2);HW=hero.clientWidth;
-  hw=Math.min(1000,Math.max(320,HW*(HW<700?1.05:.6)),innerHeight*1.15);
+  hw=Math.min(1000,Math.max(320,HW*(HW<700?1.05:.6)),innerHeight*(HW<700?1.15:.95));
   const cols=34;cell=hw/cols;const scale=cols/2.4,rows=Math.round(scale*1.75);
   frames=[];const S=4;box={x0:1e9,x1:-1e9,y0:1e9,y1:-1e9};
   for(let f=0;f<NF;f++){
