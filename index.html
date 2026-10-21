@@ -577,8 +577,8 @@ html.projopen{overflow:hidden}
 .pj-stage{background:none!important;box-shadow:none!important;padding:0!important}
 
 /* destination wireframe: hi-fi tablet screen */
-.pj-wire{grid-template-columns:minmax(0,1.15fr) minmax(0,1fr)}
-.pj-screen.tb{width:100%;aspect-ratio:3/4.15;border:0!important;border-radius:20px!important;box-shadow:0 0 0 1px rgba(20,20,20,.07),0 30px 60px -34px rgba(20,20,20,.4)!important;background:#fff}
+.pj-wire{grid-template-columns:auto minmax(0,1fr);column-gap:clamp(40px,5.5vw,104px);align-items:center}
+.pj-screen.tb{width:clamp(300px,calc((100svh - 300px) * 3 / 4.15),470px);margin:0 auto;aspect-ratio:3/4.15;border:0!important;border-radius:20px!important;box-shadow:0 0 0 1px rgba(20,20,20,.07),0 30px 60px -34px rgba(20,20,20,.4)!important;background:#fff}
 .pj-screen.tb .pj-scroll{cursor:grab}
 .tb-app{width:600px;font-family:var(--font);color:#16181D;background:#fff;padding-bottom:28px}
 .tb-app p{margin:0}
@@ -645,7 +645,7 @@ html.projopen{overflow:hidden}
 .pj-steps button.on .k{font-weight:700}
 .tb-app .pj-hl{left:8px;right:8px;border-radius:16px}
 .tb-note{margin:14px 0 0;text-align:center}
-@media (max-width:767px){.pj-wire{grid-template-columns:1fr}}
+@media (max-width:767px){.pj-wire{grid-template-columns:1fr}.pj-screen.tb{width:100%}}
 
 .pj-eval .pj-card{padding:clamp(28px,2.8vw,48px) clamp(26px,2.6vw,44px);min-height:clamp(180px,15vw,260px);display:flex;flex-direction:column}
 .pj-eval .pj-card .t{margin-top:clamp(14px,1.4vw,22px);font-size:clamp(18px,1.45vw,24px);line-height:1.4}
