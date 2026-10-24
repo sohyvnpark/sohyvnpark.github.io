@@ -653,7 +653,8 @@ html.xpopen .burger{display:none}   /* Exploring is a side room: a Back link rep
 .xback svg{width:18px;height:18px;transition:transform .3s cubic-bezier(.2,.8,.2,1)}
 .xback:hover svg{transform:translateX(-4px)}
 .bar a.xback::after{display:none}
-html.xpopen .xback{display:inline-flex;order:-1}   /* Back takes the logo's place */
+html.xpopen .xback,html.projback .xback{display:inline-flex;order:-1}
+html.projback header .brand{display:none}   /* Back takes the logo's place */
 html.xpopen header .brand{display:none}
 html.xpopen .menu{background:#161616;color:#EDEDEA}   /* the menu opened from Exploring stays in the dark */
 html.xpopen .menu .ic a{color:#EDEDEA}
@@ -769,6 +770,17 @@ html.xpstay .proj.xp,html.xpstay .proj.pweb.open{transition:none!important}   /*
 html.xpstay header{color:#EDEDEA}
 /* letters whose projects aren't ready yet sit quieter */
 .xp.in .xl.soon{opacity:.3}
+/* phones: no world clocks; the letters sit in two tidy rows, three above the title and three below the text */
+@media (max-width:760px){.xm-time{display:none!important}.xm .xl{font-size:var(--xls,clamp(64px,19vw,104px))!important}}
+/* phones: buttons are a plain tap, no stretching and no horse; a quick dark flash on press */
+@media (max-width:760px){
+ .btn,.btn:hover,.btn:focus-visible{gap:0!important;transition:background .12s ease,color .12s ease,opacity .6s ease,transform .7s cubic-bezier(.2,.8,.2,1)!important}
+ .btn:hover,.btn:focus-visible{background:transparent!important;border-color:#171717!important;color:#171717!important}
+ .btn .pa,.btn:hover .pa,.btn:focus-visible .pa{display:none!important}
+ .btn:active{background:#141414!important;color:#fff!important}
+ .xp .btn:hover,.xp .btn:focus-visible,.pweb .btn:hover,.pweb .btn:focus-visible{background:transparent!important;border-color:#EDEDEA!important;color:#EDEDEA!important}
+ .xp .btn:active,.pweb .btn:active{background:#EDEDEA!important;color:#161616!important}
+}
 .uv-tag{display:inline-block;margin-bottom:8px;padding:4px 9px;border-radius:4px;background:#EEF1FF;color:#3B55E6;font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase}
 @media (max-width:900px){.uv-cards{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media (max-width:767px){.uv-clips,.uv-cards{grid-template-columns:1fr}}
@@ -1852,15 +1864,24 @@ addEventListener('load',()=>document.querySelectorAll('.pj-heroimg img').forEach
 </script>
 <script>/* S(AI) Lab: s-o-h-y-u-n rest at their own spots and bob gently; drag one and it springs back home */
 (()=>{const xp=document.getElementById('pExp');if(!xp)return;const D=document.documentElement,F=document.getElementById('xmField'),Ls=[...F.querySelectorAll('.xl')],
-  calm=matchMedia('(prefers-reduced-motion:reduce)').matches;let W=0,H=0,raf=0,last=0,P=[];
+  calm=matchMedia('(prefers-reduced-motion:reduce)').matches,mob=()=>innerWidth<=760;let W=0,H=0,raf=0,last=0,P=[];
   const seed=[[.10,.40,-8],[.36,.24,4],[.86,.30,-6],[.78,.72,10],[.22,.74,-12],[.56,.70,6]];   /* x, y as a share of the screen, angle */
-  function place(){W=F.clientWidth;H=F.clientHeight;measureEdge();P=Ls.map((el,i)=>{const r=el.getBoundingClientRect(),w=r.width,h=r.height,[sx,sy,a]=seed[i];
-    return {el,w,h,x:sx*W-w/2,y:sy*H-h/2,a,vx:0,vy:0,va:0,ph:i*1.7,drag:null};});P.forEach(walls);for(let n=0;n<20;n++)collide();P.forEach(o=>{o.hx=o.x;o.hy=o.y;o.ha=o.a;});draw();}
+  function place(){W=F.clientWidth;H=F.clientHeight;measureEdge();F.style.removeProperty('--xls');
+    if(mob()){const f=F.getBoundingClientRect(),tr=txt.getBoundingClientRect(),hh=(parseFloat(getComputedStyle(D).getPropertyValue('--hh'))||64),band=Math.min(tr.top-f.top-14-hh,H-48-(tr.bottom-f.top+8)),fs=parseFloat(getComputedStyle(Ls[0]).fontSize);
+      if(band<fs*.72)F.style.setProperty('--xls',Math.max(40,band/.72)+'px');}   /* letters shrink on short phones so both rows fit */
+    P=Ls.map((el,i)=>{const r=el.getBoundingClientRect(),w=r.width,h=r.height,[sx,sy,a]=seed[i];
+    return {el,w,h,x:sx*W-w/2,y:sy*H-h/2,a,vx:0,vy:0,va:0,ph:i*1.7,drag:null};});if(mob()){const S=slots();P.forEach((o,i)=>toSlot(o,S[i],mobAng[i]));}else{P.forEach(walls);for(let n=0;n<20;n++)collide();}P.forEach(o=>{o.hx=o.x;o.hy=o.y;o.ha=o.a;});draw();}
+  /* phones: six fixed slots, three in the band above the paragraph and three in the band below it */
+  function slots(){const f=F.getBoundingClientRect(),tr=txt.getBoundingClientRect(),hh=(parseFloat(getComputedStyle(D).getPropertyValue('--hh'))||64),
+      tTop=hh,tBot=tr.top-f.top-14,bTop=tr.bottom-f.top+14,bBot=H-48,cols=[edge,(W-0)/2,W-edge],out=[];
+    [[tTop,tBot],[bTop,bBot]].forEach(([y0,y1],row)=>cols.forEach((cx,c)=>out.push({cx,cy:(y0+y1)/2,col:c,row})));return out;}
+  function toSlot(o,sl,ang){const cx=sl.col===0?sl.cx+o.w*.44:sl.col===2?sl.cx-o.w*.44:sl.cx;o.x=cx-o.w/2;o.y=sl.cy-o.h*.62;o.a=ang;}   /* lowercase ink sits low in the box */
+  const mobAng=[-8,5,-4,7,-10,4];
   function draw(){P.forEach(o=>{o.el.style.transform=`translate(${o.x.toFixed(1)}px,${o.y.toFixed(1)}px) rotate(${o.a.toFixed(2)}deg)`;});}
   function tick(now){const dt=Math.min(.05,last?(now-last)/1000:0);last=now;
     const t=now/1000,k=1-Math.exp(-4*dt);
     P.forEach(o=>{if(o.drag)return;   /* a few pixels of float around home, nothing more */
-      const tx=o.hx+Math.sin(t*.6+o.ph)*4,ty=o.hy+Math.sin(t*.8+o.ph*1.3)*8,ta=o.ha+Math.sin(t*.5+o.ph)*1.5;
+      const bob=mob()?3:8,tx=o.hx+Math.sin(t*.6+o.ph)*4,ty=o.hy+Math.sin(t*.8+o.ph*1.3)*bob,ta=o.ha+Math.sin(t*.5+o.ph)*1.5;
       o.x+=(tx-o.x)*k;o.y+=(ty-o.y)*k;o.a+=(ta-o.a)*k;});
     draw();if(tipFor)tipAt(tipFor);raf=requestAnimationFrame(tick);}   /* hovering no longer stops a letter: its label simply travels with it */
   /* every letter keeps to its own inked box: inside the page, below the header, clear of the paragraph and of each other */
@@ -1894,7 +1915,7 @@ addEventListener('load',()=>document.querySelectorAll('.pj-heroimg img').forEach
     el.addEventListener('pointerleave',e=>{if(e.pointerType!=='mouse')return;const o=P[i];o.hov=false;hideTip();});});
   /* rearrange: the letters glide to a fresh, tidy spread around the paragraph */
   document.getElementById('xmShuf').addEventListener('click',e=>{e.preventDefault();hideTip();const spots=seed.map(s2=>s2.slice()).sort(()=>Math.random()-.5);
-    const save=P.map(o=>[o.x,o.y]);P.forEach((o,i)=>{const [sx,sy]=spots[i];o.x=(sx+(Math.random()-.5)*.06)*W-o.w/2;o.y=(sy+(Math.random()-.5)*.06)*H-o.h/2;o.hov=false;walls(o);});
+    const save=P.map(o=>[o.x,o.y]);if(mob()){const S=slots(),ord=S.map((_,i)=>i).sort(()=>Math.random()-.5);P.forEach((o,i)=>{toSlot(o,S[ord[i]],(Math.random()-.5)*20);o.hov=false;o.hx=o.x;o.hy=o.y;o.ha=o.a;o.x=save[i][0];o.y=save[i][1];if(calm){o.x=o.hx;o.y=o.hy;}});if(calm)draw();return;}P.forEach((o,i)=>{const [sx,sy]=spots[i];o.x=(sx+(Math.random()-.5)*.06)*W-o.w/2;o.y=(sy+(Math.random()-.5)*.06)*H-o.h/2;o.hov=false;walls(o);});
     for(let n=0;n<20;n++)collide();P.forEach((o,i)=>{o.hx=o.x;o.hy=o.y;o.ha=(Math.random()-.5)*20;[o.x,o.y]=save[i];if(calm){o.x=o.hx;o.y=o.hy;o.a=o.ha;}});   /* new homes; each letter glides over to its own */
     if(calm)draw();});
   const tip=document.getElementById('xmTip');let tipFor=null;
@@ -1924,6 +1945,9 @@ addEventListener('load',()=>document.querySelectorAll('.pj-heroimg img').forEach
     if(!on&&D.classList.contains('xpopen')){D.classList.add('xpleave');clearTimeout(lv);lv=setTimeout(()=>D.classList.remove('xpleave'),650);}
     D.classList.toggle('xpopen',on);if(w)D.classList.add('xpstay');if(!on)D.classList.remove('xpstay');
     xb.setAttribute('href',w?'/sai-lab':'/');xb.setAttribute('aria-label',w?'Back to S(AI) Lab':'Back to portfolio');}
+  {const projs=[...document.querySelectorAll('.proj')].filter(p=>p!==xp&&p!==web);   /* regular projects: BACK takes the name's place too */
+   const pb=()=>{const on=projs.some(p=>p.classList.contains('open'));D.classList.toggle('projback',on);if(on&&!D.classList.contains('xpopen')){xb.setAttribute('href','/');xb.setAttribute('aria-label','Back to portfolio');}};
+   projs.forEach(p=>new MutationObserver(pb).observe(p,{attributes:true,attributeFilter:['class']}));pb();}
   if(web){let wo=web.classList.contains('open');new MutationObserver(()=>{const o=web.classList.contains('open');if(o!==wo){wo=o;dark();}}).observe(web,{attributes:true,attributeFilter:['class']});if(wo)setTimeout(dark,0);}   /* also when the case study is the first page opened */
   const sync=()=>{dark();cancelAnimationFrame(raf);clearInterval(ck);
     if(was){typeSay();requestAnimationFrame(()=>{place();last=0;if(!calm)raf=requestAnimationFrame(tick);});clock();ck=setInterval(clock,10000);requestAnimationFrame(()=>requestAnimationFrame(()=>xp.classList.add('in')));}
