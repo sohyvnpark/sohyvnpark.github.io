@@ -182,7 +182,7 @@ main>section{scroll-margin-top:calc(var(--hh,64px) + 8px)}   /* anchor jumps lan
 #work{padding-top:clamp(40px,5vw,72px)!important;box-shadow:0 -1px 0 var(--rule)}
 #work::before{content:"";position:absolute;left:0;right:0;bottom:100%;height:120px;background:linear-gradient(180deg,rgba(244,244,242,0),var(--bg));pointer-events:none}
 .list{list-style:none;margin:0;padding:0}   /* full width of the page grid, so edges line up with the name above */
-.item{position:relative;border-top:1px solid var(--rule);padding-block:clamp(32px,4vw,48px);will-change:opacity,transform}
+.item{position:relative;border-top:1px solid var(--rule);padding-block:clamp(32px,4vw,48px)}
 .item .row{position:relative;z-index:1}
 /* halftone patches in the horse's dot language, sitting quietly behind each project */
 .halftone{position:absolute;z-index:0;pointer-events:none;display:block}
@@ -622,6 +622,17 @@ html.intro header .bar,html.intro .poster,html.intro .scrollcue,html.intro canva
 .uv-read{margin:clamp(10px,1vw,16px) 0 0;text-align:center;font-size:clamp(15px,1.05vw,17px)}
 .uv-read a{color:var(--ink);text-decoration:underline;text-underline-offset:4px;text-decoration-thickness:1px;transition:color .2s}
 .uv-read a:hover{color:#1E36C8}
+.kd{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));column-gap:clamp(14px,1.6vw,24px);row-gap:0;margin-top:clamp(36px,3.6vw,64px)}
+.kd-card{background:rgba(255,255,255,.6);border-radius:6px;padding:clamp(22px,2.2vw,34px);display:grid;grid-row:span 8;grid-template-rows:subgrid;align-content:start}
+.kd-card dl{display:contents}
+.kd-card dd{align-self:start}
+.kd-card .n{display:block;font-size:clamp(13px,.9vw,15px);font-weight:600;letter-spacing:.08em;color:var(--muted)}
+.kd-card h4{margin:.5em 0 .9em;font-weight:600;font-size:clamp(19px,1.45vw,25px);line-height:1.25;color:var(--ink)}
+.kd-card dl{margin:0}
+.kd-card dt{margin:1.1em 0 .3em;font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:rgba(30,54,200,.6)}
+.kd-card dt:first-child{margin-top:0}
+.kd-card dd{margin:0;font-size:clamp(15px,1.05vw,17px);line-height:1.6;color:var(--body)}
+@media (max-width:900px){.kd{grid-template-columns:1fr}.kd-card{margin-bottom:clamp(14px,1.6vw,24px)}}
 .uv-tag{display:inline-block;margin-bottom:8px;padding:4px 9px;border-radius:4px;background:#EEF1FF;color:#3B55E6;font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase}
 @media (max-width:900px){.uv-cards{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media (max-width:767px){.uv-clips,.uv-cards{grid-template-columns:1fr}}
@@ -759,8 +770,8 @@ html.intro header .bar,html.intro .poster,html.intro .scrollcue,html.intro canva
       <div class="right">
         <p class="hi">Hi, I'm Sohyun!</p>
         <p class="lead">An Automotive UI/UX Designer from Seoul, based in Munich.</p>
-        <p class="body">Over the past 3 years I've designed in-vehicle experiences for Hyundai, Kia and Volkswagen, from infotainment systems and digital clusters to the GUI guidelines and design systems behind them. I pair user research with detail-driven UI to turn complex vehicle features into clear, glanceable interfaces drivers can truly rely on.</p>
-        <p class="body">I enjoy the back-and-forth with developers that turns a good idea into a shipped one. When I'm not designing, I love to explore new cities or go on walks with my dog Lovey.</p>
+        <p class="body">Over the past 3 years I've designed in-vehicle experiences for Hyundai, Kia, Volkswagen, MAN and LG, from infotainment systems, digital clusters and AR-HUDs to the GUI guidelines and design systems behind them. I pair user research with detail-driven UI to turn complex vehicle features into clear, glanceable interfaces drivers can truly rely on.</p>
+        <p class="body">I enjoy the back-and-forth with developers that turns a good idea into a shipped one, and I'm always trying new ways of working, from ProtoPie prototypes to AI-assisted workflows. When I'm not designing, I love to explore new cities, practise my German or go on walks with my dog Lovey.</p>
         <a class="btn" href="https://www.linkedin.com/in/sohyun-park-501434200/" target="_blank" rel="noopener"><span>Let's connect!</span><span class="pa" aria-hidden="true"><canvas width="102" height="66"></canvas></span></a>
       </div>
     </div>
@@ -822,6 +833,15 @@ html.intro header .bar,html.intro .poster,html.intro .scrollcue,html.intro canva
    <p class="pj-lbl">Improving accessibility</p><div class="pj-2"><div><h2 class="pj-h2">Designing different functions</h2></div><div><p class="pj-body">With active communication with designers and engineers at Hyundai MOBIS, I mainly focused on design features such as the Remote Smart Parking Assistant(RSPA), Split Screens, and My Vehicle while creating accurate GUI guidelines.</p></div></div><figure class="pj-media"><div class="pj-stack"><img class="pj-img" src="p/info/s1.webp" alt="Hyundai ccNC screens" loading="lazy"><img class="pj-img" src="p/info/s2.webp" alt="Kia ccNC screens" loading="lazy"></div><figcaption class="pj-cap">Hyundai &amp; Kia's ccNC Screens</figcaption></figure>
   </section>
 
+  <section class="pj-s">
+   <p class="pj-lbl">My key decisions</p><div class="pj-2"><div><h2 class="pj-h2">The calls that shaped the work</h2></div><div><p class="pj-body">Three decisions that kept a growing, multi-brand infotainment system consistent and buildable.</p></div></div>
+   <div class="kd">
+    <div class="kd-card"><span class="n">01</span><h4>Treat the guideline as the source of truth</h4><dl><dt>Challenge</dt><dd>Engineers struggled to follow the GUI guidelines accurately as new features kept arriving.</dd><dt>My decision</dt><dd>I placed every new feature against the guideline and updated the guideline alongside the screens, instead of designing screens first.</dd><dt>Impact</dt><dd>Clearer handover to development and a design system that cut iteration time by 20%.</dd></dl></div>
+    <div class="kd-card"><span class="n">02</span><h4>One system, two brands</h4><dl><dt>Challenge</dt><dd>Hyundai and Kia share the same services and layouts, but each has its own design identity.</dd><dt>My decision</dt><dd>I kept layouts and components shared, and let each brand speak through its shapes: sharp, angular corners for Kia, echoing the edges of its logo, and soft, rounded corners for Hyundai's more classic, timeless look.</dd><dt>Impact</dt><dd>Consistent functions across sedans, SUVs and trucks, with 50+ high-fidelity screens delivered on time.</dd></dl></div>
+    <div class="kd-card"><span class="n">03</span><h4>Design for every language from the start</h4><dl><dt>Challenge</dt><dd>With over 7.3 million users worldwide, screens had to work in many languages without breaking.</dd><dt>My decision</dt><dd>I adapted the design system so layouts held up across languages such as Korean, English and Japanese.</dd><dt>Impact</dt><dd>Multilingual support rolled out smoothly across 5 countries.</dd></dl></div>
+   </div>
+  </section>
+
   <section class="pj-s pj-learn">
    <div class="pj-2"><div><h2 class="pj-h2">My learnings &amp;<br>what can I do better next time?</h2>
      <div class="pj-route pj-route-up pj-route-low" aria-hidden="true"><svg viewBox="0 0 640 250"><defs><marker id="pjArrow" viewBox="0 0 16 16" refX="-1" refY="8" markerWidth="16" markerHeight="16" markerUnits="userSpaceOnUse" orient="auto"><path d="M2.5 2 L13 8 L2.5 14" fill="none" stroke="rgba(30,54,200,.5)" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" style="stroke-dasharray:none"/></marker></defs><path d="M1 70 C 50 84, 96 180, 170 194 C 215 203, 248 196, 256 178 C 264 160, 250 148, 236 150 C 220 152, 216 174, 236 188 C 300 228, 430 206, 500 152 C 540 124, 574 114, 616 100" marker-end="url(#pjArrow)"/></svg><canvas width="102" height="66"></canvas></div></div>
@@ -868,6 +888,15 @@ html.intro header .bar,html.intro .poster,html.intro .scrollcue,html.intro canva
    <figure class="pj-media"><div class="pj-pair pj-pair-oi"><img class="pj-img" src="p/tech/p1.webp" alt="2024 OI Lounge exhibition wall" loading="lazy"><img class="pj-img" src="p/tech/p2.webp" alt="Visitors at the 2024 OI Lounge" loading="lazy"></div><figcaption class="pj-cap">Photos from the 2024 OI Lounge</figcaption></figure>
   </section>
 
+  <section class="pj-s">
+   <p class="pj-lbl">My key decisions</p><div class="pj-2"><div><h2 class="pj-h2">The calls that shaped the work</h2></div><div><p class="pj-body">Three decisions that made complex audio technology easy to understand in a short video.</p></div></div>
+   <div class="kd">
+    <div class="kd-card"><span class="n">01</span><h4>Story first, screens second</h4><dl><dt>Challenge</dt><dd>Face tracking and beamforming are hard to explain, and the timeline was only two weeks.</dd><dt>My decision</dt><dd>I turned the user scenario into a clear visual story before designing any screens.</dd><dt>Impact</dt><dd>100% scenario-to-visual alignment and 50% fewer revision cycles.</dd></dl></div>
+    <div class="kd-card"><span class="n">02</span><h4>Make sound visible</h4><dl><dt>Challenge</dt><dd>Audio-zone separation is invisible, and easy to miss in a video.</dd><dt>My decision</dt><dd>I visualised each passenger's sound zone in the UI and motion, and balanced the audio levels so viewers could hear the separation.</dd><dt>Impact</dt><dd>A 10% better understanding of the audio-zone technology.</dd></dl></div>
+    <div class="kd-card"><span class="n">03</span><h4>UI designed for the camera</h4><dl><dt>Challenge</dt><dd>Infotainment screens shown on video are seen briefly and from a distance.</dd><dt>My decision</dt><dd>I simplified three screens, with clear layouts and motion that guides the eye to what matters.</dd><dt>Impact</dt><dd>Screens that read clearly on camera and kept viewers engaged.</dd></dl></div>
+   </div>
+  </section>
+
   <section class="pj-s pj-learn">
    <div class="pj-2"><div><h2 class="pj-h2">My key learnings from this project:</h2>
      <div class="pj-route pj-route-up pj-route-low" aria-hidden="true"><svg viewBox="0 0 640 250"><defs><marker id="pjArrow3" viewBox="0 0 16 16" refX="-1" refY="8" markerWidth="16" markerHeight="16" markerUnits="userSpaceOnUse" orient="auto"><path d="M2.5 2 L13 8 L2.5 14" fill="none" stroke="rgba(30,54,200,.5)" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" style="stroke-dasharray:none"/></marker></defs><path d="M1 70 C 50 84, 96 180, 170 194 C 215 203, 248 196, 256 178 C 264 160, 250 148, 236 150 C 220 152, 216 174, 236 188 C 300 228, 430 206, 500 152 C 540 124, 574 114, 616 100" marker-end="url(#pjArrow3)"/></svg><canvas width="102" height="66"></canvas></div></div>
@@ -892,7 +921,7 @@ html.intro header .bar,html.intro .poster,html.intro .scrollcue,html.intro canva
  <div class="wrap">
   <div class="pj-2 pj-hero-row">
    <h1 class="pj-title">Beyond the Windshield<small>(LG Electronics)</small></h1>
-   <figure class="pj-heroimg"><img class="pj-img" src="p/lg/hero.webp" alt="CID with AI-themed playlist recommendations next to the driving view" width="1920" height="1080"><span>*Image from LG Electronics (Tech Showcase video)</span></figure>
+   <figure class="pj-heroimg"><img class="pj-img" decoding="sync" fetchpriority="high" src="p/lg/hero.webp" alt="CID with AI-themed playlist recommendations next to the driving view" width="1920" height="1080"><span>*Image from LG Electronics (Tech Showcase video)</span></figure>
   </div>
   <div class="pj-meta">
    <div><h4>My role</h4><p>UI Design, AI-assisted Motion &amp; Playlist Visuals, Cross-team Collaboration</p></div>
@@ -909,7 +938,7 @@ html.intro header .bar,html.intro .poster,html.intro .scrollcue,html.intro canva
   <section class="pj-s">
    <p class="pj-lbl">Context-aware welcoming</p><div class="pj-2"><div><h2 class="pj-h2">A welcome that knows where you're headed</h2></div><div><p class="pj-body">As the drive begins, welcome content and a music suggestion rise onto the AR-HUD, while the CID shows themed playlists for the journey. I designed this moment with AI, working closely with our UI design team and the client's planners.</p></div></div>
    <div class="uv-clips"><figure class="uv-clip mine"><video class="pj-img" muted loop playsinline autoplay preload="metadata" poster="p/lg/music.jpg"><source src="p/lg/music.webm" type="video/webm"><source src="p/lg/music.mp4" type="video/mp4"></video></figure></div>
-   <p class="pj-cap">As the drive begins, the welcome message and a music suggestion rise onto the AR-HUD, while the CID shows the AI-made themed playlists.<br>*Video from LG Electronics' official materials.</p>
+   <p class="pj-cap">A music suggestion rises onto the AR-HUD, with AI-themed playlists on the CID<br>*Video from LG Electronics' official materials.</p>
    <div class="pj-cards uv-cards">
     <div class="pj-card"><span class="n">01</span><h4>AI-generated motion &amp; playlist visuals</h4><p>Created the motion of the welcome content rising onto the AR-HUD and the themed playlist visuals on the CID with AI, refining each theme together with the planner so the journey feels personal from the very first moment.</p></div>
     <div class="pj-card"><span class="n">02</span><h4>In-vehicle UI screens</h4><p>Designed most of the cockpit UI, from the widget bar (Navigation, Weather, Music, Dashboard, Mail) to the song recommendations, driving view and climate controls, keeping every screen consistent and glanceable with our UI team and the client's planners.</p></div>
@@ -926,6 +955,15 @@ html.intro header .bar,html.intro .poster,html.intro .scrollcue,html.intro canva
     <li><div class="uv-pic"><svg class="uv-draw" viewBox="0 0 240 160" aria-hidden="true"><g filter="url(#uvCrayon)"><path class="k" pathLength="1" d="M29.3 44.2 C37.2 41.8 61.5 33.1 76.7 30.1 C92.0 27.1 106.4 26.1 120.8 26.2 C135.2 26.2 148.2 27.7 163.2 30.6 C178.2 33.5 203.0 41.3 210.9 43.5"/><path class="k" pathLength="1" d="M28.9 44.0 C28.4 51.7 25.1 74.4 26.1 90.2 C27.2 105.9 33.6 130.3 35.1 138.4"/><path class="k" pathLength="1" d="M210.7 43.0 C211.3 50.9 215.1 75.0 214.1 90.7 C213.2 106.4 206.5 129.3 205.0 137.0"/><path class="k" pathLength="1" d="M34.6 139.0 C48.6 139.5 90.6 142.4 119.0 142.3 C147.4 142.3 190.8 139.2 205.1 138.6"/><path class="k" pathLength="1" d="M95.4 51.4 C99.4 51.5 111.0 51.8 119.3 52.0 C127.6 52.2 140.2 52.5 145.1 52.6 C149.9 52.8 147.2 52.3 148.2 53.1 C149.3 53.9 150.7 55.1 151.1 57.4 C151.5 59.7 150.7 63.7 150.6 67.1 C150.5 70.4 150.7 75.3 150.5 77.5 C150.3 79.7 150.3 79.5 149.5 80.3 C148.7 81.1 150.6 81.9 145.8 82.4 C141.0 82.9 129.2 83.2 120.8 83.3 C112.5 83.4 100.5 83.3 95.8 82.9 C91.1 82.5 93.6 81.7 92.6 80.8 C91.6 79.9 90.5 79.8 90.1 77.5 C89.6 75.2 90.2 70.4 90.1 66.8 C90.1 63.3 89.5 58.2 89.8 56.2 C90.1 54.1 90.6 55.6 92.1 54.7 C93.6 53.7 97.6 51.1 98.7 50.4"/><path class="k" pathLength="1" d="M99.3 63.8 L125.5 65.1"/><path class="k" pathLength="1" d="M98.9 71.5 L115.1 72.4"/><path class="k" pathLength="1" d="M120.7 97.2 L118.9 87.9"/><path class="k" pathLength="1" d="M114.2 94.0 L118.9 85.1 L125.2 92.3"/><path class="b" pathLength="1" d="M101.4 112.5 L102.2 97.3"/><path class="b" pathLength="1" d="M119.2 123.5 L119.2 106.6"/><path class="b" pathLength="1" d="M137.5 112.1 L138.8 98.0"/><path class="k" pathLength="1" d="M175.4 108.9 C177.0 107.4 181.9 100.6 185.0 99.6 C188.1 98.6 192.0 101.1 194.1 103.1 C196.3 105.0 198.5 108.0 198.0 111.3 C197.4 114.7 193.5 121.3 190.9 123.1 C188.4 124.8 184.1 121.9 182.7 121.7"/><path class="k" pathLength="1" d="M176.1 100.0 L175.5 110.2 L185.4 108.4"/></g></svg></div><div class="uv-bar"><i></i></div><span class="n">04</span><h4>Animate &amp; refine</h4><p>Turned the visuals into the rising AR-HUD motion and iterated on the planner's feedback.</p></li>
     <li><div class="uv-pic"><svg class="uv-draw" viewBox="0 0 240 160" aria-hidden="true"><g filter="url(#uvCrayon)"><path class="k" pathLength="1" d="M12.8 63.9 C30.6 61.1 84.1 46.7 119.7 46.7 C155.3 46.8 208.7 61.3 226.5 64.3"/><path class="k" pathLength="1" d="M97.2 53.2 C100.9 53.1 112.0 52.7 119.6 52.8 C127.2 53.0 138.6 53.4 142.9 54.0 C147.1 54.6 144.7 55.7 145.1 56.4 C145.6 57.1 145.3 56.9 145.4 58.1 C145.5 59.3 145.9 61.9 145.8 63.6 C145.7 65.4 144.8 67.5 144.8 68.8 C144.8 70.1 146.3 71.1 145.6 71.6 C145.0 72.0 145.2 71.4 141.0 71.4 C136.8 71.5 127.7 71.6 120.5 71.6 C113.3 71.7 102.0 72.0 98.0 71.9 C93.9 71.8 96.8 71.7 96.3 71.0 C95.8 70.3 95.2 68.9 94.9 67.5 C94.5 66.2 94.1 64.6 94.1 62.8 C94.1 61.0 94.7 58.4 95.0 57.0 C95.3 55.6 94.8 55.1 96.0 54.5 C97.2 53.9 101.1 53.5 102.1 53.3"/><path class="b" pathLength="1" d="M101.2 63.8 L119.5 62.5"/><path class="k" pathLength="1" d="M13.0 91.5 L225.9 92.5"/><path class="k" pathLength="1" d="M84.6 125.3 C83.7 126.5 81.4 130.2 79.5 132.6 C77.6 135.0 75.5 138.2 73.1 139.7 C70.7 141.2 68.2 141.5 65.0 141.5 C61.8 141.6 56.7 141.0 53.7 139.9 C50.8 138.9 49.3 137.1 47.2 135.3 C45.0 133.4 42.6 131.1 40.9 128.8 C39.2 126.4 37.1 124.4 36.9 121.3 C36.7 118.3 38.6 113.5 39.8 110.4 C40.9 107.3 42.0 104.8 43.8 102.6 C45.6 100.5 47.9 98.9 50.5 97.5 C53.1 96.1 56.2 94.7 59.3 94.4 C62.3 94.2 65.9 95.3 68.8 96.2 C71.7 97.0 74.3 97.6 76.7 99.4 C79.2 101.1 82.1 104.0 83.8 106.7 C85.5 109.5 86.7 113.0 87.0 116.0 C87.2 119.0 86.4 121.8 85.5 124.5 C84.5 127.1 82.0 130.7 81.3 131.9"/><path class="k" pathLength="1" d="M66.9 118.7 C66.9 119.3 67.5 121.5 67.0 122.2 C66.6 122.9 64.6 122.6 64.0 122.9 C63.4 123.2 64.2 124.0 63.4 124.0 C62.6 124.0 60.2 123.3 59.2 122.9 C58.2 122.5 57.8 122.1 57.3 121.6 C56.9 121.0 56.5 120.2 56.5 119.7 C56.4 119.2 57.1 118.9 57.0 118.4 C57.0 117.9 56.1 117.2 56.3 116.6 C56.5 116.1 57.6 115.8 58.0 115.1 C58.5 114.4 58.4 113.1 58.9 112.4 C59.5 111.8 60.5 111.0 61.2 111.0 C62.0 111.1 62.6 112.4 63.5 112.9 C64.5 113.4 66.3 113.8 67.0 114.2 C67.7 114.7 67.7 115.1 67.7 115.5 C67.7 116.0 66.9 116.3 66.8 117.1 C66.8 117.8 67.5 119.4 67.4 120.1 C67.2 120.8 66.0 121.2 65.7 121.4"/><path class="k" pathLength="1" d="M40.0 112.7 L56.8 116.3"/><path class="k" pathLength="1" d="M67.2 116.6 L85.0 112.1"/><path class="k" pathLength="1" d="M124.6 98.0 C131.2 98.0 150.6 97.9 164.1 97.9 C177.7 97.9 198.7 97.6 206.2 98.0 C213.6 98.4 208.5 99.3 209.0 100.3 C209.5 101.3 209.0 100.2 209.3 104.1 C209.6 107.9 211.0 116.6 210.9 123.3 C210.9 130.0 209.4 140.1 209.0 144.4 C208.6 148.7 209.4 147.9 208.7 149.0 C207.9 150.1 211.9 150.8 204.6 151.0 C197.3 151.3 178.1 150.5 164.7 150.5 C151.3 150.5 131.4 151.3 124.1 151.1 C116.8 151.0 121.3 150.5 120.6 149.5 C120.0 148.5 120.3 149.5 120.1 145.1 C119.9 140.8 119.4 130.3 119.5 123.4 C119.7 116.6 120.5 108.1 121.0 104.2 C121.4 100.2 121.1 100.8 122.3 99.7 C123.4 98.7 127.1 98.3 128.1 98.0"/><path class="k" pathLength="1" d="M130.5 107.0 C131.3 106.7 133.5 105.9 135.4 105.6 C137.3 105.3 140.5 105.2 141.8 105.2 C143.1 105.3 143.0 105.4 143.2 105.9 C143.4 106.4 142.5 106.7 142.9 108.2 C143.3 109.8 145.5 113.3 145.8 115.1 C146.0 116.8 144.8 117.4 144.4 118.5 C144.0 119.6 144.1 121.1 143.5 121.7 C142.9 122.3 141.8 122.3 140.7 122.2 C139.6 122.2 138.5 121.5 136.7 121.4 C135.0 121.4 131.7 122.0 130.3 121.9 C128.8 121.8 128.4 121.4 128.0 120.8 C127.7 120.2 128.3 119.4 128.2 118.2 C128.1 117.0 127.4 115.0 127.4 113.4 C127.4 111.8 127.9 109.9 128.2 108.6 C128.5 107.3 128.0 106.5 129.2 105.8 C130.4 105.1 134.4 104.6 135.4 104.3"/><path class="k" pathLength="1" d="M151.1 110.2 C152.9 110.0 158.1 108.6 161.9 108.8 C165.8 109.0 169.5 111.2 174.3 111.5 C179.1 111.8 187.9 110.7 190.6 110.6"/><path class="k" pathLength="1" d="M150.0 119.2 C151.4 119.0 156.0 117.9 158.6 117.9 C161.2 117.8 162.5 118.7 165.4 118.8 C168.3 119.0 174.4 119.0 176.2 119.0"/><path class="k" pathLength="1" d="M131.1 128.1 C131.9 128.1 134.3 128.6 135.8 128.4 C137.4 128.2 139.3 126.7 140.6 126.9 C141.9 127.2 143.0 129.1 143.6 129.9 C144.3 130.6 144.3 130.3 144.6 131.2 C144.8 132.2 145.3 134.1 145.2 135.5 C145.1 137.0 144.7 138.7 144.2 140.0 C143.7 141.2 142.7 142.3 142.2 143.0 C141.7 143.6 142.2 143.4 141.0 143.8 C139.8 144.1 136.6 145.1 134.9 145.1 C133.3 145.0 132.1 143.7 131.1 143.4 C130.0 143.0 129.1 143.4 128.4 142.8 C127.8 142.3 127.4 140.9 127.4 140.0 C127.4 139.0 128.2 138.5 128.4 137.1 C128.6 135.8 128.3 133.1 128.4 131.9 C128.5 130.6 127.7 130.3 128.7 129.6 C129.7 129.0 133.4 128.1 134.3 127.8"/><path class="b" pathLength="1" d="M150.2 137.0 C150.5 137.3 151.2 138.5 152.0 138.8 C152.9 139.2 153.8 139.4 155.1 139.1 C156.4 138.8 159.0 137.5 160.1 136.9 C161.1 136.3 160.6 136.2 161.4 135.5 C162.1 134.8 163.3 133.1 164.6 132.8 C165.8 132.5 167.9 133.6 168.9 133.8 C170.0 133.9 169.9 133.3 170.8 133.5 C171.6 133.7 173.4 134.0 174.2 134.9 C175.1 135.8 175.0 138.4 175.9 139.1 C176.8 139.8 178.2 139.0 179.5 139.0 C180.9 139.0 183.0 139.9 184.0 139.3 C185.1 138.7 185.2 136.0 185.9 135.3 C186.7 134.6 187.3 135.4 188.5 134.9 C189.7 134.4 191.7 132.5 193.0 132.3 C194.2 132.0 195.0 133.0 195.8 133.5 C196.6 134.0 197.6 134.9 197.9 135.2"/></g></svg></div><div class="uv-bar"><i></i></div><span class="n">05</span><h4>Integrate</h4><p>Fitted the motion and playlists into the AR-HUD and CID screens with our UI design team.</p></li>
    </ol>
+  </section>
+
+  <section class="pj-s">
+   <p class="pj-lbl">My key decisions</p><div class="pj-2"><div><h2 class="pj-h2">The calls that shaped the work</h2></div><div><p class="pj-body">Three decisions behind the welcoming moment and the screens around it.</p></div></div>
+   <div class="kd">
+    <div class="kd-card"><span class="n">01</span><h4>Short on the HUD, rich on the CID</h4><dl><dt>Challenge</dt><dd>Anything on the windshield competes with the road for the driver's attention.</dd><dt>My decision</dt><dd>I kept the AR-HUD to a single, glanceable suggestion and left browsing to the themed playlists on the CID.</dd><dt>Impact</dt><dd>A welcome that feels personal without pulling the driver's eyes off the road.</dd></dl></div>
+    <div class="kd-card"><span class="n">02</span><h4>A prompt set for consistent AI visuals</h4><dl><dt>Challenge</dt><dd>Early AI results looked different every time, so the themes didn't feel like one family.</dd><dt>My decision</dt><dd>I studied how prompts behave and built a reusable prompt set before producing the final visuals.</dd><dt>Impact</dt><dd>Consistent themes, and changes from the planner's feedback in hours rather than days.</dd></dl></div>
+    <div class="kd-card"><span class="n">03</span><h4>One visual language across every screen</h4><dl><dt>Challenge</dt><dd>The cockpit mixes widgets, recommendations, driving info and climate controls.</dd><dt>My decision</dt><dd>I applied the same components and visual rules to every screen, from the widget bar to the climate controls.</dd><dt>Impact</dt><dd>A coherent, glanceable cockpit, part of a project named a 2026 PACE Pilot Award finalist.</dd></dl></div>
+   </div>
   </section>
 
   <section class="pj-s pj-learn">
@@ -959,7 +997,7 @@ html.intro header .bar,html.intro .poster,html.intro .scrollcue,html.intro canva
   <div class="pj-meta">
    <div><h4>My role</h4><p>UX Research (User Interview/Testing, Data/Competitor Analysis), UI/UX Design, <span style="white-space:nowrap">High-Fidelity</span> Prototyping, Team Collaboration</p></div>
    <div><h4>Client</h4><p>Confidential<br>(Automotive Industry - B2B)</p></div>
-   <div><h4>Tools</h4><p>Figma, Adobe Photoshop, Microsoft Teams, Microsoft Excel, Google Forms, Google Analytics</p></div>
+   <div><h4>Tools</h4><p>Figma, ProtoPie, Adobe Photoshop, Microsoft Teams, Microsoft Excel, Google Forms, Google Analytics</p></div>
    <div><h4>Duration</h4><p>4 months</p></div>
   </div>
 
@@ -1024,7 +1062,7 @@ html.intro header .bar,html.intro .poster,html.intro .scrollcue,html.intro canva
 <div class="tb-hs k"><div class="tb-kw"><p class="tb-kh"><span>#</span>Coffee</p><div class="tb-row"><div class="tb-th" style="background:linear-gradient(135deg,#F3E2A9,#D9A441)"></div><div><p class="tb-n">Fritz Coffee Company</p><p class="tb-m">1.1 km · Roastery</p><p class="tb-r"><em class="q">Quiet</em><b>★ 4.6</b></p></div><span class="tb-fav s"></span></div><div class="tb-row"><div class="tb-th" style="background:linear-gradient(135deg,#D7E6EE,#7FA7BD)"></div><div><p class="tb-n">Anthracite Hannam</p><p class="tb-m">2.3 km · Cafe</p><p class="tb-r"><em class="b">Busy</em><b>★ 4.5</b></p></div><span class="tb-fav s"></span></div><div class="tb-row"><div class="tb-th" style="background:linear-gradient(135deg,#CFE8D6,#6FB58A)"></div><div><p class="tb-n">Felt Coffee</p><p class="tb-m">3.0 km · Cafe</p><p class="tb-r"><em class="q">Quiet</em><b>★ 4.7</b></p></div><span class="tb-fav s"></span></div><button class="tb-more" type="button" tabindex="-1">View more</button></div><div class="tb-kw"><p class="tb-kh"><span>#</span>Family trip</p><div class="tb-row"><div class="tb-th" style="background:linear-gradient(135deg,#CFE8D6,#6FB58A)"></div><div><p class="tb-n">Seoul Forest</p><p class="tb-m">2.8 km · Park</p><p class="tb-r"><em class="m">Moderate</em><b>★ 4.6</b></p></div><span class="tb-fav s"></span></div><div class="tb-row"><div class="tb-th" style="background:linear-gradient(135deg,#E5D3F5,#A07BD6)"></div><div><p class="tb-n">National Museum</p><p class="tb-m">4.1 km · Museum</p><p class="tb-r"><em class="q">Quiet</em><b>★ 4.8</b></p></div><span class="tb-fav s"></span></div><div class="tb-row"><div class="tb-th" style="background:linear-gradient(135deg,#BFD4FF,#6B87FF)"></div><div><p class="tb-n">Lotte World Aquarium</p><p class="tb-m">7.5 km · Aquarium</p><p class="tb-r"><em class="b">Busy</em><b>★ 4.4</b></p></div><span class="tb-fav s"></span></div><button class="tb-more" type="button" tabindex="-1">View more</button></div></div></div>
 <div class="tb-sec" id="tb4"><p class="tb-h">Top 20 · Most popular destinations <span class="tb-lv">LIVE</span></p>
 <div class="tb-hs"><div class="tb-pc"><div class="tb-ph sm" style="background:linear-gradient(135deg,#E5D3F5,#A07BD6)"><span class="tb-no">No.1</span></div><p class="tb-n">The Hyundai Seoul <small>Mall</small></p><p class="tb-m"><span class="tb-live"></span>1,284 vehicles heading there</p></div><div class="tb-pc"><div class="tb-ph sm" style="background:linear-gradient(135deg,#F6C9A8,#E9876B)"><span class="tb-no">No.2</span></div><p class="tb-n">Gyeongbokgung <small>Palace</small></p><p class="tb-m"><span class="tb-live"></span>962 vehicles heading there</p></div><div class="tb-pc"><div class="tb-ph sm" style="background:linear-gradient(135deg,#D7E6EE,#7FA7BD)"><span class="tb-no">No.3</span></div><p class="tb-n">Banpo Hangang Park <small>Park</small></p><p class="tb-m"><span class="tb-live"></span>731 vehicles heading there</p></div></div></div>
-<span class="pj-hl" aria-hidden="true"></span></div></div></div><p class="pj-cap tb-note">*Illustrative example only, not the actual project design.</p></div>
+<span class="pj-hl" aria-hidden="true"></span></div></div></div><p class="pj-cap tb-note">*Reconstructed to show the final design approach. Client content replaced due to confidentiality.</p></div>
     <div class="pj-list2"><h4>What is in the Destination Tab</h4><ol class="pj-steps"><li><button type="button" data-t="tb1"><span class="k">01</span><span>Placed recommendations based on personal bookmarks/viewing history.</span></button></li><li><button type="button" data-t="tb2"><span class="k">02</span><span>Location-based recommendations with filtering/sorting.</span></button></li><li><button type="button" data-t="tb3"><span class="k">03</span><span>Context-aware recommendations based on set keywords that represent topics the user is interested in.</span></button></li><li><button type="button" data-t="tb4"><span class="k">04</span><span>Recommendations based on visitor frequency and ratings.</span></button></li></ol></div>
    </div>
   </section>
@@ -1045,6 +1083,15 @@ html.intro header .bar,html.intro .poster,html.intro .scrollcue,html.intro canva
     <div class="pj-card"><span class="n">01</span><p class="t">Do more in-depth market/competitive research (e.g. China and Japan)</p></div>
     <div class="pj-card"><span class="n">02</span><p class="t">Longer idea brainstorming session (after interviews) about ‘destination’ with the team and the client.</p></div>
     <div class="pj-card"><span class="n">03</span><p class="t">Analyse user data using eye-tracking method to understand if the location of each feature is in the right place for the driver.</p></div>
+   </div>
+  </section>
+
+  <section class="pj-s">
+   <p class="pj-lbl">My key decisions</p><div class="pj-2"><div><h2 class="pj-h2">The calls that shaped the work</h2></div><div><p class="pj-body">Three decisions that turned a broad brief for 'unique' curation into something drivers actually found useful.</p></div></div>
+   <div class="kd">
+    <div class="kd-card"><span class="n">01</span><h4>Research before features</h4><dl><dt>Challenge</dt><dd>The client wanted a 'unique and new' curation service, but it was unclear what drivers would really use.</dd><dt>My decision</dt><dd>We surveyed 100 vehicle owners and interviewed 10 of them before defining any features.</dd><dt>Impact</dt><dd>A clear priority order (distance, parking, congestion, time of day) that set the information shown on every card.</dd></dl></div>
+    <div class="kd-card"><span class="n">02</span><h4>Test with a prototype that feels real</h4><dl><dt>Challenge</dt><dd>Static screens couldn't show how drivers would actually browse, filter and react to recommendations.</dd><dt>My decision</dt><dd>I built the high-fidelity prototype in ProtoPie, with real interactions, and used it for user testing.</dd><dt>Impact</dt><dd>Testing felt far more natural, so participants reacted as they would in the car and gave more realistic feedback.</dd></dl></div>
+    <div class="kd-card"><span class="n">03</span><h4>Make personalisation explainable</h4><dl><dt>Challenge</dt><dd>Users wanted recommendations based on their preferences, plus control over the results.</dd><dt>My decision</dt><dd>I showed why each place is recommended and added filters and sorting, so suggestions never feel random.</dd><dt>Impact</dt><dd>A 20% improvement in infotainment usability.</dd></dl></div>
    </div>
   </section>
 
@@ -1240,7 +1287,7 @@ function build(){
 function place(){const p=document.getElementById('poster'),hb=hero.getBoundingClientRect(),pb=p.getBoundingClientRect();
   hc.style.top=(pb.top-hb.top+pb.height/2-(box.y0+box.y1)/2-TOP)+'px';}
 build();place();(document.fonts?document.fonts.ready:Promise.resolve()).then(place);
-let bt;addEventListener('resize',()=>{clearTimeout(bt);bt=setTimeout(()=>{build();place();},220);});
+let bt,lastW=innerWidth;addEventListener('resize',()=>{clearTimeout(bt);bt=setTimeout(()=>{if(innerWidth!==lastW){lastW=innerWidth;build();}place();hDirty=true;},220);});
 const calm=matchMedia('(prefers-reduced-motion: reduce)').matches;
 let on=true;new IntersectionObserver(e=>on=e[0].isIntersecting).observe(hero);
 const hash=n=>{const v=Math.sin(n*127.1+31.7)*43758.5453;return v-Math.floor(v);};
@@ -1306,10 +1353,10 @@ function drawHerd(t){const g=herdX,dpr=HD.dpr||1;g.setTransform(dpr,0,0,dpr,0,0)
   [[-1,4],[0,0],[1,8]].forEach(([k,off])=>{const f=frames[(base+off)%NF]||[];const ox=HD.w/2+k*HD.step-((box.x0+box.x1)/2)*HD.s,oy=cell-box.y0*HD.s;
     for(const [cx,cy,r,a] of f){g.globalAlpha=a*.22;g.beginPath();g.arc(ox+cx*HD.s,oy+cy*HD.s,r*HD.s,0,6.283);g.fill();}});
   g.globalAlpha=1;}
-if(herdC){sizeHerd();addEventListener('resize',()=>setTimeout(sizeHerd,260));new IntersectionObserver(e=>herdOn=e[0].isIntersecting).observe(herdC);}
+if(herdC){sizeHerd();let hW=innerWidth;addEventListener('resize',()=>setTimeout(()=>{if(innerWidth!==hW){hW=innerWidth;sizeHerd();dLast=-1;}},260));new IntersectionObserver(e=>herdOn=e[0].isIntersecting).observe(herdC);}
 let stars=[],nextStar=2.4,introT0=0,introP=1;   /* no run-in: the horse fades in with everything else */
 /* hover: the horse eases down to a slower canter, then picks the pace back up */
-let hov=false,rate=1,clock=0,last=0;
+let hov=false,rate=1,clock=0,last=0,hLast=-1,hDirty=true,dLast=-1;
 addEventListener('pointermove',e=>{if(e.pointerType==='touch')return;const r=hc.getBoundingClientRect(),pad=cell;
   hov=e.clientX>r.left+hx0+box.x0-pad&&e.clientX<r.left+hx0+box.x1+pad&&e.clientY>r.top+TOP+box.y0-pad&&e.clientY<r.top+TOP+box.y1+pad;},{passive:true});
 document.documentElement.addEventListener('pointerleave',()=>hov=false);
@@ -1317,9 +1364,10 @@ function tick(now){
   const dt=Math.min(.1,last?(now-last)/1000:0);last=now;rate=1;   /* steady pace, no slow-down on hover */clock+=dt*rate;
   /* button horses run even when the big horse is scrolled out of view */
   {const fi=Math.floor((calm?0:now/1000)/.085)%NF;minis.forEach(m=>{if(m.hot||!m.drawn){drawMini(m,m.hot?fi:3);m.drawn=true;}});}
-  if(on&&!document.hidden){
+  const fk=Math.floor((calm?0:clock)/.085);
+  if(on&&!document.hidden&&!document.documentElement.classList.contains('projopen')&&scrollY<innerHeight*1.4&&(fk!==hLast||hDirty||introP<1)){hLast=fk;hDirty=false;
     hx.clearRect(0,-TOP,HW,HH);
-    const t=calm?0:clock,f=frames[Math.floor(t/.085)%NF]||[];   /* stepped, film-like cadence */
+    const t=calm?0:clock,f=frames[fk%NF]||[];   /* stepped, film-like cadence */
     hx.fillStyle='#1E36C8';
     let ix=0,iy=0;if(introP<1){if(!introT0)introT0=now;const dist=hx0+box.x1+cell*2,dur=dist/(hw*.58)*1000;introP=Math.min(1,Math.floor((now-introT0)/85)*85/dur);   /* slower, and stepped in time with the film-like gallop frames */const ts=Math.floor((now-introT0)/85)*.085,k=1-introP;   /* da-gadak: each stride surges forward and lifts off, settling as it arrives */
       ix=-dist*(1-introP)+Math.sin(ts*Math.PI*2/.51)*cell*.9*k;
@@ -1335,7 +1383,7 @@ function tick(now){
           hx.save();hx.fillStyle='#F5D76E';hx.globalAlpha=.85*fade*(1-i/st.len*.8);hx.beginPath();hx.arc(x,y,cell*.24*st.sz*(1-i/st.len*.6),0,6.283);hx.fill();hx.restore();}   /* soft yellow streak */});}
     hx.globalAlpha=1;
   }
-  if(herdOn&&!document.hidden)drawHerd(calm?0:clock);
+  {const dk=Math.floor((calm?0:clock)/.085);if(herdOn&&!document.hidden&&!document.documentElement.classList.contains('projopen')&&dk!==dLast){dLast=dk;drawHerd(calm?0:clock);}}
   requestAnimationFrame(tick);
 }
 requestAnimationFrame(tick);
@@ -1440,7 +1488,7 @@ b.addEventListener('click',()=>{const ok=()=>{b.textContent='Copied';setTimeout(
   {const q=new URLSearchParams(location.search).get('p');if(PATH&&q)history.replaceState(null,'',q);}   /* back from 404.html */
   const key=()=>PATH?location.pathname.replace(/^\/+|\/+$/g,''):location.hash.replace(/^#\/?/,'');
   const go=k=>{if(PATH)history.pushState(null,'',k?'/'+k:'/');else{if(k)location.hash='/'+k;else history.pushState(null,'',location.pathname+location.search);}route();dispatchEvent(new Event('hashchange'));};
-  document.addEventListener('click',e=>{const a=e.target.closest('a[href]');if(!a||e.metaKey||e.ctrlKey||e.shiftKey)return;const h=a.getAttribute('href');
+  document.addEventListener('click',e=>{const a=e.target.closest('a[href]');if(!a||a.id==='totop'||e.metaKey||e.ctrlKey||e.shiftKey)return;const h=a.getAttribute('href');
     if(a.hasAttribute('data-proj')){e.preventDefault();go(h.replace(/^\//,''));return;}
     if(h.length>1&&h[0]==='#'&&h[1]!=='/'){const t=document.getElementById(h.slice(1));if(!t)return;e.preventDefault();   /* section links scroll without adding # to the URL */
       if(cur)go('');setMenu(false);setTimeout(()=>t.scrollIntoView({behavior:reduce?'auto':'smooth'}),cur?80:0);}});
@@ -1514,6 +1562,9 @@ b.addEventListener('click',()=>{const ok=()=>{b.textContent='Copied';setTimeout(
   document.querySelectorAll('[data-close]').forEach(a=>a.addEventListener('click',()=>{}));
 })();
 })();
+</script>
+<script>/* decode every project's hero image up front, so opening a project fades in smoothly with nothing popping in */
+addEventListener('load',()=>document.querySelectorAll('.pj-heroimg img').forEach(i=>{if(i.decode)i.decode().catch(()=>{});}));
 </script>
 <script>/* loop fallback: some browsers stop at the last frame even with the loop attribute */
 document.querySelectorAll('video[loop]').forEach(v=>v.addEventListener('ended',()=>{v.currentTime=0;v.play().catch(()=>{});}));
