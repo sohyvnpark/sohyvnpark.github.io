@@ -7,7 +7,7 @@
 <title>SOHYUN PARK</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400..900&family=Pixelify+Sans:wght@500&family=Instrument+Serif:ital@1&family=Doto:ROND,wght@100,900&family=IBM+Plex+Mono:wght@400&family=Ballet&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400..900&family=Pixelify+Sans:wght@500&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
 <style>
 /* Layout: one bold sentence anchored to the bottom of the first screen (letters pixelate on hover), then a plain project list, about, contact. Single light look by choice. */
 :root{
@@ -198,7 +198,7 @@ main>section{scroll-margin-top:calc(var(--hh,64px) + 8px)}   /* anchor jumps lan
 .item:nth-child(even) .thumb{order:2}
 .thumb{display:block;align-self:start;width:100%;aspect-ratio:16/9;overflow:hidden;background:#e4e4e1;position:relative;border-radius:4px}
 .thumb img{width:100%;height:100%;object-fit:cover;transition:transform .8s cubic-bezier(.2,.7,.2,1)}
-.thumb small{position:absolute;left:10px;bottom:8px;font-size:10px;font-weight:500;color:#fff;text-shadow:0 1px 3px rgba(0,0,0,.45);text-transform:uppercase}
+.thumb small{position:absolute;right:10px;bottom:8px;text-align:right;font-size:10px;font-weight:500;color:#fff;text-shadow:0 1px 3px rgba(0,0,0,.45);text-transform:uppercase}
 .txt{display:flex;flex-direction:column;justify-content:space-between;gap:clamp(18px,2vw,28px);min-width:0}
 .txt h3{margin:-.09em 0 0;font-weight:600;font-size:clamp(28px,3.4vw,62px);line-height:1.02;letter-spacing:.04em;text-transform:uppercase;text-wrap:balance;transition:color .35s ease}
 .txt h3 .ln{display:block;white-space:nowrap}
@@ -254,8 +254,11 @@ footer .bar{justify-content:center;color:var(--muted);font-size:clamp(13px,1vw,1
 .contact{text-align:center;border-top:0;min-height:calc(100svh - 64px);display:flex;align-items:center;justify-content:center;padding-top:0}
 .contact h2{font-weight:600!important;font-size:clamp(40px,6.4vw,120px)!important;line-height:1!important;letter-spacing:.03em!important;text-transform:uppercase}
 .contact .reach{justify-content:center}
-.contact .ex{position:relative;width:100%;display:flex;align-items:center;justify-content:center}
+.contact .ex{position:relative;width:100%;display:flex;flex-direction:column;align-items:center;justify-content:center}
 .contact .ex h2{position:relative;z-index:1}
+.ab-btns{display:flex;flex-wrap:wrap;gap:12px}
+.ab-btns .btn{margin:0}
+.ex-btn{position:relative;z-index:1;margin-top:clamp(22px,2.4vw,36px);white-space:nowrap;align-self:center!important}
 .herd{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);pointer-events:none;z-index:0}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.thumb img{transition:none}}
 /* pixel letters live only in the main title */
@@ -337,7 +340,7 @@ html.projopen{overflow:hidden}
 
 /* extra blocks used by the curation page */
 .pj-heroimg{position:relative;margin:0}
-.pj-heroimg span{position:absolute;left:14px;bottom:10px;font-size:clamp(11px,.75vw,13px);letter-spacing:.06em;text-transform:uppercase;color:rgba(255,255,255,.7)}
+.pj-heroimg span{position:absolute;right:14px;bottom:10px;text-align:right;font-size:clamp(11px,.75vw,13px);letter-spacing:.06em;text-transform:uppercase;color:rgba(255,255,255,.7)}
 .pj-quote{margin:0 auto;max-width:30ch;text-align:center;font-weight:600;font-size:clamp(24px,2.3vw,42px);line-height:1.2;letter-spacing:-.005em}
 .pj-diagram{display:grid;grid-template-columns:1fr 1fr;gap:clamp(14px,1.6vw,24px)}
 .pj-dcol{display:flex;flex-direction:column;gap:clamp(10px,1vw,16px)}
@@ -633,6 +636,139 @@ html.intro header .bar,html.intro .poster,html.intro .scrollcue,html.intro canva
 .kd-card dt:first-child{margin-top:0}
 .kd-card dd{margin:0;font-size:clamp(15px,1.05vw,17px);line-height:1.6;color:var(--body)}
 @media (max-width:900px){.kd{grid-template-columns:1fr}.kd-card{margin-bottom:clamp(14px,1.6vw,24px)}}
+/* ===== Exploring: the letters of my name drift around a calm centre; grab and throw them ===== */
+.xp{background:#161616;padding-top:0!important}
+.xp.open{animation:xpDim 1.4s cubic-bezier(.4,0,.2,1) both}
+.proj.xp.open{transition:none}   /* the page and the header dim together, frame for frame */
+@keyframes xpDim{0%{background:#F4F4F2}45%{background:#A9A9A6}100%{background:#161616}}
+@keyframes xpInk{0%,40%{color:#141414}62%,100%{color:#EDEDEA}}
+html.xpopen{background:#161616}
+@keyframes xpLeave{0%{background:#161616;color:#EDEDEA}100%{background:#F4F4F2;color:#141414}}
+html.xpleave header{animation:xpLeave .6s cubic-bezier(.4,0,.2,1) both}   /* on the way back the header lightens with the page, not before it */
+html.xpleave header .bar,html.xpleave header .brand,html.xpleave .burger{transition:none}
+html.xpleave .burger{color:inherit}
+html.xpopen header{animation:xpDim 1.4s cubic-bezier(.4,0,.2,1) both,xpInk 1.4s cubic-bezier(.4,0,.2,1) both}
+html.xpopen .burger{display:none}   /* Exploring is a side room: a Back link replaces the menu */
+.xback{display:none;align-items:center;gap:8px;font-size:clamp(14px,1.1vw,16px);font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:inherit}
+.xback svg{width:18px;height:18px;transition:transform .3s cubic-bezier(.2,.8,.2,1)}
+.xback:hover svg{transform:translateX(-4px)}
+.bar a.xback::after{display:none}
+html.xpopen .xback{display:inline-flex;order:-1}   /* Back takes the logo's place */
+html.xpopen header .brand{display:none}
+html.xpopen .menu{background:#161616;color:#EDEDEA}   /* the menu opened from Exploring stays in the dark */
+html.xpopen .menu .ic a{color:#EDEDEA}
+html.xpopen .menu .ic a:hover,html.xpopen .menu .ic a:focus-visible{color:#161616}
+html.xpopen .menu .ic a:hover .bx,html.xpopen .menu .ic a:focus-visible .bx{fill:#EDEDEA;stroke:#EDEDEA}
+html.xpopen .menu-credit{color:#6A6A66}
+html.xpopen header .brand{color:inherit;cursor:default}
+html.xpopen header .bar,html.xpopen header .brand,html.xpopen .burger{transition:none}
+.xm{position:relative;height:100svh;min-height:480px;overflow:hidden;color:#EDEDEA;touch-action:none;user-select:none;-webkit-user-select:none}
+.xl{position:absolute;left:0;top:0;font:400 clamp(110px,15vw,240px)/1 var(--font);letter-spacing:-.02em;cursor:grab;will-change:transform;opacity:0;transition:opacity .9s ease .7s;z-index:2}
+.xl.grab{cursor:grabbing}
+.xl[data-go]{cursor:pointer}
+.xm-txt{text-align:left}
+.xm-body{display:block;text-align:justify;text-align-last:left;hyphens:auto;-webkit-hyphens:auto}   /* a left-aligned, squared-off block that reads like a description */
+@media (max-width:760px){.xm-txt{width:min(440px,86vw)!important;font-size:13.5px!important}}   /* same squared block on phones; hyphenation keeps the gaps even */
+.xm-k{display:flex;justify-content:flex-start;align-items:baseline;gap:14px;margin-bottom:18px;font:600 clamp(26px,2.4vw,36px)/1 var(--font);letter-spacing:.02em;color:#EDEDEA}
+.xm-kt{position:relative}   /* the title sits dead centre; its pronunciation hangs off to the right */
+.xm-ghost{color:transparent}
+.xm-caret{display:inline-block;width:1.5px;height:1.05em;margin:0 1px 0 1px;vertical-align:-.18em;background:#BCC4EC;animation:xmCaret 1s steps(1) infinite}
+@keyframes xmCaret{50%{opacity:0}}
+.xm-shuf{opacity:0;transform:translateY(8px);pointer-events:none!important;transition:opacity .6s ease,transform .7s cubic-bezier(.2,.8,.2,1),background .25s,color .25s,border-color .25s,gap .3s}
+.xm-shuf.show{opacity:1;transform:none;pointer-events:auto!important}
+.done .xm-caret{animation:xmCaret 1s steps(1) 3;opacity:0}
+.xm-kt i{position:absolute;left:100%;bottom:.12em;margin-left:12px;white-space:nowrap}
+.xm-k i{font:400 clamp(14px,1.1vw,17px)/1 var(--font);font-style:normal;letter-spacing:0;color:#BCC4EC}
+.xm-cta{display:block;margin-top:14px;font-weight:600;color:#EDEDEA}
+.xm-shuf{pointer-events:auto;display:flex;width:max-content;margin:26px 0 0;border-color:#EDEDEA;color:#EDEDEA}
+.xm-shuf:hover,.xm-shuf:focus-visible{background:#EDEDEA;border-color:#EDEDEA;color:#161616}
+.xm-credit{position:absolute;left:0;right:0;bottom:calc(14px + env(safe-area-inset-bottom,0px));margin:0;text-align:center;font-size:clamp(13px,1vw,15px);font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:#6A6A66;z-index:5;pointer-events:none}
+.xm-tip{position:absolute;left:0;top:0;z-index:6;padding:10px 14px;border-radius:4px;background:#3A3A38;color:#fff;white-space:nowrap;pointer-events:none;opacity:0;transform:translate(-50%,calc(-100% - 6px));transition:opacity .2s ease,transform .25s ease}
+.xm-tip.on{opacity:1;transform:translate(-50%,calc(-100% - 12px))}
+.xm-tip.below{transform:translate(-50%,6px)}.xm-tip.below.on{transform:translate(-50%,12px)}
+.xm-tip.below::after{top:auto;bottom:100%;border-top:0;border-bottom:6px solid #3A3A38}
+.xm-tip::after{content:"";position:absolute;left:calc(50% + var(--ax,0px));top:100%;transform:translateX(-50%);border:6px solid transparent;border-top-color:#3A3A38;border-bottom:0}
+.xm-tip b{display:block;font:600 13px/1.2 var(--font);letter-spacing:.06em;text-transform:uppercase}
+.xm-tip small{display:block;margin-top:4px;font:500 10px/1 var(--font);letter-spacing:.08em;text-transform:uppercase;color:#BCC4EC}
+.xp.in .xl{opacity:1}
+.xm-txt{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:min(440px,78vw);margin:0;font:400 clamp(14px,1.05vw,16px)/1.4 var(--font);letter-spacing:-.005em;color:#EDEDEA;z-index:3;pointer-events:none;opacity:0;transition:opacity .9s ease .9s}
+.xm-time{position:absolute;left:clamp(16px,2.4vw,36px);bottom:clamp(14px,2vw,24px);font:500 11px/1.5 var(--font);z-index:5;opacity:0;transition:opacity .8s ease .4s}
+.xm-time p{margin:0;display:flex;gap:18px}
+.xm-time b{font-weight:500;font-variant-numeric:tabular-nums;min-width:34px}
+.xm-time .dim{color:#6A6A66}
+.xm-hint{position:absolute;right:clamp(16px,2.4vw,36px);bottom:clamp(14px,2vw,24px);margin:0;font:500 11px/1 var(--font);color:#6A6A66;z-index:5;opacity:0;transition:opacity .8s ease .6s}
+.xp.in .xm-txt,.xp.in .xm-time,.xp.in .xm-hint{opacity:1}
+@media (max-width:760px){.xl{font-size:clamp(90px,28vw,140px)}}
+/* the website case study: a normal project page, kept in the lab's night mode */
+.proj.pweb{--ink:#EDEDEA;--body:#A6A6A1;--muted:#7C7C78;--rule:rgba(237,237,234,.12);background:#161616;color:var(--ink)}
+.pweb .pj-title,.pweb .pj-h2,.pweb h4,.pweb h5{color:var(--ink)}
+.pweb .pj-meta{background:rgba(255,255,255,.05)}
+.pweb .pj-card,.pweb .kd-card{background:rgba(255,255,255,.05)}
+.pweb .kd-card dt{color:#BCC4EC}
+.pweb .pj-heroimg img{box-shadow:0 0 0 1px rgba(255,255,255,.08)}
+.pweb .btn{border-color:#EDEDEA;color:#EDEDEA}
+.pweb .btn:hover,.pweb .btn:focus-visible{background:#EDEDEA;border-color:#EDEDEA;color:#161616}
+.wb-gallop{margin:0}
+.wb-gallop .pj-img{aspect-ratio:1000/742;object-fit:contain;background:transparent}
+.wb-horse .wb-gallop{width:clamp(280px,40vw,640px)}
+.wb-steps{list-style:none;margin:clamp(10px,1vw,16px) 0 0;padding:0}
+.wb-steps li{display:block;padding:clamp(10px,1vw,14px) 0;font-size:clamp(16px,1.15vw,19px);line-height:1.5;color:var(--body)}
+.wb-steps li+li{margin-top:8px}
+.wb-steps .k{flex:none;font-size:12px;font-weight:600;letter-spacing:.06em;padding-top:.35em;color:#BCC4EC}
+.wb-steps b{display:block;font-weight:600;color:var(--ink);margin-bottom:2px}
+@media (max-width:900px){.wb-horse .wb-gallop{width:100%}}
+.wb-video{margin-top:clamp(36px,3.6vw,64px)}
+.wb-video .pj-img{aspect-ratio:16/10;object-fit:cover;background:#000;box-shadow:0 0 0 1px rgba(255,255,255,.08)}
+.wb-ds{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(14px,1.6vw,24px);margin-top:clamp(36px,3.6vw,64px)}
+.wb-tile{background:rgba(255,255,255,.05);border-radius:6px;padding:clamp(22px,2.2vw,34px)}
+.wb-tile h4{margin:0 0 clamp(16px,1.6vw,24px);font-weight:600;font-size:clamp(18px,1.32vw,23px)}
+.wb-sw{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:16px 12px}
+.wb-sw li{display:grid;grid-template-columns:32px 1fr;column-gap:10px;align-items:center;font-size:13px;line-height:1.3}
+.wb-sw i{grid-row:span 2;width:32px;height:32px;border-radius:50%}
+.wb-sw b{font-weight:500;color:var(--ink)}
+.wb-sw span{color:var(--muted);font-variant-numeric:tabular-nums}
+.wb-type p,.wb-comp p{margin:0}
+.wb-type span,.wb-comp>span{display:block;margin:6px 0 18px;font-size:12px;color:var(--muted)}
+.wb-type .t1{font-weight:600;font-size:clamp(22px,1.8vw,30px);letter-spacing:.06em;text-transform:uppercase;color:var(--ink);line-height:1.1}
+.wb-type .t2{font-size:clamp(15px,1.05vw,17px);color:var(--body);line-height:1.45}
+.wb-type .t3{font-family:var(--pixel);font-weight:500;font-size:clamp(18px,1.4vw,24px);color:#BCC4EC}
+.wb-comp .btn{display:inline-flex}
+.wb-chip{display:inline-block;font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#BCC4EC}
+.wb-capx{font-size:13px;color:#A3A39E}
+@media (max-width:900px){.wb-ds{grid-template-columns:1fr}}
+.wb-vers{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:clamp(28px,2.6vw,44px) clamp(16px,2vw,32px);margin-top:clamp(36px,3.6vw,64px)}
+.wb-vers figure{margin:0}
+.wb-vers .pj-img{aspect-ratio:16/10;object-fit:cover;object-position:50% 0;background:#222}
+.wb-vers figcaption{margin-top:12px;display:flex;flex-direction:column;gap:3px;font-size:clamp(15px,1.05vw,17px);font-weight:500;color:var(--ink)}
+.wb-vers figcaption b{font-weight:500;font-size:.72em;letter-spacing:.08em;color:#BCC4EC}
+.wb-vers figcaption span{font-weight:400;font-size:.9em;color:var(--body)}
+.wb-chat{display:grid;grid-template-columns:minmax(0,1fr) clamp(40px,4.4vw,72px) minmax(0,1fr);align-items:center;gap:clamp(14px,1.6vw,24px);margin-top:clamp(36px,3.6vw,64px)}
+.wb-col{background:rgba(255,255,255,.05);border-radius:6px;padding:clamp(22px,2.2vw,34px);display:flex;flex-direction:column;align-items:flex-end;gap:12px}
+.wb-col h4{align-self:flex-start;margin:0 0 6px;font-weight:600;font-size:clamp(18px,1.32vw,23px)}
+.wb-msg{margin:0;max-width:90%;padding:12px 16px;border-radius:16px 16px 4px 16px;background:#2C2C2A;color:#EDEDEA;font-size:clamp(15px,1.05vw,17px);line-height:1.45}
+.wb-col.late .wb-msg{background:#BCC4EC;color:#161616}
+.wb-att{display:block;margin-top:6px;font-size:.8em;opacity:.65}
+.wb-note{margin:clamp(20px,2vw,32px) 0 0;font-size:clamp(16px,1.15vw,19px);line-height:1.6;color:var(--body)}
+@media (max-width:900px){.wb-vers{grid-template-columns:1fr 1fr}}
+.wb-chat .wb-col{align-self:stretch}
+.wb-arrow{width:100%;height:16px;overflow:visible}
+.wb-arrow path{fill:none;stroke:rgba(188,196,236,.6);stroke-width:1.2;stroke-linecap:round;stroke-linejoin:round}
+@media (max-width:760px){.wb-chat{grid-template-columns:1fr}.wb-arrow{width:56px;margin:8px auto;transform:rotate(90deg)}}
+/* back-to-top on the dark pages */
+html.xpopen .totop{color:rgba(237,237,234,.22)}
+html.xpopen .totop:hover{color:rgba(237,237,234,.6)}
+.pweb .pj-credit{margin-top:clamp(150px,20vh,210px)!important}
+.pweb .pj-route path:not(marker path){stroke:rgba(188,196,236,.6)}
+@media (min-width:901px){.pj-route-up.wb-route{margin-top:calc(clamp(20px,2.4vw,40px) - 50px)!important}}
+.wb-loop{grid-template-columns:repeat(4,minmax(0,1fr))}
+@media (max-width:900px){.wb-loop{grid-template-columns:1fr 1fr}}
+@media (max-width:600px){.wb-loop{grid-template-columns:1fr}}
+/* moving between the lab and the case study stays dark: no dimming replay */
+html.xpstay header,html.xpstay .xp.open{animation:none!important;background:#161616}
+html.xpstay .proj.xp,html.xpstay .proj.pweb.open{transition:none!important}   /* swapping lab and case study is instant, so the light home page never flashes through */
+html.xpstay header{color:#EDEDEA}
+/* letters whose projects aren't ready yet sit quieter */
+.xp.in .xl.soon{opacity:.3}
 .uv-tag{display:inline-block;margin-bottom:8px;padding:4px 9px;border-radius:4px;background:#EEF1FF;color:#3B55E6;font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase}
 @media (max-width:900px){.uv-cards{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media (max-width:767px){.uv-clips,.uv-cards{grid-template-columns:1fr}}
@@ -742,9 +878,10 @@ html.intro header .bar,html.intro .poster,html.intro .scrollcue,html.intro canva
   <div class="wrap bar">
     <a class="brand" href="#top">Sohyun Park</a>
     <button class="burger" id="burger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="menu"><i></i><i></i><i></i></button>
+    <a class="xback" href="/" data-proj aria-label="Back to portfolio"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square" aria-hidden="true"><path d="M20 12H5M11 5l-7 7 7 7"/></svg>Back</a>
   </div>
 </header>
-<nav class="menu" id="menu" aria-label="Sections"><a href="#work"><span>Projects</span><span class="pa" aria-hidden="true"><canvas width="204" height="132"></canvas></span></a><a href="#about"><span>About me</span><span class="pa" aria-hidden="true"><canvas width="204" height="132"></canvas></span></a><a href="#" class="soon" aria-disabled="true" aria-describedby="soonTip"><span>Exploring</span><span class="tip" id="soonTip" role="tooltip">Coming soon!</span><span class="pa" aria-hidden="true"><canvas width="204" height="132"></canvas></span></a><div class="ic"><a href="https://www.linkedin.com/in/sohyun-park-501434200/" target="_blank" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="miter" stroke-linecap="square"><rect class="bx" x="3" y="3" width="18" height="18"/><path d="M8 11v6M8 7.6v.1M11.6 17v-6M11.6 13.6c0-1.7 1.1-2.7 2.4-2.7s2.2.9 2.2 2.7V17"/></svg></a><a href="mailto:sohyunpark08@gmail.com" aria-label="Email"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="miter"><rect class="bx" x="2" y="5" width="20" height="14"/><path d="M2.5 5.8L12 13l9.5-7.2"/></svg></a></div><p class="menu-credit">©Sohyun Park</p></nav>
+<nav class="menu" id="menu" aria-label="Sections"><a href="#work"><span>Projects</span><span class="pa" aria-hidden="true"><canvas width="204" height="132"></canvas></span></a><a href="#about"><span>About me</span><span class="pa" aria-hidden="true"><canvas width="204" height="132"></canvas></span></a><a href="/sai-lab" data-proj aria-label="S(AI) Lab, pronounced say lab"><span>S(AI) Lab</span><span class="pa" aria-hidden="true"><canvas width="204" height="132"></canvas></span></a><div class="ic"><a href="https://www.linkedin.com/in/sohyun-park-501434200/" target="_blank" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="miter" stroke-linecap="square"><rect class="bx" x="3" y="3" width="18" height="18"/><path d="M8 11v6M8 7.6v.1M11.6 17v-6M11.6 13.6c0-1.7 1.1-2.7 2.4-2.7s2.2.9 2.2 2.7V17"/></svg></a><a href="mailto:sohyunpark08@gmail.com" aria-label="Email"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="miter"><rect class="bx" x="2" y="5" width="20" height="14"/><path d="M2.5 5.8L12 13l9.5-7.2"/></svg></a></div><p class="menu-credit">©Sohyun Park</p></nav>
 
 <main id="top">
   <div class="wrap hero">
@@ -772,7 +909,7 @@ html.intro header .bar,html.intro .poster,html.intro .scrollcue,html.intro canva
         <p class="lead">An Automotive UI/UX Designer from Seoul, based in Munich.</p>
         <p class="body">Over the past 3 years I've designed in-vehicle experiences for Hyundai, Kia, Volkswagen, MAN and LG, from infotainment systems, digital clusters and AR-HUDs to the GUI guidelines and design systems behind them. I pair user research with detail-driven UI to turn complex vehicle features into clear, glanceable interfaces drivers can truly rely on.</p>
         <p class="body">I enjoy the back-and-forth with developers that turns a good idea into a shipped one, and I'm always trying new ways of working, from ProtoPie prototypes to AI-assisted workflows. When I'm not designing, I love to explore new cities, practise my German or go on walks with my dog Lovey.</p>
-        <a class="btn" href="https://www.linkedin.com/in/sohyun-park-501434200/" target="_blank" rel="noopener"><span>Let's connect!</span><span class="pa" aria-hidden="true"><canvas width="102" height="66"></canvas></span></a>
+        <div class="ab-btns"><a class="btn" href="https://www.linkedin.com/in/sohyun-park-501434200/" target="_blank" rel="noopener"><span>Let's connect!</span><span class="pa" aria-hidden="true"><canvas width="102" height="66"></canvas></span></a><a class="btn" href="/sai-lab" data-proj><span>Enter S(AI) Lab</span><span class="pa" aria-hidden="true"><canvas width="102" height="66"></canvas></span></a></div>
       </div>
     </div>
   </section>
@@ -800,7 +937,7 @@ html.intro header .bar,html.intro .poster,html.intro .scrollcue,html.intro canva
   </div>
 
   <section class="pj-s">
-   <p class="pj-lbl">Overview</p><div class="pj-2"><div><h2 class="pj-h2">'ccNC' is an infotainment system designed to enhance the Hyundai Motor Group's <span style="white-space:nowrap">in-vehicle</span> user experience.</h2></div><div><p class="pj-body">Hyundai MOBIS is a leading global automotive supplier specialising in advanced vehicle technologies, including autonomous driving, electrification, infotainment, and safety systems. Our team was responsible for visualising and enhancing the in-vehicle infotainment system (ccNC) for Hyundai and Kia's current and future models.</p></div></div><figure class="pj-media"><video class="pj-vid" src="p/info/info.mp4" poster="p/info/poster.jpg" autoplay muted loop playsinline preload="metadata"></video><figcaption class="pj-cap">from Hyundai Motor Company</figcaption></figure>
+   <p class="pj-lbl">Overview</p><div class="pj-2"><div><h2 class="pj-h2">'ccNC' is an infotainment system designed to enhance the Hyundai Motor Group's <span style="white-space:nowrap">in-vehicle</span> user experience.</h2></div><div><p class="pj-body">Hyundai MOBIS is a leading global automotive supplier specialising in advanced vehicle technologies, including autonomous driving, electrification, infotainment, and safety systems. Our team was responsible for visualising and enhancing the in-vehicle infotainment system (ccNC) for Hyundai and Kia's current and future models.</p></div></div><figure class="pj-media"><video class="pj-vid" src="p/info/info.mp4" poster="p/info/poster.jpg" autoplay muted loop playsinline preload="metadata"></video><figcaption class="pj-cap">*Video from Hyundai Motor Company</figcaption></figure>
   </section>
 
   <section class="pj-s">
@@ -880,12 +1017,12 @@ html.intro header .bar,html.intro .poster,html.intro .scrollcue,html.intro canva
 
   <section class="pj-s">
    <div class="pj-gr"><h3 class="g">Goal</h3><h3 class="r">Result</h3><p class="g">Translate the given user scenario into a visual narrative within a two-week timeline.</p><p class="r">100% scenario-to-visual alignment within the two-week timeline, reducing revision cycles by 50%.</p><p class="g">Create 3 infotainment screens with motion graphics showcasing the technology.</p><p class="r">Designed and animated 3 infotainment screens improving clarity and engagement.</p><p class="g">Optimise audio levels and spatial sound design to clearly demonstrate the audio-zone separation technology.</p><p class="r">Enhanced the understanding of audio-zone separation technology by 10%.</p></div>
-   <figure class="pj-media pj-ytwrap"><iframe class="pj-ytf" data-src="https://www.youtube-nocookie.com/embed/U-XAchcHLsQ?start=40&amp;rel=0" title="Video of the 2024 OI Lounge" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe><a class="pj-yt" href="https://www.youtube.com/watch?v=U-XAchcHLsQ&amp;t=40s" target="_blank" rel="noopener" aria-label="Watch the video of the 2024 OI Lounge on YouTube"><img class="pj-img" src="p/tech/yt.webp" alt="Video of the 2024 OI Lounge" loading="lazy" width="1280" height="720"><span class="pj-play" aria-hidden="true"></span></a><figcaption class="pj-cap">Video of the 2024 OI Lounge</figcaption></figure>
+   <figure class="pj-media pj-ytwrap"><iframe class="pj-ytf" data-src="https://www.youtube-nocookie.com/embed/U-XAchcHLsQ?start=40&amp;rel=0" title="Video of the 2024 OI Lounge" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe><a class="pj-yt" href="https://www.youtube.com/watch?v=U-XAchcHLsQ&amp;t=40s" target="_blank" rel="noopener" aria-label="Watch the video of the 2024 OI Lounge on YouTube"><img class="pj-img" src="p/tech/yt.webp" alt="Video of the 2024 OI Lounge" loading="lazy" width="1280" height="720"><span class="pj-play" aria-hidden="true"></span></a><figcaption class="pj-cap">*Video of the 2024 OI Lounge</figcaption></figure>
   </section>
 
   <section class="pj-s">
    <p class="pj-lbl">The technology</p><div class="pj-2"><div><h2 class="pj-h2">At the 2024 OI Lounge</h2></div><div><p class="pj-body">Noveto X Blink presented a novel entertainment technology that delivers personalised sound experiences based on passenger positioning. This technology integrates facial tracking via RGB cameras, combined with beamforming technology to precisely direct and isolate sound to specific areas, creating an immersive audio experience.</p></div></div>
-   <figure class="pj-media"><div class="pj-pair pj-pair-oi"><img class="pj-img" src="p/tech/p1.webp" alt="2024 OI Lounge exhibition wall" loading="lazy"><img class="pj-img" src="p/tech/p2.webp" alt="Visitors at the 2024 OI Lounge" loading="lazy"></div><figcaption class="pj-cap">Photos from the 2024 OI Lounge</figcaption></figure>
+   <figure class="pj-media"><div class="pj-pair pj-pair-oi"><img class="pj-img" src="p/tech/p1.webp" alt="2024 OI Lounge exhibition wall" loading="lazy"><img class="pj-img" src="p/tech/p2.webp" alt="Visitors at the 2024 OI Lounge" loading="lazy"></div><figcaption class="pj-cap">*Photos from the 2024 OI Lounge</figcaption></figure>
   </section>
 
   <section class="pj-s">
@@ -932,27 +1069,27 @@ html.intro header .bar,html.intro .poster,html.intro .scrollcue,html.intro canva
 
   <section class="pj-s">
    <p class="pj-lbl">Overview</p><div class="pj-2"><div><h2 class="pj-h2">The right information, in the right place, at the right time.</h2></div><div><p class="pj-body">Today's cockpits spread information across many screens, pulling drivers' eyes away from the road. UltraView brings it onto the windshield instead: a compact AR-HUD places driving-critical cues like speed, ADAS alerts and navigation far out on the road, while LG's Hover Screen shows navigation, vehicle status, HVAC and media on a large virtual screen about 1.2 m away.</p><p class="pj-body">Each piece of information sits at its own distance, so drivers move their eyes less and understand the road faster.</p></div></div>
-   <figure class="pj-media pj-ytwrap"><iframe class="pj-ytf" data-src="https://www.youtube-nocookie.com/embed/g3d9oGrs6qE?rel=0" title="LG Tech Showcase: UltraView Windshield Display" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe><a class="pj-yt" href="https://www.youtube.com/watch?v=g3d9oGrs6qE" target="_blank" rel="noopener" aria-label="Watch the UltraView Tech Showcase on YouTube"><img class="pj-img" src="p/lg/yt.webp" alt="LG Tech Showcase: UltraView Windshield Display" loading="lazy" width="1280" height="720"><span class="pj-play" aria-hidden="true"></span></a><figcaption class="pj-cap">Tech Showcase: UltraView Windshield Display (LG Vehicle Solution)</figcaption></figure>
+   <figure class="pj-media pj-ytwrap"><iframe class="pj-ytf" data-src="https://www.youtube-nocookie.com/embed/g3d9oGrs6qE?rel=0" title="LG Tech Showcase: UltraView Windshield Display" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe><a class="pj-yt" href="https://www.youtube.com/watch?v=g3d9oGrs6qE" target="_blank" rel="noopener" aria-label="Watch the UltraView Tech Showcase on YouTube"><img class="pj-img" src="p/lg/yt.webp" alt="LG Tech Showcase: UltraView Windshield Display" loading="lazy" width="1280" height="720"><span class="pj-play" aria-hidden="true"></span></a><figcaption class="pj-cap">*Video from LG Electronics (Tech Showcase: UltraView Windshield Display)</figcaption></figure>
   </section>
 
   <section class="pj-s">
-   <p class="pj-lbl">Context-aware welcoming</p><div class="pj-2"><div><h2 class="pj-h2">A welcome that knows where you're headed</h2></div><div><p class="pj-body">As the drive begins, welcome content and a music suggestion rise onto the AR-HUD, while the CID shows themed playlists for the journey. I designed this moment with AI, working closely with our UI design team and the client's planners.</p></div></div>
+   <p class="pj-lbl">Context-aware welcoming</p><div class="pj-2"><div><h2 class="pj-h2">A welcome that knows where you're headed</h2></div><div><p class="pj-body">As the drive begins, welcome content and a music suggestion rise onto the AR-HUD, while the CID shows themed playlists for the journey. I designed this moment with AI, working closely with our UI design team and LG's product managers.</p></div></div>
    <div class="uv-clips"><figure class="uv-clip mine"><video class="pj-img" muted loop playsinline autoplay preload="metadata" poster="p/lg/music.jpg"><source src="p/lg/music.webm" type="video/webm"><source src="p/lg/music.mp4" type="video/mp4"></video></figure></div>
    <p class="pj-cap">A music suggestion rises onto the AR-HUD, with AI-themed playlists on the CID<br>*Video from LG Electronics' official materials.</p>
    <div class="pj-cards uv-cards">
-    <div class="pj-card"><span class="n">01</span><h4>AI-generated motion &amp; playlist visuals</h4><p>Created the motion of the welcome content rising onto the AR-HUD and the themed playlist visuals on the CID with AI, refining each theme together with the planner so the journey feels personal from the very first moment.</p></div>
-    <div class="pj-card"><span class="n">02</span><h4>In-vehicle UI screens</h4><p>Designed most of the cockpit UI, from the widget bar (Navigation, Weather, Music, Dashboard, Mail) to the song recommendations, driving view and climate controls, keeping every screen consistent and glanceable with our UI team and the client's planners.</p></div>
+    <div class="pj-card"><span class="n">01</span><h4>AI-generated motion &amp; playlist visuals</h4><p>Created the motion of the welcome content rising onto the AR-HUD and the themed playlist visuals on the CID with AI, refining each theme together with the product manager so the journey feels personal from the very first moment.</p></div>
+    <div class="pj-card"><span class="n">02</span><h4>In-vehicle UI screens</h4><p>Designed most of the cockpit UI, from the widget bar (Navigation, Weather, Music, Dashboard, Mail) to the song recommendations, driving view and climate controls, keeping every screen consistent and glanceable with our UI team and LG's product managers.</p></div>
    </div>
   </section>
 
   <section class="pj-s">
-   <p class="pj-lbl">AI motion process</p><div class="pj-2"><div><h2 class="pj-h2">Making the welcoming motion with AI</h2></div><div><p class="pj-body">How I created the AI video resources for the context-aware welcoming, from the first theme ideas to the motion rising onto the AR-HUD and the playlist visuals on the CID. AI sped up exploration, while every step was shaped through conversations with the planner and our UI team.</p></div></div>
+   <p class="pj-lbl">AI motion process</p><div class="pj-2"><div><h2 class="pj-h2">Making the welcoming motion with AI</h2></div><div><p class="pj-body">How I created the AI video resources for the context-aware welcoming, from the first theme ideas to the motion rising onto the AR-HUD and the playlist visuals on the CID. AI sped up exploration, while every step was shaped through conversations with the product manager and our UI team.</p></div></div>
    <svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs><filter id="uvCrayon" x="-5%" y="-5%" width="110%" height="110%"><feTurbulence type="fractalNoise" baseFrequency="0.05" numOctaves="2" seed="3" result="w"/><feDisplacementMap in="SourceGraphic" in2="w" scale="2.6" xChannelSelector="R" yChannelSelector="G" result="d"/><feTurbulence type="fractalNoise" baseFrequency="1.1" numOctaves="1" seed="9" result="g"/><feColorMatrix in="g" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 -3.2 2.55" result="ga"/><feComposite in="d" in2="ga" operator="in"/></filter></defs></svg>
    <ol class="uv-proc">
-    <li><div class="uv-pic"><svg class="uv-draw" viewBox="0 0 240 160" aria-hidden="true"><g filter="url(#uvCrayon)"><path class="k" pathLength="1" d="M41.9 28.1 C54.4 27.9 103.3 26.6 117.0 26.9 C130.7 27.3 122.5 28.4 124.0 30.2 C125.6 32.1 125.7 31.6 126.2 38.0 C126.8 44.4 127.8 62.5 127.3 68.7 C126.8 75.0 125.1 73.9 123.0 75.5 C121.0 77.2 123.8 78.5 115.0 78.7 C106.3 79.0 77.9 77.2 70.5 76.9"/><path class="k" pathLength="1" d="M71.2 79.1 L56.4 94.3 L59.2 76.8"/><path class="k" pathLength="1" d="M60.1 76.9 C56.9 77.0 45.8 77.7 41.3 77.4 C36.7 77.0 34.6 76.3 32.9 74.9 C31.1 73.5 31.2 74.9 30.9 68.8 C30.6 62.7 30.5 44.7 31.0 38.3 C31.6 31.9 31.9 32.3 34.0 30.4 C36.1 28.5 42.2 27.5 43.9 27.0"/><path class="k" pathLength="1" d="M47.2 45.2 C50.2 44.9 59.5 43.6 65.4 43.5 C71.3 43.4 75.7 44.4 82.8 44.4 C89.8 44.3 103.4 43.2 107.5 43.0"/><path class="k" pathLength="1" d="M46.6 55.8 C49.1 55.6 56.4 54.4 61.2 54.7 C66.1 55.1 70.6 57.7 75.9 57.8 C81.2 57.9 90.0 55.7 92.8 55.3"/><path class="k" pathLength="1" d="M47.0 65.9 C48.5 65.7 53.5 64.5 56.2 64.8 C58.8 65.0 59.6 67.2 63.0 67.3 C66.4 67.4 74.4 65.8 76.7 65.4"/><path class="k" pathLength="1" d="M123.0 61.6 C135.4 61.6 183.8 61.3 197.1 61.6 C210.5 61.9 201.6 61.8 203.1 63.4 C204.6 64.9 205.3 64.3 206.0 70.9 C206.8 77.6 208.0 96.6 207.7 103.2 C207.4 109.9 206.2 109.0 204.1 110.9 C202.1 112.8 198.1 114.0 195.3 114.6 C192.4 115.1 188.5 114.4 187.1 114.3"/><path class="k" pathLength="1" d="M187.1 113.8 L189.3 129.4 L175.1 114.7"/><path class="k" pathLength="1" d="M173.5 114.9 C165.2 114.7 132.6 114.3 123.3 113.7 C114.0 113.1 119.6 112.8 117.9 111.3 C116.1 109.9 113.8 111.8 113.0 105.2 C112.3 98.5 112.5 78.4 113.3 71.4 C114.1 64.5 115.6 65.4 117.7 63.6 C119.7 61.8 124.2 61.0 125.5 60.5"/><path class="k" pathLength="1" d="M149.0 96.2 C149.1 92.9 146.6 80.3 149.4 76.2 C152.2 72.2 162.7 69.3 165.7 71.9 C168.6 74.5 166.9 88.6 167.1 92.0"/><circle class="dot" cx="146.0" cy="97.0" r="4.2"/><circle class="dot" cx="162.0" cy="93.0" r="4.2"/><path class="b" pathLength="1" d="M176.2 88.9 L181.2 94.2 L195.0 80.8"/><path class="b" pathLength="1" d="M39.4 137.3 C40.7 138.0 45.0 140.6 47.2 141.5 C49.4 142.4 50.3 142.7 52.6 142.6 C54.9 142.4 58.6 141.6 60.9 140.7 C63.2 139.8 64.6 137.7 66.5 137.0 C68.4 136.4 70.1 137.0 72.2 136.6 C74.4 136.3 77.1 135.0 79.4 135.0 C81.7 134.9 83.7 135.9 86.1 136.3 C88.4 136.7 91.4 136.7 93.6 137.5 C95.8 138.3 97.2 140.4 99.2 141.0 C101.2 141.6 103.3 140.8 105.6 140.8 C108.0 140.9 111.0 141.9 113.5 141.3 C115.9 140.8 117.9 138.6 120.3 137.5 C122.6 136.4 125.7 135.4 127.7 134.8 C129.7 134.2 130.1 134.0 132.2 133.9 C134.2 133.9 137.6 133.8 139.9 134.5 C142.2 135.1 143.6 136.8 145.9 137.7 C148.2 138.5 151.2 138.8 153.5 139.6 C155.8 140.4 157.3 142.2 159.7 142.4 C162.1 142.6 165.5 141.6 167.8 140.9 C170.2 140.1 171.9 139.3 173.8 138.2 C175.7 137.1 177.2 134.9 179.1 134.4 C181.1 134.0 183.1 135.1 185.5 135.5 C188.0 135.9 191.6 136.2 193.8 136.6 C196.0 137.1 198.0 138.0 198.9 138.3"/></g></svg></div><div class="uv-bar"><i></i></div><span class="n">01</span><h4>Align</h4><p>Defined the welcoming scenario and playlist themes with the client's planner.</p></li>
+    <li><div class="uv-pic"><svg class="uv-draw" viewBox="0 0 240 160" aria-hidden="true"><g filter="url(#uvCrayon)"><path class="k" pathLength="1" d="M41.9 28.1 C54.4 27.9 103.3 26.6 117.0 26.9 C130.7 27.3 122.5 28.4 124.0 30.2 C125.6 32.1 125.7 31.6 126.2 38.0 C126.8 44.4 127.8 62.5 127.3 68.7 C126.8 75.0 125.1 73.9 123.0 75.5 C121.0 77.2 123.8 78.5 115.0 78.7 C106.3 79.0 77.9 77.2 70.5 76.9"/><path class="k" pathLength="1" d="M71.2 79.1 L56.4 94.3 L59.2 76.8"/><path class="k" pathLength="1" d="M60.1 76.9 C56.9 77.0 45.8 77.7 41.3 77.4 C36.7 77.0 34.6 76.3 32.9 74.9 C31.1 73.5 31.2 74.9 30.9 68.8 C30.6 62.7 30.5 44.7 31.0 38.3 C31.6 31.9 31.9 32.3 34.0 30.4 C36.1 28.5 42.2 27.5 43.9 27.0"/><path class="k" pathLength="1" d="M47.2 45.2 C50.2 44.9 59.5 43.6 65.4 43.5 C71.3 43.4 75.7 44.4 82.8 44.4 C89.8 44.3 103.4 43.2 107.5 43.0"/><path class="k" pathLength="1" d="M46.6 55.8 C49.1 55.6 56.4 54.4 61.2 54.7 C66.1 55.1 70.6 57.7 75.9 57.8 C81.2 57.9 90.0 55.7 92.8 55.3"/><path class="k" pathLength="1" d="M47.0 65.9 C48.5 65.7 53.5 64.5 56.2 64.8 C58.8 65.0 59.6 67.2 63.0 67.3 C66.4 67.4 74.4 65.8 76.7 65.4"/><path class="k" pathLength="1" d="M123.0 61.6 C135.4 61.6 183.8 61.3 197.1 61.6 C210.5 61.9 201.6 61.8 203.1 63.4 C204.6 64.9 205.3 64.3 206.0 70.9 C206.8 77.6 208.0 96.6 207.7 103.2 C207.4 109.9 206.2 109.0 204.1 110.9 C202.1 112.8 198.1 114.0 195.3 114.6 C192.4 115.1 188.5 114.4 187.1 114.3"/><path class="k" pathLength="1" d="M187.1 113.8 L189.3 129.4 L175.1 114.7"/><path class="k" pathLength="1" d="M173.5 114.9 C165.2 114.7 132.6 114.3 123.3 113.7 C114.0 113.1 119.6 112.8 117.9 111.3 C116.1 109.9 113.8 111.8 113.0 105.2 C112.3 98.5 112.5 78.4 113.3 71.4 C114.1 64.5 115.6 65.4 117.7 63.6 C119.7 61.8 124.2 61.0 125.5 60.5"/><path class="k" pathLength="1" d="M149.0 96.2 C149.1 92.9 146.6 80.3 149.4 76.2 C152.2 72.2 162.7 69.3 165.7 71.9 C168.6 74.5 166.9 88.6 167.1 92.0"/><circle class="dot" cx="146.0" cy="97.0" r="4.2"/><circle class="dot" cx="162.0" cy="93.0" r="4.2"/><path class="b" pathLength="1" d="M176.2 88.9 L181.2 94.2 L195.0 80.8"/><path class="b" pathLength="1" d="M39.4 137.3 C40.7 138.0 45.0 140.6 47.2 141.5 C49.4 142.4 50.3 142.7 52.6 142.6 C54.9 142.4 58.6 141.6 60.9 140.7 C63.2 139.8 64.6 137.7 66.5 137.0 C68.4 136.4 70.1 137.0 72.2 136.6 C74.4 136.3 77.1 135.0 79.4 135.0 C81.7 134.9 83.7 135.9 86.1 136.3 C88.4 136.7 91.4 136.7 93.6 137.5 C95.8 138.3 97.2 140.4 99.2 141.0 C101.2 141.6 103.3 140.8 105.6 140.8 C108.0 140.9 111.0 141.9 113.5 141.3 C115.9 140.8 117.9 138.6 120.3 137.5 C122.6 136.4 125.7 135.4 127.7 134.8 C129.7 134.2 130.1 134.0 132.2 133.9 C134.2 133.9 137.6 133.8 139.9 134.5 C142.2 135.1 143.6 136.8 145.9 137.7 C148.2 138.5 151.2 138.8 153.5 139.6 C155.8 140.4 157.3 142.2 159.7 142.4 C162.1 142.6 165.5 141.6 167.8 140.9 C170.2 140.1 171.9 139.3 173.8 138.2 C175.7 137.1 177.2 134.9 179.1 134.4 C181.1 134.0 183.1 135.1 185.5 135.5 C188.0 135.9 191.6 136.2 193.8 136.6 C196.0 137.1 198.0 138.0 198.9 138.3"/></g></svg></div><div class="uv-bar"><i></i></div><span class="n">01</span><h4>Align</h4><p>Defined the welcoming scenario and playlist themes with LG's product manager.</p></li>
     <li><div class="uv-pic"><svg class="uv-draw" viewBox="0 0 240 160" aria-hidden="true"><g filter="url(#uvCrayon)"><path class="k" pathLength="1" d="M50.0 20.6 C54.7 20.6 69.1 20.7 78.6 20.6 C88.1 20.5 101.5 19.9 107.0 20.1 C112.4 20.4 110.4 21.4 111.4 22.2 C112.3 22.9 112.2 20.7 112.6 24.5 C112.9 28.3 113.5 38.3 113.3 45.0 C113.1 51.7 111.9 60.7 111.6 64.4 C111.4 68.2 112.4 67.0 111.8 67.7 C111.1 68.4 113.1 68.5 107.8 68.7 C102.5 68.9 89.5 68.9 79.9 68.8 C70.3 68.6 55.7 68.0 50.3 67.7 C44.9 67.4 48.3 67.6 47.4 67.1 C46.5 66.5 45.1 68.0 45.0 64.3 C44.9 60.6 46.3 51.7 46.6 44.9 C46.8 38.1 46.4 27.7 46.5 23.7 C46.7 19.8 46.5 22.0 47.8 21.4 C49.0 20.8 52.8 20.2 53.9 20.0"/><path class="k" pathLength="1" d="M51.0 60.6 L64.9 42.2 L76.0 51.4 L88.5 36.0 L106.3 61.0"/><path class="k" pathLength="1" d="M102.2 32.3 C102.1 32.8 101.8 35.0 101.4 35.5 C100.9 36.1 99.9 35.2 99.6 35.5 C99.3 35.8 100.0 36.9 99.4 37.2 C98.9 37.6 97.2 37.8 96.4 37.6 C95.5 37.4 95.0 36.7 94.4 36.1 C93.8 35.6 93.0 34.5 92.9 34.1 C92.7 33.6 93.5 34.1 93.8 33.4 C94.0 32.8 94.0 31.1 94.1 30.3 C94.2 29.5 94.2 28.9 94.4 28.5 C94.5 28.0 94.1 27.8 94.8 27.7 C95.5 27.6 97.5 27.9 98.3 28.0 C99.2 28.1 99.6 28.5 100.0 28.4 C100.4 28.4 100.3 27.3 100.7 27.5 C101.0 27.6 102.0 28.6 102.3 29.2 C102.6 29.8 102.2 30.6 102.3 31.3 C102.4 32.0 103.2 32.7 103.1 33.4 C102.9 34.2 101.7 35.5 101.4 35.9"/><path class="k" pathLength="1" d="M129.2 19.9 C133.6 19.6 146.4 18.4 156.0 18.3 C165.6 18.1 181.3 18.4 186.9 18.9 C192.4 19.4 188.9 20.4 189.3 21.4 C189.7 22.3 189.5 21.1 189.5 24.7 C189.6 28.3 189.4 36.8 189.4 43.1 C189.5 49.5 189.9 59.0 189.9 62.9 C189.9 66.7 190.4 65.5 189.6 66.2 C188.8 66.8 190.5 66.5 185.1 66.9 C179.8 67.3 166.8 68.2 157.3 68.5 C147.8 68.7 133.5 68.5 128.3 68.4 C123.1 68.3 126.6 68.7 125.9 67.9 C125.3 67.1 124.9 67.4 124.4 63.3 C124.0 59.2 123.6 49.8 123.3 43.2 C123.1 36.7 122.4 27.7 122.8 23.9 C123.2 20.1 124.3 21.3 125.7 20.4 C127.2 19.6 130.5 19.1 131.5 18.8"/><path class="b" pathLength="1" d="M132.5 38.0 C133.0 38.5 134.5 40.1 135.4 40.7 C136.3 41.3 136.8 42.0 138.0 41.7 C139.2 41.4 141.1 39.7 142.3 39.1 C143.6 38.6 144.8 39.1 145.5 38.5 C146.3 38.0 145.8 36.2 146.7 35.8 C147.7 35.3 149.9 35.9 151.1 36.0 C152.2 36.0 152.4 35.6 153.6 36.0 C154.7 36.5 156.6 38.0 157.9 38.7 C159.2 39.4 160.2 39.8 161.2 40.0 C162.1 40.3 162.7 40.1 163.6 40.3 C164.6 40.4 165.9 41.2 166.9 40.9 C167.9 40.6 169.0 39.2 169.8 38.5 C170.7 37.8 170.8 37.2 171.9 36.8 C173.1 36.4 175.7 36.2 176.9 36.1 C178.1 36.1 178.2 36.1 179.0 36.6 C179.7 37.0 181.1 38.6 181.6 39.0"/><path class="b" pathLength="1" d="M132.9 51.6 C133.1 52.0 133.2 53.3 134.1 54.0 C135.0 54.6 137.2 55.8 138.4 55.6 C139.6 55.5 140.2 53.8 141.3 53.0 C142.5 52.2 144.1 51.6 145.2 51.0 C146.4 50.3 147.5 49.3 148.3 49.1 C149.2 48.9 149.6 49.7 150.4 49.7 C151.1 49.7 151.9 48.6 153.0 49.0 C154.1 49.5 155.7 51.6 157.0 52.5 C158.4 53.5 159.7 54.2 160.9 54.6 C162.2 55.0 163.2 55.2 164.3 55.0 C165.4 54.7 166.7 53.6 167.5 53.1 C168.2 52.6 168.1 52.5 168.8 52.1 C169.6 51.6 170.9 50.9 172.1 50.4 C173.3 49.9 174.8 49.1 176.1 49.1 C177.3 49.0 178.8 49.6 179.7 50.0 C180.6 50.5 181.2 51.4 181.5 51.7"/><path class="k" pathLength="1" d="M50.8 81.0 C55.4 80.8 68.6 80.4 78.3 80.2 C88.0 80.1 103.7 80.0 109.1 80.1 C114.6 80.1 110.5 79.8 111.0 80.5 C111.5 81.1 111.8 80.3 112.1 84.0 C112.4 87.7 112.7 96.2 112.9 102.9 C113.0 109.5 113.5 119.9 113.1 124.0 C112.7 128.1 111.4 126.9 110.6 127.5 C109.7 128.2 113.3 128.0 108.2 128.0 C103.0 128.0 89.1 127.6 79.5 127.6 C69.8 127.5 55.3 127.8 50.1 127.8 C44.9 127.8 49.1 128.5 48.3 127.8 C47.5 127.2 46.1 127.9 45.4 123.9 C44.8 119.9 44.3 110.3 44.5 103.8 C44.7 97.3 46.3 88.8 46.8 85.0 C47.2 81.1 46.1 81.7 47.1 80.8 C48.2 79.8 52.2 79.7 53.3 79.5"/><path class="k" pathLength="1" d="M91.5 106.6 C91.1 107.2 90.2 109.1 88.9 110.3 C87.6 111.5 85.3 112.8 83.9 113.6 C82.5 114.5 82.0 114.9 80.6 115.2 C79.1 115.5 76.8 115.7 75.1 115.4 C73.4 115.1 71.7 114.5 70.4 113.5 C69.1 112.5 68.1 111.0 67.5 109.5 C66.8 107.9 66.4 105.9 66.5 104.4 C66.5 102.8 67.1 101.7 67.6 100.4 C68.1 99.1 68.5 97.6 69.5 96.4 C70.4 95.1 72.2 93.5 73.5 92.9 C74.8 92.3 75.6 92.7 77.2 92.7 C78.7 92.7 81.2 92.5 82.9 93.0 C84.6 93.4 86.2 94.5 87.5 95.3 C88.8 96.1 89.8 96.5 90.5 97.9 C91.1 99.3 91.4 102.2 91.5 103.7 C91.7 105.2 92.1 105.5 91.4 107.0 C90.8 108.5 88.4 111.5 87.8 112.4"/><path class="k" pathLength="1" d="M69.3 105.2 L88.9 103.1"/><path class="k" pathLength="1" d="M127.4 80.5 C132.2 80.2 146.5 78.6 156.4 78.4 C166.3 78.3 181.3 79.5 186.8 79.8 C192.3 80.1 189.0 79.5 189.5 80.3 C190.0 81.1 189.8 80.6 189.8 84.4 C189.8 88.3 189.3 96.5 189.4 103.3 C189.6 110.0 190.4 121.2 190.4 125.0 C190.5 128.8 190.7 125.3 189.9 125.9 C189.2 126.5 191.5 128.1 186.0 128.6 C180.5 129.1 166.8 129.3 157.0 129.0 C147.2 128.8 132.7 127.5 127.3 127.0 C121.8 126.4 124.8 126.2 124.3 125.7 C123.7 125.2 124.2 127.8 124.1 124.0 C124.0 120.3 123.7 109.9 123.6 103.2 C123.4 96.4 122.8 86.8 123.2 83.3 C123.7 79.8 124.4 83.2 126.0 82.4 C127.6 81.5 131.9 78.9 133.0 78.2"/><path class="k" pathLength="1" d="M138.9 119.1 L149.9 94.6 L159.6 109.9 L170.0 97.8 L178.2 116.8"/><circle class="dot" cx="150.0" cy="94.0" r="2.6"/><path class="k" pathLength="1" d="M210.5 24.8 L209.2 47.9"/><path class="k" pathLength="1" d="M198.6 35.8 L221.3 35.2"/><path class="b" pathLength="1" d="M203.0 27.8 L217.9 43.7"/><path class="b" pathLength="1" d="M217.5 29.9 L203.3 42.8"/><path class="b" pathLength="1" d="M46.2 146.0 C47.4 146.5 51.3 148.2 53.2 148.9 C55.0 149.5 55.5 150.0 57.4 150.0 C59.3 150.0 62.4 149.5 64.6 148.8 C66.8 148.1 68.7 146.4 70.8 145.8 C72.8 145.1 75.0 145.1 77.0 144.8 C78.9 144.4 80.5 143.8 82.5 143.6 C84.4 143.5 86.6 143.4 88.6 143.7 C90.6 143.9 92.7 144.2 94.5 145.0 C96.4 145.7 97.9 147.4 99.6 148.0 C101.3 148.7 102.7 148.6 104.8 148.7 C106.9 148.7 110.2 148.7 112.3 148.4 C114.4 148.2 115.3 147.9 117.4 147.1 C119.4 146.2 122.2 144.1 124.4 143.5 C126.6 142.8 128.4 143.1 130.4 143.2 C132.3 143.2 133.9 143.1 136.1 143.6 C138.2 144.1 141.1 145.5 143.2 146.3 C145.3 147.2 146.5 148.5 148.5 148.7 C150.5 149.0 153.2 147.9 155.2 147.9 C157.1 147.8 158.6 149.0 160.3 148.7 C162.0 148.3 163.6 146.7 165.4 145.8 C167.2 144.8 168.9 143.8 170.9 143.1 C173.0 142.5 175.6 141.8 177.7 142.0 C179.8 142.3 181.3 144.2 183.4 144.9 C185.5 145.5 189.0 145.8 190.1 146.0"/></g></svg></div><div class="uv-bar"><i></i></div><span class="n">02</span><h4>Explore with AI</h4><p>Generated first theme visuals and key frames in Midjourney to explore moods quickly.</p></li>
     <li><div class="uv-pic"><svg class="uv-draw" viewBox="0 0 240 160" aria-hidden="true"><g filter="url(#uvCrayon)"><path class="k" pathLength="1" d="M59.1 18.2 L153.2 16.3 L156.7 139.0 L62.2 142.6 L56.9 19.0"/><path class="k" pathLength="1" d="M69.2 15.9 L69.2 10.0"/><path class="k" pathLength="1" d="M90.3 14.9 L91.1 9.8"/><path class="k" pathLength="1" d="M110.1 15.2 L109.7 8.5"/><path class="k" pathLength="1" d="M130.4 15.1 L129.5 9.5"/><path class="k" pathLength="1" d="M69.5 32.8 L77.4 32.9"/><path class="k" pathLength="1" d="M83.2 34.6 C85.9 34.5 93.9 34.1 99.3 34.0 C104.8 33.8 109.5 33.7 115.8 33.9 C122.1 34.1 133.6 34.9 137.2 35.1"/><path class="k" pathLength="1" d="M69.0 51.0 C72.8 50.6 84.3 49.0 92.0 48.9 C99.8 48.8 106.9 50.0 115.5 50.4 C124.2 50.7 139.3 50.9 144.1 51.0"/><path class="k" pathLength="1" d="M70.5 61.9 C73.6 61.9 83.2 61.7 89.1 61.8 C95.1 61.8 99.4 62.1 106.2 62.1 C113.1 62.1 126.3 61.9 130.3 61.9"/><path class="b" pathLength="1" d="M67.3 70.9 C68.1 71.2 70.6 72.2 72.1 72.9 C73.5 73.5 74.6 74.8 75.9 74.9 C77.2 75.0 78.5 73.7 79.9 73.2 C81.3 72.7 82.7 72.3 84.2 71.8 C85.7 71.3 87.2 70.5 88.7 70.3 C90.2 70.1 91.9 70.7 93.2 70.6 C94.5 70.5 95.6 69.2 96.6 69.6 C97.5 70.0 97.7 72.2 99.1 72.9 C100.4 73.7 103.3 73.9 104.7 74.1 C106.1 74.2 106.4 74.0 107.7 74.0 C109.0 73.9 111.0 74.2 112.4 73.9 C113.9 73.7 114.9 73.1 116.2 72.3 C117.6 71.6 119.4 69.8 120.6 69.5 C121.8 69.2 122.0 70.4 123.4 70.7 C124.8 70.9 127.7 71.1 129.0 71.1 C130.2 71.2 130.6 71.0 130.9 70.9"/><path class="k" pathLength="1" d="M69.5 89.8 C73.1 89.5 84.2 88.0 91.3 88.0 C98.4 88.1 104.1 89.6 112.1 90.0 C120.1 90.4 134.5 90.3 139.0 90.4"/><path class="k" pathLength="1" d="M70.1 104.3 C72.6 104.1 79.8 102.9 84.7 102.9 C89.6 103.0 93.3 104.3 99.3 104.6 C105.3 104.9 117.0 104.8 120.6 104.8"/><path class="k" pathLength="1" d="M69.0 117.1 L78.7 118.3"/><path class="k" pathLength="1" d="M84.6 117.3 C86.5 117.2 91.8 116.2 95.8 116.4 C99.8 116.6 104.0 118.2 108.7 118.7 C113.5 119.1 121.8 119.1 124.4 119.2"/><path class="k" pathLength="1" d="M169.6 128.1 L206.6 51.0 L215.8 53.7 L179.0 132.9 L167.0 139.0 L170.2 128.0"/><path class="k" pathLength="1" d="M170.4 127.5 L180.7 131.0"/><path class="k" pathLength="1" d="M201.3 58.4 L211.0 61.5"/><path class="b" pathLength="1" d="M176.5 146.5 C177.0 146.6 178.3 146.8 179.5 147.3 C180.7 147.8 182.3 149.6 183.7 149.5 C185.0 149.5 186.2 147.8 187.7 147.2 C189.2 146.6 190.9 146.5 192.5 146.2 C194.1 145.8 195.6 145.5 197.0 144.9 C198.4 144.4 199.7 143.1 201.0 142.9 C202.3 142.6 203.6 142.9 204.7 143.4 C205.8 143.9 206.2 144.8 207.6 145.8 C208.9 146.7 211.7 148.6 213.0 149.1 C214.3 149.6 214.3 148.9 215.4 148.7 C216.5 148.5 218.3 148.3 219.7 147.8 C221.1 147.3 223.1 146.1 223.7 145.7"/></g></svg></div><div class="uv-bar"><i></i></div><span class="n">03</span><h4>Prompt study</h4><p>Studied how wording, style references and parameters changed the results, and built a prompt set that kept every theme consistent.</p></li>
-    <li><div class="uv-pic"><svg class="uv-draw" viewBox="0 0 240 160" aria-hidden="true"><g filter="url(#uvCrayon)"><path class="k" pathLength="1" d="M29.3 44.2 C37.2 41.8 61.5 33.1 76.7 30.1 C92.0 27.1 106.4 26.1 120.8 26.2 C135.2 26.2 148.2 27.7 163.2 30.6 C178.2 33.5 203.0 41.3 210.9 43.5"/><path class="k" pathLength="1" d="M28.9 44.0 C28.4 51.7 25.1 74.4 26.1 90.2 C27.2 105.9 33.6 130.3 35.1 138.4"/><path class="k" pathLength="1" d="M210.7 43.0 C211.3 50.9 215.1 75.0 214.1 90.7 C213.2 106.4 206.5 129.3 205.0 137.0"/><path class="k" pathLength="1" d="M34.6 139.0 C48.6 139.5 90.6 142.4 119.0 142.3 C147.4 142.3 190.8 139.2 205.1 138.6"/><path class="k" pathLength="1" d="M95.4 51.4 C99.4 51.5 111.0 51.8 119.3 52.0 C127.6 52.2 140.2 52.5 145.1 52.6 C149.9 52.8 147.2 52.3 148.2 53.1 C149.3 53.9 150.7 55.1 151.1 57.4 C151.5 59.7 150.7 63.7 150.6 67.1 C150.5 70.4 150.7 75.3 150.5 77.5 C150.3 79.7 150.3 79.5 149.5 80.3 C148.7 81.1 150.6 81.9 145.8 82.4 C141.0 82.9 129.2 83.2 120.8 83.3 C112.5 83.4 100.5 83.3 95.8 82.9 C91.1 82.5 93.6 81.7 92.6 80.8 C91.6 79.9 90.5 79.8 90.1 77.5 C89.6 75.2 90.2 70.4 90.1 66.8 C90.1 63.3 89.5 58.2 89.8 56.2 C90.1 54.1 90.6 55.6 92.1 54.7 C93.6 53.7 97.6 51.1 98.7 50.4"/><path class="k" pathLength="1" d="M99.3 63.8 L125.5 65.1"/><path class="k" pathLength="1" d="M98.9 71.5 L115.1 72.4"/><path class="k" pathLength="1" d="M120.7 97.2 L118.9 87.9"/><path class="k" pathLength="1" d="M114.2 94.0 L118.9 85.1 L125.2 92.3"/><path class="b" pathLength="1" d="M101.4 112.5 L102.2 97.3"/><path class="b" pathLength="1" d="M119.2 123.5 L119.2 106.6"/><path class="b" pathLength="1" d="M137.5 112.1 L138.8 98.0"/><path class="k" pathLength="1" d="M175.4 108.9 C177.0 107.4 181.9 100.6 185.0 99.6 C188.1 98.6 192.0 101.1 194.1 103.1 C196.3 105.0 198.5 108.0 198.0 111.3 C197.4 114.7 193.5 121.3 190.9 123.1 C188.4 124.8 184.1 121.9 182.7 121.7"/><path class="k" pathLength="1" d="M176.1 100.0 L175.5 110.2 L185.4 108.4"/></g></svg></div><div class="uv-bar"><i></i></div><span class="n">04</span><h4>Animate &amp; refine</h4><p>Turned the visuals into the rising AR-HUD motion and iterated on the planner's feedback.</p></li>
+    <li><div class="uv-pic"><svg class="uv-draw" viewBox="0 0 240 160" aria-hidden="true"><g filter="url(#uvCrayon)"><path class="k" pathLength="1" d="M29.3 44.2 C37.2 41.8 61.5 33.1 76.7 30.1 C92.0 27.1 106.4 26.1 120.8 26.2 C135.2 26.2 148.2 27.7 163.2 30.6 C178.2 33.5 203.0 41.3 210.9 43.5"/><path class="k" pathLength="1" d="M28.9 44.0 C28.4 51.7 25.1 74.4 26.1 90.2 C27.2 105.9 33.6 130.3 35.1 138.4"/><path class="k" pathLength="1" d="M210.7 43.0 C211.3 50.9 215.1 75.0 214.1 90.7 C213.2 106.4 206.5 129.3 205.0 137.0"/><path class="k" pathLength="1" d="M34.6 139.0 C48.6 139.5 90.6 142.4 119.0 142.3 C147.4 142.3 190.8 139.2 205.1 138.6"/><path class="k" pathLength="1" d="M95.4 51.4 C99.4 51.5 111.0 51.8 119.3 52.0 C127.6 52.2 140.2 52.5 145.1 52.6 C149.9 52.8 147.2 52.3 148.2 53.1 C149.3 53.9 150.7 55.1 151.1 57.4 C151.5 59.7 150.7 63.7 150.6 67.1 C150.5 70.4 150.7 75.3 150.5 77.5 C150.3 79.7 150.3 79.5 149.5 80.3 C148.7 81.1 150.6 81.9 145.8 82.4 C141.0 82.9 129.2 83.2 120.8 83.3 C112.5 83.4 100.5 83.3 95.8 82.9 C91.1 82.5 93.6 81.7 92.6 80.8 C91.6 79.9 90.5 79.8 90.1 77.5 C89.6 75.2 90.2 70.4 90.1 66.8 C90.1 63.3 89.5 58.2 89.8 56.2 C90.1 54.1 90.6 55.6 92.1 54.7 C93.6 53.7 97.6 51.1 98.7 50.4"/><path class="k" pathLength="1" d="M99.3 63.8 L125.5 65.1"/><path class="k" pathLength="1" d="M98.9 71.5 L115.1 72.4"/><path class="k" pathLength="1" d="M120.7 97.2 L118.9 87.9"/><path class="k" pathLength="1" d="M114.2 94.0 L118.9 85.1 L125.2 92.3"/><path class="b" pathLength="1" d="M101.4 112.5 L102.2 97.3"/><path class="b" pathLength="1" d="M119.2 123.5 L119.2 106.6"/><path class="b" pathLength="1" d="M137.5 112.1 L138.8 98.0"/><path class="k" pathLength="1" d="M175.4 108.9 C177.0 107.4 181.9 100.6 185.0 99.6 C188.1 98.6 192.0 101.1 194.1 103.1 C196.3 105.0 198.5 108.0 198.0 111.3 C197.4 114.7 193.5 121.3 190.9 123.1 C188.4 124.8 184.1 121.9 182.7 121.7"/><path class="k" pathLength="1" d="M176.1 100.0 L175.5 110.2 L185.4 108.4"/></g></svg></div><div class="uv-bar"><i></i></div><span class="n">04</span><h4>Animate &amp; refine</h4><p>Turned the visuals into the rising AR-HUD motion and iterated on the product manager's feedback.</p></li>
     <li><div class="uv-pic"><svg class="uv-draw" viewBox="0 0 240 160" aria-hidden="true"><g filter="url(#uvCrayon)"><path class="k" pathLength="1" d="M12.8 63.9 C30.6 61.1 84.1 46.7 119.7 46.7 C155.3 46.8 208.7 61.3 226.5 64.3"/><path class="k" pathLength="1" d="M97.2 53.2 C100.9 53.1 112.0 52.7 119.6 52.8 C127.2 53.0 138.6 53.4 142.9 54.0 C147.1 54.6 144.7 55.7 145.1 56.4 C145.6 57.1 145.3 56.9 145.4 58.1 C145.5 59.3 145.9 61.9 145.8 63.6 C145.7 65.4 144.8 67.5 144.8 68.8 C144.8 70.1 146.3 71.1 145.6 71.6 C145.0 72.0 145.2 71.4 141.0 71.4 C136.8 71.5 127.7 71.6 120.5 71.6 C113.3 71.7 102.0 72.0 98.0 71.9 C93.9 71.8 96.8 71.7 96.3 71.0 C95.8 70.3 95.2 68.9 94.9 67.5 C94.5 66.2 94.1 64.6 94.1 62.8 C94.1 61.0 94.7 58.4 95.0 57.0 C95.3 55.6 94.8 55.1 96.0 54.5 C97.2 53.9 101.1 53.5 102.1 53.3"/><path class="b" pathLength="1" d="M101.2 63.8 L119.5 62.5"/><path class="k" pathLength="1" d="M13.0 91.5 L225.9 92.5"/><path class="k" pathLength="1" d="M84.6 125.3 C83.7 126.5 81.4 130.2 79.5 132.6 C77.6 135.0 75.5 138.2 73.1 139.7 C70.7 141.2 68.2 141.5 65.0 141.5 C61.8 141.6 56.7 141.0 53.7 139.9 C50.8 138.9 49.3 137.1 47.2 135.3 C45.0 133.4 42.6 131.1 40.9 128.8 C39.2 126.4 37.1 124.4 36.9 121.3 C36.7 118.3 38.6 113.5 39.8 110.4 C40.9 107.3 42.0 104.8 43.8 102.6 C45.6 100.5 47.9 98.9 50.5 97.5 C53.1 96.1 56.2 94.7 59.3 94.4 C62.3 94.2 65.9 95.3 68.8 96.2 C71.7 97.0 74.3 97.6 76.7 99.4 C79.2 101.1 82.1 104.0 83.8 106.7 C85.5 109.5 86.7 113.0 87.0 116.0 C87.2 119.0 86.4 121.8 85.5 124.5 C84.5 127.1 82.0 130.7 81.3 131.9"/><path class="k" pathLength="1" d="M66.9 118.7 C66.9 119.3 67.5 121.5 67.0 122.2 C66.6 122.9 64.6 122.6 64.0 122.9 C63.4 123.2 64.2 124.0 63.4 124.0 C62.6 124.0 60.2 123.3 59.2 122.9 C58.2 122.5 57.8 122.1 57.3 121.6 C56.9 121.0 56.5 120.2 56.5 119.7 C56.4 119.2 57.1 118.9 57.0 118.4 C57.0 117.9 56.1 117.2 56.3 116.6 C56.5 116.1 57.6 115.8 58.0 115.1 C58.5 114.4 58.4 113.1 58.9 112.4 C59.5 111.8 60.5 111.0 61.2 111.0 C62.0 111.1 62.6 112.4 63.5 112.9 C64.5 113.4 66.3 113.8 67.0 114.2 C67.7 114.7 67.7 115.1 67.7 115.5 C67.7 116.0 66.9 116.3 66.8 117.1 C66.8 117.8 67.5 119.4 67.4 120.1 C67.2 120.8 66.0 121.2 65.7 121.4"/><path class="k" pathLength="1" d="M40.0 112.7 L56.8 116.3"/><path class="k" pathLength="1" d="M67.2 116.6 L85.0 112.1"/><path class="k" pathLength="1" d="M124.6 98.0 C131.2 98.0 150.6 97.9 164.1 97.9 C177.7 97.9 198.7 97.6 206.2 98.0 C213.6 98.4 208.5 99.3 209.0 100.3 C209.5 101.3 209.0 100.2 209.3 104.1 C209.6 107.9 211.0 116.6 210.9 123.3 C210.9 130.0 209.4 140.1 209.0 144.4 C208.6 148.7 209.4 147.9 208.7 149.0 C207.9 150.1 211.9 150.8 204.6 151.0 C197.3 151.3 178.1 150.5 164.7 150.5 C151.3 150.5 131.4 151.3 124.1 151.1 C116.8 151.0 121.3 150.5 120.6 149.5 C120.0 148.5 120.3 149.5 120.1 145.1 C119.9 140.8 119.4 130.3 119.5 123.4 C119.7 116.6 120.5 108.1 121.0 104.2 C121.4 100.2 121.1 100.8 122.3 99.7 C123.4 98.7 127.1 98.3 128.1 98.0"/><path class="k" pathLength="1" d="M130.5 107.0 C131.3 106.7 133.5 105.9 135.4 105.6 C137.3 105.3 140.5 105.2 141.8 105.2 C143.1 105.3 143.0 105.4 143.2 105.9 C143.4 106.4 142.5 106.7 142.9 108.2 C143.3 109.8 145.5 113.3 145.8 115.1 C146.0 116.8 144.8 117.4 144.4 118.5 C144.0 119.6 144.1 121.1 143.5 121.7 C142.9 122.3 141.8 122.3 140.7 122.2 C139.6 122.2 138.5 121.5 136.7 121.4 C135.0 121.4 131.7 122.0 130.3 121.9 C128.8 121.8 128.4 121.4 128.0 120.8 C127.7 120.2 128.3 119.4 128.2 118.2 C128.1 117.0 127.4 115.0 127.4 113.4 C127.4 111.8 127.9 109.9 128.2 108.6 C128.5 107.3 128.0 106.5 129.2 105.8 C130.4 105.1 134.4 104.6 135.4 104.3"/><path class="k" pathLength="1" d="M151.1 110.2 C152.9 110.0 158.1 108.6 161.9 108.8 C165.8 109.0 169.5 111.2 174.3 111.5 C179.1 111.8 187.9 110.7 190.6 110.6"/><path class="k" pathLength="1" d="M150.0 119.2 C151.4 119.0 156.0 117.9 158.6 117.9 C161.2 117.8 162.5 118.7 165.4 118.8 C168.3 119.0 174.4 119.0 176.2 119.0"/><path class="k" pathLength="1" d="M131.1 128.1 C131.9 128.1 134.3 128.6 135.8 128.4 C137.4 128.2 139.3 126.7 140.6 126.9 C141.9 127.2 143.0 129.1 143.6 129.9 C144.3 130.6 144.3 130.3 144.6 131.2 C144.8 132.2 145.3 134.1 145.2 135.5 C145.1 137.0 144.7 138.7 144.2 140.0 C143.7 141.2 142.7 142.3 142.2 143.0 C141.7 143.6 142.2 143.4 141.0 143.8 C139.8 144.1 136.6 145.1 134.9 145.1 C133.3 145.0 132.1 143.7 131.1 143.4 C130.0 143.0 129.1 143.4 128.4 142.8 C127.8 142.3 127.4 140.9 127.4 140.0 C127.4 139.0 128.2 138.5 128.4 137.1 C128.6 135.8 128.3 133.1 128.4 131.9 C128.5 130.6 127.7 130.3 128.7 129.6 C129.7 129.0 133.4 128.1 134.3 127.8"/><path class="b" pathLength="1" d="M150.2 137.0 C150.5 137.3 151.2 138.5 152.0 138.8 C152.9 139.2 153.8 139.4 155.1 139.1 C156.4 138.8 159.0 137.5 160.1 136.9 C161.1 136.3 160.6 136.2 161.4 135.5 C162.1 134.8 163.3 133.1 164.6 132.8 C165.8 132.5 167.9 133.6 168.9 133.8 C170.0 133.9 169.9 133.3 170.8 133.5 C171.6 133.7 173.4 134.0 174.2 134.9 C175.1 135.8 175.0 138.4 175.9 139.1 C176.8 139.8 178.2 139.0 179.5 139.0 C180.9 139.0 183.0 139.9 184.0 139.3 C185.1 138.7 185.2 136.0 185.9 135.3 C186.7 134.6 187.3 135.4 188.5 134.9 C189.7 134.4 191.7 132.5 193.0 132.3 C194.2 132.0 195.0 133.0 195.8 133.5 C196.6 134.0 197.6 134.9 197.9 135.2"/></g></svg></div><div class="uv-bar"><i></i></div><span class="n">05</span><h4>Integrate</h4><p>Fitted the motion and playlists into the AR-HUD and CID screens with our UI design team.</p></li>
    </ol>
   </section>
@@ -961,7 +1098,7 @@ html.intro header .bar,html.intro .poster,html.intro .scrollcue,html.intro canva
    <p class="pj-lbl">My key decisions</p><div class="pj-2"><div><h2 class="pj-h2">The calls that shaped the work</h2></div><div><p class="pj-body">Three decisions behind the welcoming moment and the screens around it.</p></div></div>
    <div class="kd">
     <div class="kd-card"><span class="n">01</span><h4>Short on the HUD, rich on the CID</h4><dl><dt>Challenge</dt><dd>Anything on the windshield competes with the road for the driver's attention.</dd><dt>My decision</dt><dd>I kept the AR-HUD to a single, glanceable suggestion and left browsing to the themed playlists on the CID.</dd><dt>Impact</dt><dd>A welcome that feels personal without pulling the driver's eyes off the road.</dd></dl></div>
-    <div class="kd-card"><span class="n">02</span><h4>A prompt set for consistent AI visuals</h4><dl><dt>Challenge</dt><dd>Early AI results looked different every time, so the themes didn't feel like one family.</dd><dt>My decision</dt><dd>I studied how prompts behave and built a reusable prompt set before producing the final visuals.</dd><dt>Impact</dt><dd>Consistent themes, and changes from the planner's feedback in hours rather than days.</dd></dl></div>
+    <div class="kd-card"><span class="n">02</span><h4>A prompt set for consistent AI visuals</h4><dl><dt>Challenge</dt><dd>Early AI results looked different every time, so the themes didn't feel like one family.</dd><dt>My decision</dt><dd>I studied how prompts behave and built a reusable prompt set before producing the final visuals.</dd><dt>Impact</dt><dd>Consistent themes, and changes from the product manager's feedback in hours rather than days.</dd></dl></div>
     <div class="kd-card"><span class="n">03</span><h4>One visual language across every screen</h4><dl><dt>Challenge</dt><dd>The cockpit mixes widgets, recommendations, driving info and climate controls.</dd><dt>My decision</dt><dd>I applied the same components and visual rules to every screen, from the widget bar to the climate controls.</dd><dt>Impact</dt><dd>A coherent, glanceable cockpit, part of a project named a 2026 PACE Pilot Award finalist.</dd></dl></div>
    </div>
   </section>
@@ -973,9 +1110,9 @@ html.intro header .bar,html.intro .poster,html.intro .scrollcue,html.intro canva
      <h5>1. Designing for different distances</h5>
      <p class="pj-body">Placing content on the AR-HUD, the Hover Screen or the CID changes how quickly a driver can take it in. I learned to decide not just how a screen looks, but where each piece of information should live.</p>
      <h5>2. AI as part of the design process</h5>
-     <p class="pj-body">Using AI for motion and playlist visuals let me explore themes quickly and react to the planner's feedback in hours rather than days, while keeping the final quality in my hands.</p>
+     <p class="pj-body">Using AI for motion and playlist visuals let me explore themes quickly and react to the product manager's feedback in hours rather than days, while keeping the final quality in my hands.</p>
      <h5>3. Collaboration across teams</h5>
-     <p class="pj-body">Working between our UI design team and the client's planners taught me to align early, explain my decisions clearly and keep everyone moving towards the same story.</p>
+     <p class="pj-body">Working between our UI design team and LG's product managers taught me to align early, explain my decisions clearly and keep everyone moving towards the same story.</p>
      <p class="pj-body" style="margin-top:1.4em">Seeing UltraView named a finalist for the 2026 Automotive News PACE Pilot Award made me incredibly proud of what our team built together.</p>
      <p class="uv-read" style="text-align:left;margin-top:1.4em"><a href="https://www.lgcorp.com/media/release/30405" target="_blank" rel="noopener">Read more in LG's press release <span aria-hidden="true">↗</span></a></p>
     </div></div>
@@ -1062,7 +1199,7 @@ html.intro header .bar,html.intro .poster,html.intro .scrollcue,html.intro canva
 <div class="tb-hs k"><div class="tb-kw"><p class="tb-kh"><span>#</span>Coffee</p><div class="tb-row"><div class="tb-th" style="background:linear-gradient(135deg,#F3E2A9,#D9A441)"></div><div><p class="tb-n">Fritz Coffee Company</p><p class="tb-m">1.1 km · Roastery</p><p class="tb-r"><em class="q">Quiet</em><b>★ 4.6</b></p></div><span class="tb-fav s"></span></div><div class="tb-row"><div class="tb-th" style="background:linear-gradient(135deg,#D7E6EE,#7FA7BD)"></div><div><p class="tb-n">Anthracite Hannam</p><p class="tb-m">2.3 km · Cafe</p><p class="tb-r"><em class="b">Busy</em><b>★ 4.5</b></p></div><span class="tb-fav s"></span></div><div class="tb-row"><div class="tb-th" style="background:linear-gradient(135deg,#CFE8D6,#6FB58A)"></div><div><p class="tb-n">Felt Coffee</p><p class="tb-m">3.0 km · Cafe</p><p class="tb-r"><em class="q">Quiet</em><b>★ 4.7</b></p></div><span class="tb-fav s"></span></div><button class="tb-more" type="button" tabindex="-1">View more</button></div><div class="tb-kw"><p class="tb-kh"><span>#</span>Family trip</p><div class="tb-row"><div class="tb-th" style="background:linear-gradient(135deg,#CFE8D6,#6FB58A)"></div><div><p class="tb-n">Seoul Forest</p><p class="tb-m">2.8 km · Park</p><p class="tb-r"><em class="m">Moderate</em><b>★ 4.6</b></p></div><span class="tb-fav s"></span></div><div class="tb-row"><div class="tb-th" style="background:linear-gradient(135deg,#E5D3F5,#A07BD6)"></div><div><p class="tb-n">National Museum</p><p class="tb-m">4.1 km · Museum</p><p class="tb-r"><em class="q">Quiet</em><b>★ 4.8</b></p></div><span class="tb-fav s"></span></div><div class="tb-row"><div class="tb-th" style="background:linear-gradient(135deg,#BFD4FF,#6B87FF)"></div><div><p class="tb-n">Lotte World Aquarium</p><p class="tb-m">7.5 km · Aquarium</p><p class="tb-r"><em class="b">Busy</em><b>★ 4.4</b></p></div><span class="tb-fav s"></span></div><button class="tb-more" type="button" tabindex="-1">View more</button></div></div></div>
 <div class="tb-sec" id="tb4"><p class="tb-h">Top 20 · Most popular destinations <span class="tb-lv">LIVE</span></p>
 <div class="tb-hs"><div class="tb-pc"><div class="tb-ph sm" style="background:linear-gradient(135deg,#E5D3F5,#A07BD6)"><span class="tb-no">No.1</span></div><p class="tb-n">The Hyundai Seoul <small>Mall</small></p><p class="tb-m"><span class="tb-live"></span>1,284 vehicles heading there</p></div><div class="tb-pc"><div class="tb-ph sm" style="background:linear-gradient(135deg,#F6C9A8,#E9876B)"><span class="tb-no">No.2</span></div><p class="tb-n">Gyeongbokgung <small>Palace</small></p><p class="tb-m"><span class="tb-live"></span>962 vehicles heading there</p></div><div class="tb-pc"><div class="tb-ph sm" style="background:linear-gradient(135deg,#D7E6EE,#7FA7BD)"><span class="tb-no">No.3</span></div><p class="tb-n">Banpo Hangang Park <small>Park</small></p><p class="tb-m"><span class="tb-live"></span>731 vehicles heading there</p></div></div></div>
-<span class="pj-hl" aria-hidden="true"></span></div></div></div><p class="pj-cap tb-note">*Reconstructed to show the final design approach. Client content replaced due to confidentiality.</p></div>
+<span class="pj-hl" aria-hidden="true"></span></div></div></div><p class="pj-cap tb-note">*Reconstructed to show the final design approach.<br>Client content replaced due to confidentiality.</p></div>
     <div class="pj-list2"><h4>What is in the Destination Tab</h4><ol class="pj-steps"><li><button type="button" data-t="tb1"><span class="k">01</span><span>Placed recommendations based on personal bookmarks/viewing history.</span></button></li><li><button type="button" data-t="tb2"><span class="k">02</span><span>Location-based recommendations with filtering/sorting.</span></button></li><li><button type="button" data-t="tb3"><span class="k">03</span><span>Context-aware recommendations based on set keywords that represent topics the user is interested in.</span></button></li><li><button type="button" data-t="tb4"><span class="k">04</span><span>Recommendations based on visitor frequency and ratings.</span></button></li></ol></div>
    </div>
   </section>
@@ -1115,6 +1252,150 @@ html.intro header .bar,html.intro .poster,html.intro .scrollcue,html.intro canva
   <p class="pj-credit">©Sohyun Park</p>
  </div>
 </article>
+<article class="proj pweb" id="pWeb" aria-label="Designing with AI: my portfolio website, made with Claude" aria-hidden="true">
+ <div class="wrap">
+  <div class="pj-2 pj-hero-row">
+   <h1 class="pj-title">Designing with AI<small>(Vibe-coding)</small></h1>
+   <figure class="pj-heroimg"><img class="pj-img" src="p/exp/web.webp" alt="The home screen of sohyunpark.com" width="1600" height="900" loading="lazy"></figure>
+  </div>
+  <div class="pj-meta">
+   <div><h4>My role</h4><p>Design direction, UX/UI design, Motion, Design QA</p></div>
+   <div><h4>Made with</h4><p>Claude (Anthropic)</p></div>
+   <div><h4>Stack</h4><p>HTML, CSS, JavaScript, GitHub Pages</p></div>
+   <div><h4>Versions</h4><p>470+ published</p></div>
+  </div>
+
+  <section class="pj-s">
+   <p class="pj-lbl">Overview</p><div class="pj-2"><div><h2 class="pj-h2">My portfolio, designed in conversation with Claude.</h2></div><div><p class="pj-body">I wanted a site that feels like my own design work, not a template. Instead of building it line by line on my own, I paired with Claude: I set the direction, reviewed every build and refined the details until they felt right.</p><p class="pj-body">Claude took on most of the heavy lifting in code, while I read through it, adjusted it and kept every design decision in my hands.</p></div></div>
+  </section>
+
+  <section class="pj-s">
+   <p class="pj-lbl">How we worked</p><div class="pj-2"><div><h2 class="pj-h2">Say, build, check, refine</h2></div><div><p class="pj-body">The same loop, more than 470 times, from the first layout to the last pixel.</p></div></div>
+   <div class="pj-cards wb-loop">
+    <div class="pj-card"><span class="n">01</span><h4>Say</h4><p>I described what I wanted in plain words, often with a reference from Pinterest or a quick sketch.</p></div>
+    <div class="pj-card"><span class="n">02</span><h4>Build</h4><p>Claude drafted the HTML, CSS and JavaScript and published a preview within minutes, and I stepped into the code where needed.</p></div>
+    <div class="pj-card"><span class="n">03</span><h4>Check</h4><p>I review it like design QA, every day, on desktop and on my phone, hunting for lag and bugs with screenshots and screen recordings.</p></div>
+    <div class="pj-card"><span class="n">04</span><h4>Refine</h4><p>I pointed out what felt off, from a menu that jumped to a name that flickered, and we went again.</p></div>
+   </div>
+  </section>
+
+    <section class="pj-s">
+   <p class="pj-lbl">Versions</p><div class="pj-2"><div><h2 class="pj-h2">From a template look to my own</h2></div><div><p class="pj-body">The home screen is the first thing people see, so it changed the most. Each version came from looking at the last one and asking what still didn't feel like me.</p></div></div>
+   <div class="wb-vers">
+    <figure><img class="pj-img" src="p/exp/v/v1.webp" alt="Version 1 of the home screen: a large name on a paper-coloured page" width="1200" height="750" loading="lazy"><figcaption><b>V.01</b>Spec sheet<span>Clean, but it could be anyone's portfolio.</span></figcaption></figure>
+    <figure><img class="pj-img" src="p/exp/v/v2.webp" alt="Version 2: a bold poster with tags and images" width="1200" height="750" loading="lazy"><figcaption><b>V.02</b>Poster<span>Bolder, but busy. Too many things asked for attention.</span></figcaption></figure>
+    <figure><img class="pj-img" src="p/exp/v/v3.webp" alt="Version 3: the words User Explorer, centred" width="1200" height="750" loading="lazy"><figcaption><b>V.03</b>User Explorer<span>One idea instead of many, with space to breathe.</span></figcaption></figure>
+    <figure><img class="pj-img" src="p/exp/web.webp" alt="Today's version: User Explorer over a galloping pixel horse" width="1600" height="900" loading="lazy"><figcaption><b>V.04 · Today</b>Pixel horse<span>My signature horse made of dots, still being refined.</span></figcaption></figure>
+   </div>
+  </section>
+
+  <section class="pj-s">
+   <p class="pj-lbl">Design system</p><div class="pj-2"><div><h2 class="pj-h2">A small system, used everywhere</h2></div><div><p class="pj-body">I set up the site the way I set up design systems at work: a few colours, two typefaces and a handful of components, reused on every page so new sections feel consistent from day one.</p></div></div>
+   <div class="wb-ds">
+    <div class="wb-tile"><h4>Colour</h4>
+     <ul class="wb-sw">
+      <li><i style="background:#F4F4F2"></i><b>Paper</b><span>#F4F4F2</span></li>
+      <li><i style="background:#141414;box-shadow:0 0 0 1px rgba(255,255,255,.15)"></i><b>Ink</b><span>#141414</span></li>
+      <li><i style="background:#5C5C58"></i><b>Body</b><span>#5C5C58</span></li>
+      <li><i style="background:#BCC4EC"></i><b>Horse blue</b><span>#BCC4EC</span></li>
+      <li><i style="background:#1E36C8"></i><b>Cobalt</b><span>#1E36C8</span></li>
+      <li><i style="background:#161616;box-shadow:0 0 0 1px rgba(255,255,255,.15)"></i><b>Night</b><span>#161616</span></li>
+     </ul>
+    </div>
+    <div class="wb-tile"><h4>Typography</h4>
+     <div class="wb-type">
+      <p class="t1">User Explorer</p><span>Inter Tight · 600 · Titles</span>
+      <p class="t2">The right information, at the right time.</p><span>Inter Tight · 400 · Body</span>
+      <p class="t3">Hi, I'm Sohyun!</p><span>Pixelify Sans · 500 · Pixel accents</span>
+     </div>
+    </div>
+    <div class="wb-tile"><h4>Components</h4>
+     <div class="wb-comp">
+      <a class="btn" href="#" role="button" tabindex="-1" onclick="return false"><span>Let's talk!</span><span class="pa" aria-hidden="true"><canvas width="102" height="66"></canvas></span></a><span>Button · hover to see the horse</span>
+      <p class="wb-chip">Challenge</p><span>Card label</span>
+      <p class="wb-capx">*Caption inside images, bottom right</p><span>Source caption</span>
+     </div>
+    </div>
+   </div>
+  </section>
+
+  <section class="pj-s">
+   <p class="pj-lbl">Pixel horse</p><h2 class="pj-h2">How the horse came to life</h2>
+   <p class="pj-body pj-lead">I wanted one graphic that could carry the whole site. We built a galloping horse and jockey out of simple shapes, then turned it into dots, a dot language that now runs through the buttons, the menu and the ending.</p>
+   <div class="pj-2 pj-media pj-wire wb-horse">
+    <figure class="wb-gallop"><img class="pj-img" src="p/exp/h/gallop-anim.webp" alt="The dot-matrix horse and jockey galloping in a loop" width="1000" height="742" loading="lazy"><figcaption class="pj-cap">The gallop loop, 12 frames</figcaption></figure>
+    <div class="pj-list2"><h4>From shape to signature</h4>
+     <ul class="wb-steps">
+      <li><b>Shape</b>Built from simple ellipses and capsules. I directed the anatomy: a lean thoroughbred, neck reaching forward, jockey crouched low.</li>
+      <li><b>Motion</b>Each leg runs its own phase of the gallop, while the mane and tail wave with every stride. Stepped frames give it a film-like rhythm.</li>
+      <li><b>Dots</b>The shape is sampled on a grid and drawn as round dots in a soft blue, so it reads as a pixel graphic.</li>
+      <li><b>System</b>It shrinks into tiny dot horses for the buttons and menu, slows down when you hover, and only draws when you can see it.</li>
+     </ul>
+    </div>
+   </div>
+  </section>
+
+  <section class="pj-s">
+   <p class="pj-lbl">Prompts</p><div class="pj-2"><div><h2 class="pj-h2">I wasn't good at it from the start</h2></div><div><p class="pj-body">My first prompts were vague, and so were the results. I learned along the way by watching YouTube tutorials and how other people vibe code. Slowly my prompts turned into proper design feedback: what is wrong, where it is, and what “done” looks like.</p></div></div>
+   <div class="wb-chat">
+    <div class="wb-col"><h4>At first</h4>
+     <p class="wb-msg">Make the title a bit cooler. Something unique, like my own website.</p>
+     <p class="wb-msg">Something feels off. Can you make it look nicer?</p>
+    </div>
+    <svg class="wb-arrow" viewBox="0 0 72 16" aria-hidden="true"><path d="M2 8 H66" stroke-dasharray="6 5"/><path d="M60 2.5 L68 8 L60 13.5"/></svg>
+    <div class="wb-col late"><h4>Later</h4>
+     <p class="wb-msg">The S looks like it's sticking out. Align the letters with the left edge of BACK.<span class="wb-att">▶ Screen recording attached</span></p>
+     <p class="wb-msg">Going from the lab to the case study, the light home screen flashes for a split second.<span class="wb-att">▶ Screen recording attached</span></p>
+     <p class="wb-msg">On mobile, keep the text block squared. Make the font smaller instead of switching to left-aligned.</p>
+    </div>
+   </div>
+  </section>
+
+  <section class="pj-s">
+   <p class="pj-lbl">Trial and error</p><div class="pj-2"><div><h2 class="pj-h2">What went wrong, and what it taught me</h2></div><div><p class="pj-body">Many versions never made it past a first look. Each miss was frustrating in the moment, but it changed how I brief, review and work with AI.</p></div></div>
+   <div class="kd">
+    <div class="kd-card"><span class="n">01</span><h4>Seven tries for one page</h4><dl><dt>What happened</dt><dd>S(AI) Lab went through a grid, dark mode, folders, an archive, a 3D card stack and a scrolling reel before the floating letters.</dd><dt>What I learned</dt><dd>A good reference beats a long description, and dropping a finished-looking version is part of designing.</dd></dl></div>
+    <div class="kd-card"><span class="n">02</span><h4>One fix, a new bug</h4><dl><dt>What happened</dt><dd>Letters overlapped, ran off-screen and slid under the header. Patching one problem kept causing the next.</dd><dt>What I learned</dt><dd>Describe the rules, not the symptom: stay inside the page, avoid the text, spring back home.</dd></dl></div>
+    <div class="kd-card"><span class="n">03</span><h4>It looked fine on my laptop</h4><dl><dt>What happened</dt><dd>On my phone the site lagged, and a light screen flashed for a split second between pages.</dd><dt>What I learned</dt><dd>Test on real devices every day, and record the screen. Some bugs only show up in slow motion.</dd></dl></div>
+   </div>
+  </section>
+
+  <section class="pj-s">
+   <p class="pj-lbl">My key decisions</p><div class="pj-2"><div><h2 class="pj-h2">The calls that shaped the site</h2></div><div><p class="pj-body">Claude and I built the site together, but the direction was always mine. These are the calls that shaped how it looks, feels and performs, and the reasons behind them.</p></div></div>
+   <div class="kd">
+    <div class="kd-card"><span class="n">01</span><h4>Personality, not decoration</h4><dl><dt>Challenge</dt><dd>Automotive portfolios often look alike.</dd><dt>My decision</dt><dd>A pixel horse made of dots became my signature, galloping in the hero, on buttons and in the ending.</dd><dt>Impact</dt><dd>A site people remember, while the work still comes first.</dd></dl></div>
+    <div class="kd-card"><span class="n">02</span><h4>The details are the design</h4><dl><dt>Challenge</dt><dd>AI gets things 90% right. The last 10% decides the quality.</dd><dt>My decision</dt><dd>I flagged every small flaw from recordings: a header shifting by a few pixels, a twitching image, a menu that jumped.</dd><dt>Impact</dt><dd>Polish that holds up on desktop and on the phone.</dd></dl></div>
+    <div class="kd-card"><span class="n">03</span><h4>Own the whole experience</h4><dl><dt>Challenge</dt><dd>A beautiful site that lags loses trust.</dd><dt>My decision</dt><dd>I treated performance as design: 6 fonts down to 2, and animations that only draw when you can see them.</dd><dt>Impact</dt><dd>A faster first load and smoother scrolling on mobile.</dd></dl></div>
+   </div>
+  </section>
+
+  <section class="pj-s pj-learn">
+   <div class="pj-2"><div><h2 class="pj-h2">My key learnings from this project:</h2>
+     <div class="pj-route pj-route-up wb-route" aria-hidden="true"><svg viewBox="0 0 640 250"><defs><marker id="pjArrowW" viewBox="0 0 16 16" refX="-1" refY="8" markerWidth="16" markerHeight="16" markerUnits="userSpaceOnUse" orient="auto"><path d="M2.5 2 L13 8 L2.5 14" fill="none" stroke="#BCC4EC" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" style="stroke-dasharray:none"/></marker></defs><path d="M1 70 C 50 84, 96 180, 170 194 C 215 203, 248 196, 256 178 C 264 160, 250 148, 236 150 C 220 152, 216 174, 236 188 C 300 228, 430 206, 500 152 C 540 124, 574 114, 616 100" marker-end="url(#pjArrowW)"/></svg><canvas width="102" height="66"></canvas></div></div>
+    <div>
+     <h5>1. Clear words are a design tool</h5>
+     <p class="pj-body">The more precisely I described a problem, the better the result. Writing good feedback for AI is the same skill as writing it for a developer.</p>
+     <h5>2. Thinking in code constraints</h5>
+     <p class="pj-body">Seeing how each idea turned into code taught me what is easy or costly to build, which makes me a better partner for engineering teams.</p>
+     <h5>3. AI speeds up making, not judging</h5>
+     <p class="pj-body">Claude made it possible to try ideas in minutes, but every call on taste, hierarchy and quality stayed with me.</p>
+    </div></div>
+  </section>
+  <div class="pj-end">
+   <p>This site is still a work in progress. I check it on desktop and mobile every day, and keep refining it.</p>
+  </div>
+  <p class="pj-credit">©Sohyun Park</p>
+ </div>
+</article>
+<article class="proj xp" id="pExp" aria-label="S(AI) Lab" aria-hidden="true">
+ <div class="xm" id="xmField">
+  <span class="xl" data-go="sai-lab/website" data-t="Designing with AI" data-s="Vibe-coding" aria-label="Website: sohyunpark.com, vibe-coded with AI">s</span><span class="xl soon" data-t="3D graphics" data-s="Coming soon" aria-label="3D graphics, Coming soon">o</span><span class="xl soon" data-t="Prompt study" data-s="Coming soon" aria-label="Prompt study, Coming soon">h</span><span class="xl soon" data-t="Sketchbook" data-s="Coming soon" aria-label="Sketchbook, Coming soon">y</span><span class="xl soon" data-t="Pixel horse" data-s="Coming soon" aria-label="Pixel horse, Coming soon">u</span><span class="xl soon" data-t="Design systems" data-s="Coming soon" aria-label="Design systems, Coming soon">n</span><div class="xm-tip" id="xmTip" role="tooltip"><b></b><small></small></div>
+  <p class="xm-txt"><span class="xm-k"><span class="xm-kt">S(AI) LAB<i>/seɪ læb/</i></span></span><span class="xm-body" id="xmBody" aria-label="Welcome to S(AI) Lab! The name joins the S of Sohyun with AI, and together they sound like “say”. That is the idea: everything here starts with me saying what I have in mind to AI. We talk it through, try things out and refine it together, like teammates. Along the way, I explore how AI can genuinely help in my everyday design work, and share what I learn, the wins and the misses.">Welcome to S(AI) Lab! The name joins the S of Sohyun with AI, and together they sound like “say”. That is the idea: everything here starts with me saying what I have in mind to AI. We talk it through, try things out and refine it together, like teammates. Along the way, I&nbsp;explore how AI can genuinely help in my everyday design work, and share what I learn, the wins and the misses.</span> <b class="xm-cta" id="xmCta">Pick a letter to see what I've been working on!</b><a href="#" role="button" class="btn xm-shuf" id="xmShuf"><span>Rearrange letters</span></a></p>
+  <p class="xm-credit">©Sohyun Park</p>
+  <div class="xm-time"><p><b id="xmT1">--:--</b><span>Munich</span></p><p class="dim"><b id="xmT3">--:--</b><span>London</span></p><p class="dim"><b id="xmT2">--:--</b><span>Seoul</span></p></div>
+ </div>
+</article>
+
 
 
 <script>
@@ -1338,9 +1619,9 @@ const miniAI=sprite(ph=>{const T=Math.PI*2,k=1+.13*Math.sin(ph*T),k2=Math.max(0,
     if(k2>.05)d=Math.min(d,dia(x,y,.58,-.44,.08*k2+.02,.27*k2),dia(x,y,.58,-.44,.27*k2,.08*k2+.02));
     if(k3>.05)d=Math.min(d,circ(x,y,.62,.52,.07*k3));
     return d;};});
-const minis=[...document.querySelectorAll('.btn .pa canvas,.menu a .pa canvas,.pj-route canvas')].map(c=>({c,x:c.getContext('2d'),btn:c.closest('a'),col:c.closest('.menu,.pj-route')?'rgba(30,54,200,.5)':'#BCC4EC',set:mini,hot:!c.closest('a')}));
+const minis=[...document.querySelectorAll('.btn .pa canvas,.menu a .pa canvas,.pj-route canvas')].map(c=>({c,x:c.getContext('2d'),btn:c.closest('a'),col:c.closest('.pweb')?'#BCC4EC':c.closest('.menu,.pj-route')?'rgba(30,54,200,.5)':'#BCC4EC',menu:!!c.closest('.menu'),set:mini,hot:!c.closest('a')}));
 minis.filter(m=>m.btn).forEach(m=>{m.btn.addEventListener('pointerenter',()=>m.hot=true);m.btn.addEventListener('pointerleave',()=>m.hot=false);m.btn.addEventListener('focus',()=>m.hot=true);m.btn.addEventListener('blur',()=>m.hot=false);});
-function drawMini(m,f){const W2=m.c.width,H2=m.c.height,S=m.set,u=S.u||Math.min(W2/S.cols,H2/S.rows),ox=(W2-S.cols*u)/2;m.x.clearRect(0,0,W2,H2);m.x.fillStyle=m.col;
+function drawMini(m,f){const W2=m.c.width,H2=m.c.height,S=m.set,u=S.u||Math.min(W2/S.cols,H2/S.rows),ox=(W2-S.cols*u)/2;m.x.clearRect(0,0,W2,H2);m.x.fillStyle=m.menu&&document.documentElement.classList.contains('xpopen')?'#BCC4EC':m.col;   /* pastel horses in the dark Exploring menu */
   const oy=(H2-S.rows*u)/2;for(const [i,j,r] of S.frames[f]){m.x.beginPath();m.x.arc(ox+i*u+u/2,oy+j*u+u/2,Math.min(W2/15,H2/12)*.46*r,0,6.283);m.x.fill();}}
 /* ending: three of the same horses galloping side by side, overlapping, behind "I'm still exploring!" */
 const herdC=document.querySelector('.herd'),herdX=herdC?herdC.getContext('2d'):null;let herdOn=false,HD={w:0,h:0,s:.5,step:0};
@@ -1473,7 +1754,9 @@ addEventListener('scroll',()=>{if(!tk){tk=true;requestAnimationFrame(upd);}},{pa
 const burger=document.getElementById('burger'),menu=document.getElementById('menu');
 function setMenu(open){burger.setAttribute('aria-expanded',open?'true':'false');burger.classList.toggle('x',open);burger.setAttribute('aria-label',open?'Close menu':'Open menu');const was=menu.classList.contains('open');clearTimeout(menu._ct);if(!open&&was){menu.classList.add('closing');menu._ct=setTimeout(()=>menu.classList.remove('closing'),600);}else menu.classList.remove('closing');menu.classList.toggle('open',open);document.documentElement.classList.toggle('locked',open);}
 burger.addEventListener('click',()=>setMenu(burger.getAttribute('aria-expanded')!=='true'));
-menu.querySelectorAll('a').forEach(a=>a.addEventListener('click',e=>{if(a.classList.contains('soon')){e.preventDefault();a.classList.add('tipon');clearTimeout(a._tt);a._tt=setTimeout(()=>a.classList.remove('tipon'),1600);return;}setMenu(false);}));
+menu.querySelectorAll('a').forEach(a=>a.addEventListener('click',e=>{if(a.classList.contains('soon')){e.preventDefault();a.classList.add('tipon');clearTimeout(a._tt);a._tt=setTimeout(()=>a.classList.remove('tipon'),1600);return;}
+  if(a.getAttribute('href')==='/sai-lab'){menu.style.transition='none';menu.querySelectorAll('*').forEach(x=>x.style.transition='none');setMenu(false);menu.classList.remove('closing');requestAnimationFrame(()=>requestAnimationFrame(()=>{menu.style.transition='';menu.querySelectorAll('*').forEach(x=>x.style.transition='');}));return;}   /* Exploring: the menu vanishes at once so the whole screen dims as one */
+  setMenu(false);}));
 addEventListener('keydown',e=>{if(e.key==='Escape')setMenu(false);});
 
 
@@ -1482,7 +1765,7 @@ if(document.getElementById('copy')){const b=document.getElementById('copy');
 b.addEventListener('click',()=>{const ok=()=>{b.textContent='Copied';setTimeout(()=>b.textContent='Copy email',1600);};const sel=()=>{const r=document.createRange();r.selectNodeContents(document.getElementById('email'));const s=getSelection();s.removeAllRanges();s.addRange(r);b.textContent='Selected';};try{navigator.clipboard.writeText('sohyunpark08@gmail.com').then(ok,sel);}catch(e){sel();}});}
 
 /* project page: #/infotainment opens it over the home page; any other hash closes it */
-(()=>{const $i=id=>document.getElementById(id),pages={'infotainment-experience':$i('pInfo'),'personalised-live-curation':$i('pCur'),'technology-into-reality':$i('pTech'),'beyond-the-windshield':$i('pUv'),/* old links keep working */'infotainment':$i('pInfo'),'curation':$i('pCur'),'technology':$i('pTech'),'ultraview':$i('pUv')};let cur=null;
+(()=>{const $i=id=>document.getElementById(id),pages={'infotainment-experience':$i('pInfo'),'personalised-live-curation':$i('pCur'),'technology-into-reality':$i('pTech'),'beyond-the-windshield':$i('pUv'),'sai-lab':$i('pExp'),'sai-lab/website':$i('pWeb'),'exploring':$i('pExp'),/* old links keep working */'infotainment':$i('pInfo'),'curation':$i('pCur'),'technology':$i('pTech'),'ultraview':$i('pUv')};let cur=null;
   /* clean URLs (sohyunpark.com/curation) on the real site; #/curation where the page can't own its path (preview, local file) */
   const PATH=/^https?:$/.test(location.protocol)&&/(^|\.)sohyunpark\.com$|\.github\.io$/.test(location.hostname);
   {const q=new URLSearchParams(location.search).get('p');if(PATH&&q)history.replaceState(null,'',q);}   /* back from 404.html */
@@ -1552,19 +1835,102 @@ b.addEventListener('click',()=>{const ok=()=>{b.textContent='Copied';setTimeout(
     st.addEventListener('keydown',e=>{if(e.key==='ArrowRight'||e.key===' '||e.key==='Enter'){e.preventDefault();go(1);}if(e.key==='ArrowLeft'){e.preventDefault();top=(top-1+N)%N;lay();}});
     lay();});
   {const tt=document.getElementById('totop'),ct=document.getElementById('contact');
-    const vis=new Map();const sync=()=>{const v=[...vis].some(([el,on])=>on&&(el===ct?!cur:cur&&cur.contains(el)));tt.classList.toggle('on',v);tt.tabIndex=v?0:-1;};
+    const vis=new Map();const sync=()=>{const v=[...vis].some(([el,on])=>on&&(el===ct?!cur:cur&&cur.contains(el)));if(v&&typeof al==='function')al();tt.classList.toggle('on',v);tt.tabIndex=v?0:-1;};
     const io=new IntersectionObserver(es=>{es.forEach(e=>vis.set(e.target,e.isIntersecting));sync();},{threshold:.5});
     io.observe(ct);document.querySelectorAll('.pj-credit').forEach(c=>io.observe(c));addEventListener('hashchange',()=>setTimeout(sync,60));
-    const al=()=>{const bg=document.getElementById('burger').getBoundingClientRect();tt.style.setProperty('--tt-r',Math.max(12,document.documentElement.clientWidth-bg.right)+'px');};al();addEventListener('resize',al);
+    const al=()=>{const bg=document.getElementById('burger').getBoundingClientRect(),cw=document.documentElement.clientWidth;let r=null;if(bg.width)r=cw-bg.right;else{const w=cur&&cur.querySelector('.wrap');if(w){const R=w.getBoundingClientRect();r=cw-(R.right-parseFloat(getComputedStyle(w).paddingRight));}}if(r!==null)tt.style.setProperty('--tt-r',Math.max(12,r)+'px');};al();addEventListener('resize',al);addEventListener('hashchange',()=>setTimeout(al,80));addEventListener('popstate',()=>setTimeout(al,80));
     tt.addEventListener('click',e=>{e.preventDefault();(cur||window).scrollTo({top:0,behavior:reduce?'auto':'smooth'});});}
   addEventListener('hashchange',route);route();
-  document.querySelector('.brand').addEventListener('click',e=>{if(cur){e.preventDefault();go('');}});
+  document.querySelector('.brand').addEventListener('click',e=>{if(cur&&cur===pages['sai-lab']){e.preventDefault();e.stopPropagation();return;}   /* in Exploring the name stays put */
+    if(cur){e.preventDefault();go('');}});
   document.querySelectorAll('[data-close]').forEach(a=>a.addEventListener('click',()=>{}));
 })();
 })();
 </script>
 <script>/* decode every project's hero image up front, so opening a project fades in smoothly with nothing popping in */
 addEventListener('load',()=>document.querySelectorAll('.pj-heroimg img').forEach(i=>{if(i.decode)i.decode().catch(()=>{});}));
+</script>
+<script>/* S(AI) Lab: s-o-h-y-u-n rest at their own spots and bob gently; drag one and it springs back home */
+(()=>{const xp=document.getElementById('pExp');if(!xp)return;const D=document.documentElement,F=document.getElementById('xmField'),Ls=[...F.querySelectorAll('.xl')],
+  calm=matchMedia('(prefers-reduced-motion:reduce)').matches;let W=0,H=0,raf=0,last=0,P=[];
+  const seed=[[.10,.40,-8],[.36,.24,4],[.86,.30,-6],[.78,.72,10],[.22,.74,-12],[.56,.70,6]];   /* x, y as a share of the screen, angle */
+  function place(){W=F.clientWidth;H=F.clientHeight;measureEdge();P=Ls.map((el,i)=>{const r=el.getBoundingClientRect(),w=r.width,h=r.height,[sx,sy,a]=seed[i];
+    return {el,w,h,x:sx*W-w/2,y:sy*H-h/2,a,vx:0,vy:0,va:0,ph:i*1.7,drag:null};});P.forEach(walls);for(let n=0;n<20;n++)collide();P.forEach(o=>{o.hx=o.x;o.hy=o.y;o.ha=o.a;});draw();}
+  function draw(){P.forEach(o=>{o.el.style.transform=`translate(${o.x.toFixed(1)}px,${o.y.toFixed(1)}px) rotate(${o.a.toFixed(2)}deg)`;});}
+  function tick(now){const dt=Math.min(.05,last?(now-last)/1000:0);last=now;
+    const t=now/1000,k=1-Math.exp(-4*dt);
+    P.forEach(o=>{if(o.drag)return;   /* a few pixels of float around home, nothing more */
+      const tx=o.hx+Math.sin(t*.6+o.ph)*4,ty=o.hy+Math.sin(t*.8+o.ph*1.3)*8,ta=o.ha+Math.sin(t*.5+o.ph)*1.5;
+      o.x+=(tx-o.x)*k;o.y+=(ty-o.y)*k;o.a+=(ta-o.a)*k;});
+    draw();if(tipFor)tipAt(tipFor);raf=requestAnimationFrame(tick);}   /* hovering no longer stops a letter: its label simply travels with it */
+  /* every letter keeps to its own inked box: inside the page, below the header, clear of the paragraph and of each other */
+  const ink=o=>({l:o.x+o.w*.06,t:o.y+o.h*.24,r:o.x+o.w*.94,b:o.y+o.h*.86});
+  let edge=14;const measureEdge=()=>{const b=document.querySelector('.brand,.xback');const xb2=document.querySelector('.xback');const r=(xb2&&xb2.offsetParent?xb2:document.querySelector('.brand')).getBoundingClientRect();edge=Math.max(14,r.left-F.getBoundingClientRect().left);};   /* letters line up with the page margins (where BACK sits) */
+  function walls(o){const k=ink(o),top=(parseFloat(getComputedStyle(D).getPropertyValue('--hh'))||64)+10,bot=H-54,pad=edge;
+    if(k.l<pad){o.x+=pad-k.l;o.vx=Math.abs(o.vx);}if(k.r>W-pad){o.x-=k.r-(W-pad);o.vx=-Math.abs(o.vx);}
+    if(k.t<top){o.y+=top-k.t;o.vy=Math.abs(o.vy);}if(k.b>bot){o.y-=k.b-bot;o.vy=-Math.abs(o.vy);}}
+  const txt=F.querySelector('.xm-txt');
+  function push(o,ov,ax,sgn,other){if(ax==='x'){o.x+=ov*sgn;if(!other){o.vx=Math.abs(o.vx)*sgn;}}else{o.y+=ov*sgn;if(!other){o.vy=Math.abs(o.vy)*sgn;}}}
+  function collide(){const pad2=14,f=F.getBoundingClientRect(),tr=txt.getBoundingClientRect(),T={l:tr.left-f.left-16,t:tr.top-f.top-16,r:tr.right-f.left+16,b:tr.bottom-f.top+16};
+    for(let n=0;n<3;n++){
+      P.forEach(o=>{const a=ink(o),ox=Math.min(a.r,T.r)-Math.max(a.l,T.l),oy=Math.min(a.b,T.b)-Math.max(a.t,T.t);if(ox<=0||oy<=0)return;
+        const side=(a.l+a.r)/2<(T.l+T.r)/2?T.l-pad2:W-T.r-pad2,fits=side>a.r-a.l;   /* only slide sideways if there is room beside the paragraph */
+        if(ox<oy&&fits)push(o,ox,'x',(a.l+a.r)/2<(T.l+T.r)/2?-1:1);else push(o,oy,'y',(a.t+a.b)/2<(T.t+T.b)/2?-1:1);walls(o);});
+      for(let i=0;i<P.length;i++)for(let j=i+1;j<P.length;j++){const A=P[i],B=P[j],a=ink(A),b=ink(B),ox=Math.min(a.r,b.r)-Math.max(a.l,b.l)+8,oy=Math.min(a.b,b.b)-Math.max(a.t,b.t)+8;if(ox<=0||oy<=0)continue;
+        const fa=A.drag?0:B.drag?1:.5,fb=1-fa;
+        if(ox<oy){const s=(a.l+a.r)<(b.l+b.r)?-1:1;A.x+=ox*fa*s;B.x-=ox*fb*s;const t=A.vx;if(!A.drag)A.vx=B.vx*.9;if(!B.drag)B.vx=t*.9;}
+        else{const s=(a.t+a.b)<(b.t+b.b)?-1:1;A.y+=oy*fa*s;B.y-=oy*fb*s;const t=A.vy;if(!A.drag)A.vy=B.vy*.9;if(!B.drag)B.vy=t*.9;}
+        walls(A);walls(B);}}}
+  Ls.forEach((el,i)=>{el.addEventListener('pointerdown',e=>{const o=P[i];o.drag={dx:e.clientX-o.x,dy:e.clientY-o.y,lx:e.clientX,ly:e.clientY,sx:e.clientX,sy:e.clientY,t:performance.now()};o.moved=false;o.vx=o.vy=0;el.classList.add('grab');el.style.zIndex=4;el.setPointerCapture(e.pointerId);});
+    el.addEventListener('pointermove',e=>{const o=P[i];if(!o.drag)return;const now=performance.now(),dt=Math.max(8,now-o.drag.t)/1000;
+      o.vx=(e.clientX-o.drag.lx)/dt;o.vy=(e.clientY-o.drag.ly)/dt;o.drag.lx=e.clientX;o.drag.ly=e.clientY;o.drag.t=now;
+      o.x=e.clientX-o.drag.dx;o.y=e.clientY-o.drag.dy;if(Math.abs(e.clientX-o.drag.sx)+Math.abs(e.clientY-o.drag.sy)>6){o.moved=true;hideTip();}tipAt(o);});
+    const up=e=>{const o=P[i];if(!o.drag)return;o.drag=null;
+      if(!o.moved&&el.dataset.go&&(e.pointerType==='mouse'||tipFor===o)){hideTip();o.go=true;}   /* a letter with a project opens it on the click that follows: a click, or a second tap on touch */
+      else if(!o.moved&&e.pointerType!=='mouse'){const was=tipFor===o;P.forEach(q=>q.hov=false);if(was)hideTip();else{o.hov=true;showTip(o);}}el.classList.remove('grab');el.style.zIndex='';o.vx=Math.max(-900,Math.min(900,o.vx));o.vy=Math.max(-900,Math.min(900,o.vy));};
+    el.addEventListener('pointerup',up);el.addEventListener('pointercancel',up);
+    el.addEventListener('click',e=>{const o=P[i];if(!o||!o.go)return;o.go=false;e.preventDefault();e.stopPropagation();const a=document.createElement('a');a.href='/'+el.dataset.go;a.setAttribute('data-proj','');a.style.display='none';document.body.appendChild(a);a.dispatchEvent(new MouseEvent('click',{bubbles:true,cancelable:true}));a.remove();});
+    el.addEventListener('pointerenter',e=>{if(e.pointerType!=='mouse')return;const o=P[i];o.hov=true;showTip(o);});
+    el.addEventListener('pointerleave',e=>{if(e.pointerType!=='mouse')return;const o=P[i];o.hov=false;hideTip();});});
+  /* rearrange: the letters glide to a fresh, tidy spread around the paragraph */
+  document.getElementById('xmShuf').addEventListener('click',e=>{e.preventDefault();hideTip();const spots=seed.map(s2=>s2.slice()).sort(()=>Math.random()-.5);
+    const save=P.map(o=>[o.x,o.y]);P.forEach((o,i)=>{const [sx,sy]=spots[i];o.x=(sx+(Math.random()-.5)*.06)*W-o.w/2;o.y=(sy+(Math.random()-.5)*.06)*H-o.h/2;o.hov=false;walls(o);});
+    for(let n=0;n<20;n++)collide();P.forEach((o,i)=>{o.hx=o.x;o.hy=o.y;o.ha=(Math.random()-.5)*20;[o.x,o.y]=save[i];if(calm){o.x=o.hx;o.y=o.hy;o.a=o.ha;}});   /* new homes; each letter glides over to its own */
+    if(calm)draw();});
+  const tip=document.getElementById('xmTip');let tipFor=null;
+  function tipAt(o){if(tipFor!==o)return;const r=o.el.getBoundingClientRect(),f=F.getBoundingClientRect(),tw=tip.offsetWidth,cx=r.left+r.width/2-f.left,x=Math.max(tw/2+10,Math.min(f.width-tw/2-10,cx)),below=r.top-f.top<150;
+    tip.classList.toggle('below',below);tip.style.left=x+'px';tip.style.top=(below?r.bottom-f.top-r.height*.08:r.top-f.top+r.height*.12)+'px';tip.style.setProperty('--ax',(cx-x)+'px');}
+  function showTip(o){tipFor=o;tip.querySelector('b').textContent=o.el.dataset.t;tip.querySelector('small').textContent=o.el.dataset.s;tipAt(o);tip.classList.add('on');}
+  function hideTip(){tipFor=null;tip.classList.remove('on');}
+  const f1=new Intl.DateTimeFormat('en-GB',{timeZone:'Europe/Berlin',hour:'2-digit',minute:'2-digit',hour12:false}),f2=new Intl.DateTimeFormat('en-GB',{timeZone:'Asia/Seoul',hour:'2-digit',minute:'2-digit',hour12:false}),f3=new Intl.DateTimeFormat('en-GB',{timeZone:'Europe/London',hour:'2-digit',minute:'2-digit',hour12:false});
+  const clock=()=>{document.getElementById('xmT1').textContent=f1.format(new Date());document.getElementById('xmT2').textContent=f2.format(new Date());document.getElementById('xmT3').textContent=f3.format(new Date());};let ck=0;
+  addEventListener('resize',()=>{if(xp.classList.contains('open'))place();});
+  let was=false;
+  /* the welcome note types itself out, then the call to action, then the button appears; text is laid out from the start (invisible), so nothing jumps */
+  const parts=[document.getElementById('xmBody'),document.getElementById('xmCta')].map(el=>({el,T:el.textContent})),shuf=document.getElementById('xmShuf');let tt=0;
+  const esc=t=>t.replace(/&/g,'&amp;').replace(/</g,'&lt;');
+  function paint(p,i,caret){p.el.innerHTML=esc(p.T.slice(0,i))+(caret?'<span class="xm-caret" aria-hidden="true"></span>':'')+(i<p.T.length?'<span class="xm-ghost" aria-hidden="true">'+esc(p.T.slice(i))+'</span>':'');}
+  function typeSay(){clearTimeout(tt);shuf.classList.remove('show');parts.forEach(p=>p.el.classList.remove('done'));
+    if(calm||D.classList.contains('xpstay')){parts.forEach(p=>{p.el.textContent=p.T;});shuf.classList.add('show');return;}
+    parts.forEach(p=>paint(p,0,false));let k=0,i=0;paint(parts[0],0,true);
+    const step=()=>{const p=parts[k];i=Math.min(p.T.length,i+1+(Math.random()<.25?1:0));paint(p,i,true);
+      if(i<p.T.length){tt=setTimeout(step,/[.,!]/.test(p.T[i-1])?160:16+Math.random()*18);return;}
+      if(k<parts.length-1){paint(p,i,false);k++;i=0;paint(parts[k],0,true);tt=setTimeout(step,380);return;}
+      p.el.classList.add('done');tt=setTimeout(()=>shuf.classList.add('show'),250);};
+    tt=setTimeout(step,1300);}
+    /* night mode covers the lab and its case study; walking between them stays dark, leaving lightens with the page */
+  const web=document.getElementById('pWeb'),xb=document.querySelector('.xback');let lv=0;
+  function dark(){const w=!!web&&web.classList.contains('open'),on=xp.classList.contains('open')||w;
+    if(!on&&D.classList.contains('xpopen')){D.classList.add('xpleave');clearTimeout(lv);lv=setTimeout(()=>D.classList.remove('xpleave'),650);}
+    D.classList.toggle('xpopen',on);if(w)D.classList.add('xpstay');if(!on)D.classList.remove('xpstay');
+    xb.setAttribute('href',w?'/sai-lab':'/');xb.setAttribute('aria-label',w?'Back to S(AI) Lab':'Back to portfolio');}
+  if(web){let wo=web.classList.contains('open');new MutationObserver(()=>{const o=web.classList.contains('open');if(o!==wo){wo=o;dark();}}).observe(web,{attributes:true,attributeFilter:['class']});if(wo)setTimeout(dark,0);}   /* also when the case study is the first page opened */
+  const sync=()=>{dark();cancelAnimationFrame(raf);clearInterval(ck);
+    if(was){typeSay();requestAnimationFrame(()=>{place();last=0;if(!calm)raf=requestAnimationFrame(tick);});clock();ck=setInterval(clock,10000);requestAnimationFrame(()=>requestAnimationFrame(()=>xp.classList.add('in')));}
+    else{xp.classList.remove('in');hideTip();P.forEach(q=>q.hov=false);}};
+  new MutationObserver(()=>{const o=xp.classList.contains('open');if(o!==was){was=o;sync();}}).observe(xp,{attributes:true,attributeFilter:['class']});
+  if(xp.classList.contains('open')){was=true;sync();}
+})();
 </script>
 <script>/* loop fallback: some browsers stop at the last frame even with the loop attribute */
 document.querySelectorAll('video[loop]').forEach(v=>v.addEventListener('ended',()=>{v.currentTime=0;v.play().catch(()=>{});}));
