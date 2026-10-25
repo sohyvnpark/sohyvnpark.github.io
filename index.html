@@ -653,7 +653,14 @@ html.xpopen:not(.xpleave) main>*,html.xpopen:not(.xpleave) footer>*{visibility:h
 .proj.xp.flow{height:100lvh;min-height:0}
 .proj.xp.flow .xm{height:calc(100svh - var(--xpad,0px))}
 html.projflow.labopen{overflow:hidden}
-html.projflow .proj:not(.flow){display:none}   /* no fixed layer may touch the bottom edge: Safari would paint a solid band under its toolbar */
+html.projflow .proj:not(.flow){display:none}
+main,footer{transition:opacity .35s ease}
+html.pgout main,html.pgout footer{opacity:0}
+html.pgout .proj.flow{opacity:0;transition:opacity .3s ease}
+html.swap .proj{transition:none!important}
+html.tolight,html.tolight body{background:#F4F4F2!important;transition:background .35s ease}
+html.tolight header{animation:xpLeave .35s ease both!important}
+html.tolight header .burger,html.tolight header .brand{color:inherit}   /* no fixed layer may touch the bottom edge: Safari would paint a solid band under its toolbar */
 @keyframes xpLeave{0%{background:#161616;color:#EDEDEA}100%{background:#F4F4F2;color:#141414}}
 html.xpleave header{animation:xpLeave .6s cubic-bezier(.4,0,.2,1) both}   /* on the way back the header lightens with the page, not before it */
 html.xpleave header .bar,html.xpleave header .brand,html.xpleave .burger{transition:none}
@@ -1969,18 +1976,27 @@ b.addEventListener('click',()=>{const ok=()=>{b.textContent='Copied';setTimeout(
   document.addEventListener('click',e=>{const a=e.target.closest('a[href]');if(!a||a.id==='totop'||e.metaKey||e.ctrlKey||e.shiftKey)return;const h=a.getAttribute('href');
     if(a.hasAttribute('data-proj')){e.preventDefault();go(h.replace(/^\//,''));return;}
     if(h.length>1&&h[0]==='#'&&h[1]!=='/'){const t=document.getElementById(h.slice(1));if(!t)return;e.preventDefault();   /* section links scroll without adding # to the URL */
-      if(cur)go('');setMenu(false);setTimeout(()=>t.scrollIntoView({behavior:reduce?'auto':'smooth'}),cur?80:0);}});
+      if(cur)go('');setMenu(false);setTimeout(()=>t.scrollIntoView({behavior:reduce?'auto':'smooth'}),cur?420:0);}});
   addEventListener('popstate',()=>{route();dispatchEvent(new Event('hashchange'));});
-  let homeY=0,flowT=0;const DE=document.documentElement;
-  const unflow=()=>{clearTimeout(flowT);const f=document.querySelector('.proj.flow');if(!f)return;const y=scrollY,xm=f.querySelector('.xm');if(xm){xm.style.height=xm.offsetHeight+'px';setTimeout(()=>xm.style.height='',900);}DE.classList.remove('projflow');f.classList.remove('flow');f.scrollTop=y;DE.style.overflowAnchor='none';setTimeout(()=>DE.style.overflowAnchor='',1500);scrollTo({top:homeY,behavior:'instant'});};
-  const flow=pg=>{if(cur!==pg||pg.classList.contains('flow'))return;const y=pg.scrollTop;pg.style.setProperty('--xpad',getComputedStyle(pg).paddingTop);pg.classList.add('flow');DE.classList.add('projflow');scrollTo({top:y,behavior:'instant'});};
-  function route(){const pg=pages[key()]||null;if(pg===cur)return;
-    if(!cur)homeY=scrollY;unflow();
-    if(cur){cur.classList.remove('open');cur.setAttribute('aria-hidden','true');cur.querySelectorAll('video').forEach(v=>v.pause());}
-    cur=pg;document.documentElement.classList.toggle('projopen',!!pg);
-    if(pg){setMenu(false);pg.scrollTop=0;pg.classList.add('open');pg.setAttribute('aria-hidden','false');pg.querySelectorAll('video').forEach(v=>{v.play().catch(()=>{});});
-      flowT=setTimeout(()=>flow(pg),DE.classList.contains('xpstay')?60:pg.classList.contains('xp')?1450:800);
-      }}
+  /* page changes never use a full-screen fixed layer (iPhone Safari would paint its colour under the toolbar):
+     the current page fades out, the pages swap in the normal flow, the new one fades in */
+  let homeY=0,swapT=0,lightT=0,routed=false;const DE=document.documentElement;
+  const isDark=pg=>!!pg&&(pg.id==='pExp'||pg.classList.contains('pweb'));
+  function swap(pg){
+    DE.classList.add('swap');
+    if(cur){cur.classList.remove('open','flow');cur.setAttribute('aria-hidden','true');cur.querySelectorAll('video').forEach(v=>v.pause());}
+    cur=pg;DE.classList.toggle('projopen',!!pg);DE.classList.toggle('projflow',!!pg);
+    DE.style.overflowAnchor='none';setTimeout(()=>DE.style.overflowAnchor='',1500);
+    if(pg){setMenu(false);pg.classList.add('open','flow');pg.style.setProperty('--xpad',getComputedStyle(pg).paddingTop);pg.setAttribute('aria-hidden','false');pg.querySelectorAll('video').forEach(v=>{v.play().catch(()=>{});});scrollTo({top:0,behavior:'instant'});}
+    else scrollTo({top:homeY,behavior:'instant'});
+    void DE.offsetWidth;DE.classList.remove('swap');
+    requestAnimationFrame(()=>requestAnimationFrame(()=>DE.classList.remove('pgout')));}
+  function route(){const pg=pages[key()]||null;
+    if(!routed){routed=true;if(pg)swap(pg);return;}
+    if(pg===cur)return;clearTimeout(swapT);
+    if(!cur&&!DE.classList.contains('pgout'))homeY=scrollY;
+    if(DE.classList.contains('xpopen')&&!isDark(pg)){DE.classList.add('tolight');clearTimeout(lightT);lightT=setTimeout(()=>DE.classList.remove('tolight'),1100);}
+    DE.classList.add('pgout');swapT=setTimeout(()=>swap(pg),350);}
 
   /* dashed route in "My learnings": the line breaks cleanly around a horse galloping in its middle */
   document.querySelectorAll('.pj-route').forEach(box=>{const path=box.querySelector('svg > path'),cv=box.querySelector('canvas'),svg=box.querySelector('svg');const L=path.getTotalLength(),D=12,G=8;
