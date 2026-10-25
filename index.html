@@ -4,6 +4,10 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="description" content="Sohyun Park – Automotive UX/UI designer portfolio">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <title>SOHYUN PARK</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -662,6 +666,12 @@ html.pgout .totop{opacity:0!important;pointer-events:none}
 html.pgout .proj.flow{opacity:0;transition:opacity .3s ease}
 html.tolight .proj.flow{transition:opacity .6s cubic-bezier(.4,0,.2,1)}
 html.swap .proj{transition:none!important}
+html.desk .xp.open{animation:xpDim 1.4s cubic-bezier(.4,0,.2,1) both}   /* computers: the original lab dim */
+html.desk .proj.xp.open{transition:none}
+html.desk.xpopen header{animation:xpDim 1.4s cubic-bezier(.4,0,.2,1) both,xpInk 1.4s cubic-bezier(.4,0,.2,1) both}
+html.desk.xpleave header{animation:xpLeave .6s cubic-bezier(.4,0,.2,1) both}
+html.desk.xpstay .proj.xp,html.desk.xpstay .proj.pweb.open{transition:none!important}
+html.desk.xpstay header{animation:none!important}
 .xm-credit,footer .bar,.pj-credit{transition:opacity 1s ease}
 html.pgin .xm-credit,html.pgin footer .bar,html.pgin .pj-credit{opacity:0;transition:none}   /* after a page change the credit fades in last */
    /* no fixed layer may touch the bottom edge: Safari would paint a solid band under its toolbar */
@@ -2004,7 +2014,12 @@ b.addEventListener('click',()=>{const ok=()=>{b.textContent='Copied';setTimeout(
     else{dispatchEvent(new Event('resize'));scrollTo({top:homeY,behavior:'instant'});requestAnimationFrame(()=>{dispatchEvent(new Event('resize'));scrollTo({top:homeY,behavior:'instant'});});}   /* the home page was hidden: let everything that measures it size itself again */
     void DE.offsetWidth;DE.classList.remove('swap');
     requestAnimationFrame(()=>requestAnimationFrame(()=>DE.classList.remove('pgout')));}
+  const desk=matchMedia('(hover:hover) and (pointer:fine)').matches;DE.classList.toggle('desk',desk);   /* computers keep the original overlay crossfade; phones use the in-flow pages (Safari's toolbars) */
+  function deskRoute(pg){if(cur){cur.classList.remove('open');cur.setAttribute('aria-hidden','true');cur.querySelectorAll('video').forEach(v=>v.pause());}
+    cur=pg;DE.classList.toggle('projopen',!!pg);
+    if(pg){setMenu(false);pg.scrollTop=0;pg.classList.add('open');pg.setAttribute('aria-hidden','false');pg.querySelectorAll('video').forEach(v=>{v.play().catch(()=>{});});}}
   function route(){const pg=pages[key()]||null;
+    if(desk){routed=true;if(pg!==cur)deskRoute(pg);return;}
     if(!routed){routed=true;if(pg)swap(pg);return;}
     if(pg===cur)return;clearTimeout(swapT);
     if(!cur&&!DE.classList.contains('pgout'))homeY=scrollY;
