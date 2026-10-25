@@ -277,6 +277,10 @@ footer .bar{justify-content:center;color:var(--muted);font-size:clamp(13px,1vw,1
 .proj.open>.wrap{opacity:1;transform:none;transition:opacity .9s ease .15s,transform 1s cubic-bezier(.2,.8,.2,1) .15s}
 @media (prefers-reduced-motion:reduce){.proj,.proj>.wrap{transition:none!important;transform:none!important}}
 html.projopen{overflow:hidden}
+html.projflow{overflow:visible}
+html.projflow main,html.projflow footer{display:none}
+html.projflow header{position:fixed;top:env(safe-area-inset-top,0px);left:0;right:0}
+.proj.flow{position:relative;inset:auto;z-index:auto;overflow:visible;min-height:100lvh}   /* once open, a project scrolls with the page itself, so phones show it under the browser toolbar like the home page, not cut off above it */
 .proj .wrap{padding-bottom:clamp(56px,5vw,88px)}
 .pj-back{display:inline-flex;align-items:center;gap:8px;margin:clamp(10px,1.2vw,18px) 0 clamp(20px,2vw,32px);font-size:clamp(13px,.9vw,15px);font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);transition:color .2s}
 .pj-back:hover{color:var(--ink)}
@@ -648,7 +652,7 @@ html.intro header .bar,html.intro .poster,html.intro .scrollcue,html.intro canva
 @keyframes xpInk{0%,40%{color:#141414}62%,100%{color:#EDEDEA}}
 html.xpopen,html.xpopen body{background:#161616}   /* the browser bars at the bottom of phones take the page colour, so the body goes dark too */
 .proj.xp{overflow:hidden;overscroll-behavior:none}
-html.xpopen:not(.xpleave) main,html.xpopen:not(.xpleave) footer{visibility:hidden}   /* phones show the page behind the bottom toolbar: hide the light home page so only dark shows there */   /* the lab is one screen: no bounce, so the credit stays put */
+html.xpopen:not(.xpleave) main>*,html.xpopen:not(.xpleave) footer>*{visibility:hidden}html.xpopen:not(.xpleave) main,html.xpopen:not(.xpleave) footer{background:#161616}   /* phones show the page behind the bottom toolbar: hide the light home page so only dark shows there */   /* the lab is one screen: no bounce, so the credit stays put */
 .proj.xp .xm{height:100%}
 @keyframes xpLeave{0%{background:#161616;color:#EDEDEA}100%{background:#F4F4F2;color:#141414}}
 html.xpleave header{animation:xpLeave .6s cubic-bezier(.4,0,.2,1) both}   /* on the way back the header lightens with the page, not before it */
@@ -658,7 +662,7 @@ html.xpopen header{animation:xpDim 1.4s cubic-bezier(.4,0,.2,1) both,xpInk 1.4s 
 html.xpopen .burger{display:none}   /* Exploring is a side room: a Back link replaces the menu */
 .xback{display:none;align-items:center;gap:8px;font-size:clamp(14px,1.1vw,16px);font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:inherit}
 .xback svg{width:18px;height:18px;transition:transform .3s cubic-bezier(.2,.8,.2,1)}
-.xback:hover svg{transform:translateX(-4px)}
+@media (hover:hover){.xback:hover svg{transform:translateX(-4px)}}
 .bar a.xback::after{display:none}
 html.xpopen .xback,html.projback .xback{display:inline-flex;order:-1}
 html.projback header .brand{display:none}   /* Back takes the logo's place */
@@ -1967,10 +1971,15 @@ b.addEventListener('click',()=>{const ok=()=>{b.textContent='Copied';setTimeout(
     if(h.length>1&&h[0]==='#'&&h[1]!=='/'){const t=document.getElementById(h.slice(1));if(!t)return;e.preventDefault();   /* section links scroll without adding # to the URL */
       if(cur)go('');setMenu(false);setTimeout(()=>t.scrollIntoView({behavior:reduce?'auto':'smooth'}),cur?80:0);}});
   addEventListener('popstate',()=>{route();dispatchEvent(new Event('hashchange'));});
+  let homeY=0,flowT=0;const DE=document.documentElement;
+  const unflow=()=>{clearTimeout(flowT);const f=document.querySelector('.proj.flow');if(!f)return;const y=scrollY;DE.classList.remove('projflow');f.classList.remove('flow');f.scrollTop=y;DE.style.overflowAnchor='none';setTimeout(()=>DE.style.overflowAnchor='',1500);scrollTo({top:homeY,behavior:'instant'});};
+  const flow=pg=>{if(cur!==pg||pg.classList.contains('xp')||pg.classList.contains('flow'))return;const y=pg.scrollTop;pg.classList.add('flow');DE.classList.add('projflow');scrollTo({top:y,behavior:'instant'});};
   function route(){const pg=pages[key()]||null;if(pg===cur)return;
+    if(!cur)homeY=scrollY;unflow();
     if(cur){cur.classList.remove('open');cur.setAttribute('aria-hidden','true');cur.querySelectorAll('video').forEach(v=>v.pause());}
     cur=pg;document.documentElement.classList.toggle('projopen',!!pg);
     if(pg){setMenu(false);pg.scrollTop=0;pg.classList.add('open');pg.setAttribute('aria-hidden','false');pg.querySelectorAll('video').forEach(v=>{v.play().catch(()=>{});});
+      if(!pg.classList.contains('xp'))flowT=setTimeout(()=>flow(pg),DE.classList.contains('xpstay')?60:800);
       }}
 
   /* dashed route in "My learnings": the line breaks cleanly around a horse galloping in its middle */
@@ -2030,7 +2039,7 @@ b.addEventListener('click',()=>{const ok=()=>{b.textContent='Copied';setTimeout(
     const io=new IntersectionObserver(es=>{es.forEach(e=>vis.set(e.target,e.isIntersecting));sync();},{threshold:.5});
     io.observe(ct);document.querySelectorAll('.pj-credit').forEach(c=>io.observe(c));addEventListener('hashchange',()=>setTimeout(sync,60));
     const al=()=>{const bg=document.getElementById('burger').getBoundingClientRect(),cw=document.documentElement.clientWidth;let r=null;if(bg.width)r=cw-bg.right;else{const w=cur&&cur.querySelector('.wrap');if(w){const R=w.getBoundingClientRect();r=cw-(R.right-parseFloat(getComputedStyle(w).paddingRight));}}if(r!==null)tt.style.setProperty('--tt-r',Math.max(12,r)+'px');};al();addEventListener('resize',al);addEventListener('hashchange',()=>setTimeout(al,80));addEventListener('popstate',()=>setTimeout(al,80));
-    tt.addEventListener('click',e=>{e.preventDefault();(cur||window).scrollTo({top:0,behavior:reduce?'auto':'smooth'});});}
+    tt.addEventListener('click',e=>{e.preventDefault();(cur&&!cur.classList.contains('flow')?cur:window).scrollTo({top:0,behavior:reduce?'auto':'smooth'});});}
   addEventListener('hashchange',route);route();
   document.querySelector('.brand').addEventListener('click',e=>{if(cur&&cur===pages['sai-lab']){e.preventDefault();e.stopPropagation();return;}   /* in Exploring the name stays put */
     if(cur){e.preventDefault();go('');}});
