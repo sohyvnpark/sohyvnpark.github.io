@@ -642,7 +642,9 @@ html.intro header .bar,html.intro .poster,html.intro .scrollcue,html.intro canva
 .proj.xp.open{transition:none}   /* the page and the header dim together, frame for frame */
 @keyframes xpDim{0%{background:#F4F4F2}45%{background:#A9A9A6}100%{background:#161616}}
 @keyframes xpInk{0%,40%{color:#141414}62%,100%{color:#EDEDEA}}
-html.xpopen{background:#161616}
+html.xpopen,html.xpopen body{background:#161616}   /* the browser bars at the bottom of phones take the page colour, so the body goes dark too */
+.proj.xp{overflow:hidden;overscroll-behavior:none}   /* the lab is one screen: no bounce, so the credit stays put */
+.proj.xp .xm{height:100%}
 @keyframes xpLeave{0%{background:#161616;color:#EDEDEA}100%{background:#F4F4F2;color:#141414}}
 html.xpleave header{animation:xpLeave .6s cubic-bezier(.4,0,.2,1) both}   /* on the way back the header lightens with the page, not before it */
 html.xpleave header .bar,html.xpleave header .brand,html.xpleave .burger{transition:none}
@@ -2125,6 +2127,7 @@ addEventListener('load',()=>document.querySelectorAll('.pj-heroimg img').forEach
   function dark(){const w=webs.some(x=>x.classList.contains('open')),on=xp.classList.contains('open')||w;
     if(!on&&D.classList.contains('xpopen')){D.classList.add('xpleave');clearTimeout(lv);lv=setTimeout(()=>D.classList.remove('xpleave'),650);}
     D.classList.toggle('xpopen',on);if(w)D.classList.add('xpstay');if(!on)D.classList.remove('xpstay');
+    {let m=document.querySelector('meta[name=theme-color]');if(!m){m=document.createElement('meta');m.name='theme-color';document.head.appendChild(m);}m.content=on?'#161616':'#F4F4F2';}
     xb.setAttribute('href',w?'/sai-lab':'/');xb.setAttribute('aria-label',w?'Back to S(AI) Lab':'Back to portfolio');}
   {const projs=[...document.querySelectorAll('.proj')].filter(p=>p!==xp&&!webs.includes(p));   /* regular projects: BACK takes the name's place too */
    const pb=()=>{const on=projs.some(p=>p.classList.contains('open'));D.classList.toggle('projback',on);if(on&&!D.classList.contains('xpopen')){xb.setAttribute('href','/');xb.setAttribute('aria-label','Back to portfolio');}};
