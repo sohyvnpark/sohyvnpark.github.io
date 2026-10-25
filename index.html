@@ -842,12 +842,15 @@ html.xpstay header{color:#EDEDEA}
 }
 /* project list: bigger images, a client tag above each title, larger text, button right under the text */
 .item{padding-block:clamp(48px,6vw,96px)}
-.item .row,.item:nth-child(even) .row{grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:clamp(32px,4vw,72px);align-items:center}
-.item:nth-child(even) .row{grid-template-columns:minmax(0,5fr) minmax(0,7fr)}
+.item .row,.item:nth-child(even) .row{grid-template-columns:minmax(0,11fr) minmax(0,9fr);gap:clamp(32px,4vw,72px);align-items:start}   /* image a touch wider than the text, both starting on the same top line */
+.item:nth-child(even) .row{grid-template-columns:minmax(0,9fr) minmax(0,11fr)}
 .thumb{aspect-ratio:16/10}
-.txt{justify-content:center;gap:clamp(24px,2.4vw,36px)}
+.txt{justify-content:flex-start;gap:clamp(24px,2.4vw,36px)}
 .it-tag{display:flex;align-items:center;gap:12px;margin:0 0 clamp(14px,1.4vw,22px)!important;font-size:clamp(13px,.95vw,15px)!important;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)!important}
 .it-tag b{font-weight:600;color:#1E36C8}
+.ilink{display:inline-flex;align-self:flex-start;align-items:center;gap:8px;font-size:clamp(14px,1.1vw,16px);font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:#141414;text-decoration:none}   /* a plain text link, styled like BACK */
+.ilink svg{width:18px;height:18px;transition:transform .3s cubic-bezier(.2,.8,.2,1)}
+@media (hover:hover){.ilink:hover svg{transform:translateX(4px)}}
 .txt p:not(.it-tag){font-size:clamp(16px,1.25vw,20px);line-height:1.55;color:#3E3E3B}
 @media (max-width:760px){
  .item .row,.item:nth-child(even) .row{grid-template-columns:minmax(0,1fr)}
@@ -1190,6 +1193,7 @@ html.labopen .xsnd{display:block;order:2}
 
   <section class="pj-s">
    <p class="pj-lbl">Overview</p><div class="pj-2"><div><h2 class="pj-h2">The right information, in the right place, at the right time.</h2></div><div><p class="pj-body">Today's cockpits spread information across many screens, pulling drivers' eyes away from the road. UltraView brings it onto the windshield instead: a compact AR-HUD places driving-critical cues like speed, ADAS alerts and navigation far out on the road, while LG's Hover Screen shows navigation, vehicle status, HVAC and media on a large virtual screen about 1.2 m away.</p><p class="pj-body">Each piece of information sits at its own distance, so drivers move their eyes less and understand the road faster.</p></div></div>
+   <div class="pj-gr"><h3 class="g">Goal</h3><h3 class="r">Result</h3><p class="g">Make the start of every drive feel personal, without pulling the driver's eyes off the road.</p><p class="r">A single glanceable welcome on the AR‑HUD, with themed playlists on the CID, in a PACE Pilot Award finalist.</p><p class="g">Produce the welcoming motion quickly enough to iterate with LG's product managers.</p><p class="r">Cut each animation from about 2 days to under 1 day, feedback included: over 50% faster with AI.</p></div>
    <figure class="pj-media pj-ytwrap"><iframe class="pj-ytf" data-src="https://www.youtube-nocookie.com/embed/g3d9oGrs6qE?rel=0" title="LG Tech Showcase: UltraView Windshield Display" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe><a class="pj-yt" href="https://www.youtube.com/watch?v=g3d9oGrs6qE" target="_blank" rel="noopener" aria-label="Watch the UltraView Tech Showcase on YouTube"><img class="pj-img" src="/p/lg/yt.webp" alt="LG Tech Showcase: UltraView Windshield Display" loading="lazy" width="1280" height="720"><span class="pj-play" aria-hidden="true"></span></a><figcaption class="pj-cap">*Video from LG Electronics (Tech Showcase: UltraView Windshield Display)</figcaption></figure>
   </section>
 
@@ -1613,7 +1617,7 @@ const P=[
  {t:"Infotain*ment|E*xperience",c:"Hyundai &amp; Kia · Infotainment",d:"Created Hyundai & Kia's in-vehicle infotainment and GUI Guidelines, focusing on the RSPA, Split Screens, and My Vehicle features for Hyundai MOBIS.",img:"/p/info/thumb.webp",href:"/infotainment-experience"},
  {t:"Beyond t*he|Winds*hield",c:"LG Electronics · AR-HUD",d:"Designed UI screens and AI-made motion for LG Electronics' UltraView Windshield Display, a 2026 Automotive News PACE Pilot Award finalist.",img:"/p/lg/hero.webp",note:"*Image from LG Electronics (Tech Showcase video)",href:"/beyond-the-windshield"},
  {t:"Personali*sed &|Live C*uration",c:"Automotive client · UX research",d:"Designed a personalised and location-based live curation infotainment app for an automotive industry client, achieving a 20% improvement in usability.",img:"/p/cur/thumb.webp",note:"*Confidential image",href:"/personalised-live-curation"},
- {t:"Physical to|Di*gital Design",c:"Volkswagen · Digital cluster",d:"Created graphic specifications for Volkswagen, driving new interface designs across digital clusters (e.g. 'Retro Display' - The new ID Polo).",img:"/p/vw/thumb.webp",note:"*Image from Volkswagen",nda:true},
+ {t:"Shared S*ystem,|Own Iden*tity",c:"MAN Truck &amp; Bus · Design system",d:"MAN shares a design system with other truck brands in its group, yet its colours, design and use cases are its own. I built MAN's own layer of design tokens for the cluster and infotainment, and a clear overview of every update cut hands-on design time by approximately 40%.",img:"/p/man/thumb.webp",nda:true},
  {t:"Technolo*gy|into Reality",c:"Hyundai Motor Group · Concept video",d:"Produced a conceptual UX video showcasing Noveto x Blink’s PoC technologies (featured at the Hyundai Motor Group’s 2024 Open Innovation Lounge).",img:"/p/tech/hero.webp",note:"*Image from Hyundai Motor Group",href:"/technology-into-reality"}
 ];
 const esc=s=>s.replace(/&/g,'&amp;');
