@@ -268,7 +268,7 @@ footer .bar{justify-content:center;color:var(--muted);font-size:clamp(13px,1vw,1
 
 /* ---------- project page (opens over the home page) ---------- */
 .proj{position:fixed;inset:0;z-index:48;background:var(--bg);overflow-y:auto;overscroll-behavior:contain;padding-top:calc(var(--hh,64px) + clamp(40px,4.4vw,84px));opacity:0;visibility:hidden;transition:opacity .6s cubic-bezier(.4,0,.2,1),visibility 0s .6s}
-.proj.open{opacity:1;visibility:visible;transition:opacity .7s cubic-bezier(.4,0,.2,1)}
+.proj.open{opacity:1;visibility:visible;transition:opacity 1s cubic-bezier(.4,0,.2,1)}
 .proj>.wrap{opacity:0;transform:translateY(28px);transition:opacity .5s ease,transform .5s ease}
 .proj.open>.wrap{opacity:1;transform:none;transition:opacity .9s ease .15s,transform 1s cubic-bezier(.2,.8,.2,1) .15s}
 @media (prefers-reduced-motion:reduce){.proj,.proj>.wrap{transition:none!important;transform:none!important}}
@@ -649,11 +649,12 @@ html.xpopen,html.xpopen body{background:#161616}   /* the browser bars at the bo
 html.xpopen:not(.xpleave) main>*,html.xpopen:not(.xpleave) footer>*{visibility:hidden}html.xpopen:not(.xpleave) main,html.xpopen:not(.xpleave) footer{background:#161616}   /* phones show the page behind the bottom toolbar: hide the light home page so only dark shows there */   /* the lab is one screen: no bounce, so the credit stays put */
 .proj.xp .xm{height:100%}
 .proj.xp.flow{height:100lvh;min-height:0}
-.proj.xp.flow .xm{height:calc(100svh - var(--xpad,0px))}
+.proj.xp.flow .xm{height:calc(100svh - var(--xpad,0px));overflow:visible}   /* letters may travel down behind the phone toolbar instead of being cut off above it; the lab itself clips at the screen edge */
 html.projflow.labopen{overflow:hidden}
 html.projflow .proj:not(.flow){display:none}
-main,footer{transition:opacity .35s ease}
-html.pgout main,html.pgout footer{opacity:0}
+main,footer{transition:opacity 1s cubic-bezier(.4,0,.2,1)}
+html.pgout main,html.pgout footer{opacity:0;transition:opacity .35s ease}
+html,body,header{transition:background-color 1s cubic-bezier(.4,0,.2,1),color 1s cubic-bezier(.4,0,.2,1)}   /* the next screen and its colours ease in together */
 html.pgout .totop{opacity:0!important;pointer-events:none}
 html.pgout .proj.flow{opacity:0;transition:opacity .3s ease}
 html.swap .proj{transition:none!important}
@@ -1985,7 +1986,7 @@ b.addEventListener('click',()=>{const ok=()=>{b.textContent='Copied';setTimeout(
   {const hd=document.querySelector('header');const hs=()=>DE.style.setProperty('--hhn',hd.offsetHeight+'px');hs();new ResizeObserver(hs).observe(hd);}
   const isDark=pg=>!!pg&&(pg.id==='pExp'||pg.classList.contains('pweb'));
   function swap(pg){
-    DE.classList.add('swap','pgin');clearTimeout(lightT);lightT=setTimeout(()=>DE.classList.remove('pgin'),900);
+    DE.classList.add('swap','pgin');clearTimeout(lightT);lightT=setTimeout(()=>DE.classList.remove('pgin'),1000);
     if(cur){cur.classList.remove('open','flow');cur.setAttribute('aria-hidden','true');cur.querySelectorAll('video').forEach(v=>v.pause());}
     cur=pg;DE.classList.toggle('projopen',!!pg);DE.classList.toggle('projflow',!!pg);
     DE.style.overflowAnchor='none';setTimeout(()=>DE.style.overflowAnchor='',1500);
