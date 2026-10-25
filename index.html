@@ -32,10 +32,6 @@ img{display:block;max-width:100%}
 /* header */
 header{position:sticky;top:env(safe-area-inset-top,0px);z-index:55;background:var(--bg)}
 body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:30;background:var(--bg)}
-body::after{content:"";position:fixed;left:0;right:0;bottom:0;height:3px;z-index:60;pointer-events:none;background:var(--bg)}   /* Safari tints its bottom toolbar from a fixed strip at the bottom edge: this keeps it the page colour */
-html.xpopen body::after{background:#161616;animation:xpDim 1.4s cubic-bezier(.4,0,.2,1) both}
-html.xpstay body::after{animation:none}
-html.xpleave body::after{animation:xpLeave .6s cubic-bezier(.4,0,.2,1) both}
 .bar{display:flex;justify-content:space-between;align-items:center;padding-block:clamp(22px,2.4vw,34px) 14px;font-size:13px;font-weight:500}
 .burger{position:relative;z-index:60;width:28px;height:20.5px;margin:0;border:0;background:none;cursor:pointer;padding:0;color:var(--ink)}   /* sized to the name's cap height, flush with the content edge */
 .burger::after{content:"";position:absolute;inset:-14px}
@@ -651,9 +647,13 @@ html.intro header .bar,html.intro .poster,html.intro .scrollcue,html.intro canva
 @keyframes xpDim{0%{background:#F4F4F2}45%{background:#A9A9A6}100%{background:#161616}}
 @keyframes xpInk{0%,40%{color:#141414}62%,100%{color:#EDEDEA}}
 html.xpopen,html.xpopen body{background:#161616}   /* the browser bars at the bottom of phones take the page colour, so the body goes dark too */
-.proj.xp{overflow:hidden;overscroll-behavior:none}
+.proj.xp{overflow:hidden;overscroll-behavior:none;will-change:opacity}   /* one steady layer while it fades: no flicker on iPhone */
 html.xpopen:not(.xpleave) main>*,html.xpopen:not(.xpleave) footer>*{visibility:hidden}html.xpopen:not(.xpleave) main,html.xpopen:not(.xpleave) footer{background:#161616}   /* phones show the page behind the bottom toolbar: hide the light home page so only dark shows there */   /* the lab is one screen: no bounce, so the credit stays put */
 .proj.xp .xm{height:100%}
+.proj.xp.flow{height:100lvh;min-height:0}
+.proj.xp.flow .xm{height:calc(100svh - var(--xpad,0px))}
+html.projflow.labopen{overflow:hidden}
+html.projflow .proj:not(.flow){display:none}   /* no fixed layer may touch the bottom edge: Safari would paint a solid band under its toolbar */
 @keyframes xpLeave{0%{background:#161616;color:#EDEDEA}100%{background:#F4F4F2;color:#141414}}
 html.xpleave header{animation:xpLeave .6s cubic-bezier(.4,0,.2,1) both}   /* on the way back the header lightens with the page, not before it */
 html.xpleave header .bar,html.xpleave header .brand,html.xpleave .burger{transition:none}
@@ -1972,14 +1972,14 @@ b.addEventListener('click',()=>{const ok=()=>{b.textContent='Copied';setTimeout(
       if(cur)go('');setMenu(false);setTimeout(()=>t.scrollIntoView({behavior:reduce?'auto':'smooth'}),cur?80:0);}});
   addEventListener('popstate',()=>{route();dispatchEvent(new Event('hashchange'));});
   let homeY=0,flowT=0;const DE=document.documentElement;
-  const unflow=()=>{clearTimeout(flowT);const f=document.querySelector('.proj.flow');if(!f)return;const y=scrollY;DE.classList.remove('projflow');f.classList.remove('flow');f.scrollTop=y;DE.style.overflowAnchor='none';setTimeout(()=>DE.style.overflowAnchor='',1500);scrollTo({top:homeY,behavior:'instant'});};
-  const flow=pg=>{if(cur!==pg||pg.classList.contains('xp')||pg.classList.contains('flow'))return;const y=pg.scrollTop;pg.classList.add('flow');DE.classList.add('projflow');scrollTo({top:y,behavior:'instant'});};
+  const unflow=()=>{clearTimeout(flowT);const f=document.querySelector('.proj.flow');if(!f)return;const y=scrollY,xm=f.querySelector('.xm');if(xm){xm.style.height=xm.offsetHeight+'px';setTimeout(()=>xm.style.height='',900);}DE.classList.remove('projflow');f.classList.remove('flow');f.scrollTop=y;DE.style.overflowAnchor='none';setTimeout(()=>DE.style.overflowAnchor='',1500);scrollTo({top:homeY,behavior:'instant'});};
+  const flow=pg=>{if(cur!==pg||pg.classList.contains('flow'))return;const y=pg.scrollTop;pg.style.setProperty('--xpad',getComputedStyle(pg).paddingTop);pg.classList.add('flow');DE.classList.add('projflow');scrollTo({top:y,behavior:'instant'});};
   function route(){const pg=pages[key()]||null;if(pg===cur)return;
     if(!cur)homeY=scrollY;unflow();
     if(cur){cur.classList.remove('open');cur.setAttribute('aria-hidden','true');cur.querySelectorAll('video').forEach(v=>v.pause());}
     cur=pg;document.documentElement.classList.toggle('projopen',!!pg);
     if(pg){setMenu(false);pg.scrollTop=0;pg.classList.add('open');pg.setAttribute('aria-hidden','false');pg.querySelectorAll('video').forEach(v=>{v.play().catch(()=>{});});
-      if(!pg.classList.contains('xp'))flowT=setTimeout(()=>flow(pg),DE.classList.contains('xpstay')?60:800);
+      flowT=setTimeout(()=>flow(pg),DE.classList.contains('xpstay')?60:pg.classList.contains('xp')?1450:800);
       }}
 
   /* dashed route in "My learnings": the line breaks cleanly around a horse galloping in its middle */
