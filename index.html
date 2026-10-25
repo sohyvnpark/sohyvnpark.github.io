@@ -4,10 +4,10 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="description" content="Sohyun Park – Automotive UX/UI designer portfolio">
-<link rel="icon" href="/favicon.ico" sizes="any">
-<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png">
-<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="icon" href="/favicon.ico?v=2" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png?v=2">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png?v=2">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png?v=2">
 <title>SOHYUN PARK</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -670,7 +670,7 @@ html.desk .xp.open{animation:xpDim 1.4s cubic-bezier(.4,0,.2,1) both}   /* compu
 html.desk .proj.xp.open{transition:none}
 html.desk.xpopen header{animation:xpDim 1.4s cubic-bezier(.4,0,.2,1) both,xpInk 1.4s cubic-bezier(.4,0,.2,1) both}
 html.desk.xpleave header{animation:xpLeave .6s cubic-bezier(.4,0,.2,1) both}
-html.desk.xpleave main,html.desk.xpleave footer{opacity:0;transition:none}   /* leaving the lab: the dark fades to light first, then the home page fades in, so the two never overlap */
+html.desk.xpleave main,html.desk.xpleave footer,html.desk.xpleave header .bar{opacity:0;transition:none}   /* leaving the lab: the dark fades to light first, then the home page fades in, so the two never overlap */
 html.desk.xpstay .proj.xp,html.desk.xpstay .proj.pweb.open{transition:none!important}
 html.desk.xpstay header{animation:none!important}
 .xm-credit,footer .bar,.pj-credit{transition:opacity 1s ease}
