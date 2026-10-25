@@ -654,9 +654,9 @@ html.projflow.labopen{overflow:hidden}
 html.projflow .proj:not(.flow){display:none}
 main,footer{transition:opacity 1s cubic-bezier(.4,0,.2,1)}
 html.pgout main,html.pgout footer{opacity:0;transition:opacity .35s ease}
-header{transition:background-color 1s cubic-bezier(.4,0,.2,1),color 1s cubic-bezier(.4,0,.2,1)}   /* the header eases with the page (Safari won't animate the page background itself) */
+html.hdrhold header{background:#F4F4F2!important;color:#141414!important}   /* the header (and Safari's status bar, which copies it) flips in one step halfway through the fade */
 html.fromlight,html.fromlight body,html.tolight,html.tolight body{background:#F4F4F2!important}   /* keep the page light under a fading dark screen, so the fade is the gradient */
-html.tolight header{background:#F4F4F2!important;color:#141414!important}
+html.tolight.hdrlight header{background:#F4F4F2!important;color:#141414!important}
 html.pgout .totop{opacity:0!important;pointer-events:none}
 html.pgout .proj.flow{opacity:0;transition:opacity .3s ease}
 html.tolight .proj.flow{transition:opacity .6s cubic-bezier(.4,0,.2,1)}
@@ -689,7 +689,7 @@ html.xpopen header .bar,html.xpopen header .brand,html.xpopen .burger{transition
 .xl.grab{cursor:grabbing}
 .xl[data-go]{cursor:pointer}
 .xm-txt{text-align:left}
-.xm-body{display:block;text-align:justify;text-align-last:left;hyphens:auto;-webkit-hyphens:auto}   /* a left-aligned, squared-off block that reads like a description */
+.xm-body{display:block;text-align:justify;text-align-last:left;hyphens:manual;-webkit-hyphens:manual;overflow-wrap:normal;word-break:normal}   /* squared-off block; whole words only, never split with a hyphen */
 @media (max-width:760px){.xm-txt{width:min(440px,86vw)!important;font-size:13.5px!important}}   /* same squared block on phones; hyphenation keeps the gaps even */
 .xm-k{display:flex;justify-content:flex-start;align-items:baseline;gap:14px;margin-bottom:18px;font:600 clamp(26px,2.4vw,36px)/1 var(--font);letter-spacing:.02em;color:#EDEDEA}
 .xm-kt{position:relative}   /* the title sits dead centre; its pronunciation hangs off to the right */
@@ -815,7 +815,8 @@ html.xpopen header .bar,html.xpopen header .brand,html.xpopen .burger{transition
 html.xpopen .totop{color:rgba(237,237,234,.22)}
 html.xpopen .totop:hover{color:rgba(237,237,234,.6)}
 .pweb .pj-credit{margin-top:clamp(150px,20vh,210px)!important}
-footer .bar,.pj-credit,.menu-credit{color:#A9A9A5}   /* the credit sits quieter than other muted text */
+footer .bar,.pj-credit,.menu-credit{color:#A9A9A5}
+@media (max-width:760px){.menu-credit{display:none}}   /* phones: the open menu shows no credit */   /* the credit sits quieter than other muted text */
 .pweb .pj-credit,.xm-credit,html.xpopen .menu-credit{color:#4C4C49}
 .pweb .pj-route path:not(marker path){stroke:rgba(188,196,236,.6)}
 @media (min-width:901px){.pj-route-up.wb-route{margin-top:calc(clamp(20px,2.4vw,40px) - 50px)!important}}
@@ -1985,12 +1986,12 @@ b.addEventListener('click',()=>{const ok=()=>{b.textContent='Copied';setTimeout(
   addEventListener('popstate',()=>{route();dispatchEvent(new Event('hashchange'));});
   /* page changes never use a full-screen fixed layer (iPhone Safari would paint its colour under the toolbar):
      the current page fades out, the pages swap in the normal flow, the new one fades in */
-  let homeY=0,swapT=0,lightT=0,routed=false;const DE=document.documentElement;
+  let homeY=0,swapT=0,lightT=0,hdrT=0,routed=false;const DE=document.documentElement;
   {const hd=document.querySelector('header');const hs=()=>DE.style.setProperty('--hhn',hd.offsetHeight+'px');hs();new ResizeObserver(hs).observe(hd);}
   const isDark=pg=>!!pg&&(pg.id==='pExp'||pg.classList.contains('pweb'));
   function swap(pg){
-    if(isDark(pg)&&!DE.classList.contains('xpopen'))DE.classList.add('fromlight');
-    DE.classList.add('swap','pgin');clearTimeout(lightT);lightT=setTimeout(()=>DE.classList.remove('pgin','fromlight','tolight'),1050);
+    if(isDark(pg)&&!DE.classList.contains('xpopen')){DE.classList.add('fromlight','hdrhold');clearTimeout(hdrT);hdrT=setTimeout(()=>DE.classList.remove('hdrhold'),500);}
+    DE.classList.add('swap','pgin');clearTimeout(lightT);lightT=setTimeout(()=>DE.classList.remove('pgin','fromlight','tolight','hdrlight'),1050);
     if(cur){cur.classList.remove('open','flow');cur.setAttribute('aria-hidden','true');cur.querySelectorAll('video').forEach(v=>v.pause());}
     cur=pg;DE.classList.toggle('projopen',!!pg);DE.classList.toggle('projflow',!!pg);
     DE.style.overflowAnchor='none';setTimeout(()=>DE.style.overflowAnchor='',1500);
@@ -2002,7 +2003,7 @@ b.addEventListener('click',()=>{const ok=()=>{b.textContent='Copied';setTimeout(
     if(!routed){routed=true;if(pg)swap(pg);return;}
     if(pg===cur)return;clearTimeout(swapT);
     if(!cur&&!DE.classList.contains('pgout'))homeY=scrollY;
-    if(DE.classList.contains('xpopen')&&!isDark(pg))DE.classList.add('tolight');
+    if(DE.classList.contains('xpopen')&&!isDark(pg)){DE.classList.add('tolight');clearTimeout(hdrT);hdrT=setTimeout(()=>DE.classList.add('hdrlight'),230);}
     DE.classList.add('pgout');swapT=setTimeout(()=>swap(pg),isDark(cur)&&!isDark(pg)?600:350);}
 
   /* dashed route in "My learnings": the line breaks cleanly around a horse galloping in its middle */
