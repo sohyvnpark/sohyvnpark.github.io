@@ -653,10 +653,11 @@ html.xpopen,html.xpopen body{background:#161616}   /* the browser bars at the bo
 html.xpopen:not(.xpleave) main>*,html.xpopen:not(.xpleave) footer>*{visibility:hidden}html.xpopen:not(.xpleave) main,html.xpopen:not(.xpleave) footer{background:#161616}   /* phones show the page behind the bottom toolbar: hide the light home page so only dark shows there */   /* the lab is one screen: no bounce, so the credit stays put */
 .proj.xp .xm{height:100%}
 .proj.xp.flow{height:100lvh;min-height:0;box-shadow:0 40vh 0 0 #161616}   /* the dark carries on under the phone toolbar and fades with the lab (Safari won't fade the page colour there) */
-.proj.xp.flow .xm{height:calc(100lvh - var(--xpad,0px));overflow:visible}
+.proj.xp.flow .xm{height:calc(100svh - var(--xpad,0px));overflow:visible}
 .proj.xp.flow{overflow:visible;clip-path:inset(0 0 -40vh 0)}   /* phones: the lab may paint below the page into the strip behind Safari's toolbar */
-.proj.xp.flow .xm-credit{bottom:var(--credb,18px)}   /* the credit sits just above the toolbar buttons, as low as on every other page */
-.proj.xp.flow .xm-txt{top:calc(50% + 22px)}   /* everything sits a little lower on phones */
+.proj.xp.flow .xm-credit{bottom:18px}
+html.ios .proj.xp.flow .xm-credit{bottom:-22px}   /* iPhone: a little below the page edge, into the space above Safari's buttons */   /* the credit sits just above the toolbar buttons, as low as on every other page */
+.proj.xp.flow .xm-txt{top:calc(50% + 10px)}   /* everything sits a little lower on phones */
 html.projflow.labopen{overflow:hidden}
 html.projflow .proj:not(.flow){display:none}
 main,footer{transition:opacity 1s cubic-bezier(.4,0,.2,1)}
@@ -2017,8 +2018,7 @@ b.addEventListener('click',()=>{const ok=()=>{b.textContent='Copied';setTimeout(
     else{dispatchEvent(new Event('resize'));scrollTo({top:homeY,behavior:'instant'});requestAnimationFrame(()=>{dispatchEvent(new Event('resize'));scrollTo({top:homeY,behavior:'instant'});});}   /* the home page was hidden: let everything that measures it size itself again */
     void DE.offsetWidth;DE.classList.remove('swap');
     requestAnimationFrame(()=>requestAnimationFrame(()=>DE.classList.remove('pgout')));}
-  if(/iPhone|iPod/.test(navigator.userAgent)){const pr=document.createElement('div');pr.style.cssText='position:absolute;visibility:hidden;pointer-events:none;top:0;height:100lvh;width:1px';document.body.appendChild(pr);
-    const tg=()=>{if(innerWidth>innerHeight)return;const L=pr.offsetHeight;DE.style.setProperty('--credb',Math.round(Math.max(-60,Math.min(140,L-(screen.height-112))))+'px');};tg();addEventListener('resize',tg);}   /* iPhone Safari: put the lab credit about 112px above the bottom of the screen, just over the toolbar buttons, whatever 100lvh measures */
+  if(/iPhone|iPod/.test(navigator.userAgent))DE.classList.add('ios');
   const desk=matchMedia('(hover:hover) and (pointer:fine)').matches;DE.classList.toggle('desk',desk);   /* computers keep the original overlay crossfade; phones use the in-flow pages (Safari's toolbars) */
   function deskRoute(pg){if(cur){cur.classList.remove('open');cur.setAttribute('aria-hidden','true');cur.querySelectorAll('video').forEach(v=>v.pause());}
     cur=pg;DE.classList.toggle('projopen',!!pg);
