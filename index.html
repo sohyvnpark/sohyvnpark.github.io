@@ -862,6 +862,8 @@ html.labopen .xsnd{display:block;order:2}
 .snd-src{display:block;margin-top:auto;padding-top:16px;font-size:12px;color:var(--muted)}   /* sources line up along the bottom of every card */
 .snd-hero{display:block;width:100%;height:auto;aspect-ratio:16/9}
 @media (min-width:901px){#pSnd .pj-learn .pj-2{align-items:stretch}#pSnd .pj-learn .pj-2>div:first-child{display:flex;flex-direction:column}#pSnd .pj-learn .pj-route-up.wb-route{margin:auto 0!important}}   /* the route sits in the middle of the space beside the longer list */
+@media (max-width:760px){.snd-viz{aspect-ratio:1/1}}
+.xm .xl.px{font-family:"Doto","Pixelify Sans",monospace;font-weight:800}
 .uv-tag{display:inline-block;margin-bottom:8px;padding:4px 9px;border-radius:4px;background:#EEF1FF;color:#3B55E6;font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase}
 @media (max-width:900px){.uv-cards{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media (max-width:767px){.uv-clips,.uv-cards{grid-template-columns:1fr}}
@@ -2096,8 +2098,8 @@ addEventListener('load',()=>document.querySelectorAll('.pj-heroimg img').forEach
   const tip=document.getElementById('xmTip');let tipFor=null,tipReady=false,tipT=0;   /* no labels while the page is still loading in */
   function tipAt(o){if(tipFor!==o)return;const r=o.el.getBoundingClientRect(),f=F.getBoundingClientRect(),tw=tip.offsetWidth,cx=r.left+r.width/2-f.left,x=Math.max(tw/2+10,Math.min(f.width-tw/2-10,cx)),below=r.top-f.top<150;
     tip.classList.toggle('below',below);tip.style.left=x+'px';tip.style.top=(below?r.bottom-f.top-r.height*.08:r.top-f.top+r.height*.12)+'px';tip.style.setProperty('--ax',(cx-x)+'px');}
-  function showTip(o){if(!tipReady)return;tipFor=o;tip.querySelector('b').textContent=o.el.dataset.t;tip.querySelector('small').textContent=o.el.dataset.s;tipAt(o);tip.classList.add('on');}
-  function hideTip(){tipFor=null;tip.classList.remove('on');}
+  function showTip(o){if(!tipReady)return;tipFor=o;tip.querySelector('b').textContent=o.el.dataset.t;tip.querySelector('small').textContent=o.el.dataset.s;tipAt(o);tip.classList.add('on');Ls.forEach(l=>l.classList.toggle('px',l===o.el));}   /* the picked letter turns pixel, also on a first tap */
+  function hideTip(){tipFor=null;tip.classList.remove('on');Ls.forEach(l=>l.classList.remove('px'));}
   const f1=new Intl.DateTimeFormat('en-GB',{timeZone:'Europe/Berlin',hour:'2-digit',minute:'2-digit',hour12:false}),f2=new Intl.DateTimeFormat('en-GB',{timeZone:'Asia/Seoul',hour:'2-digit',minute:'2-digit',hour12:false}),f3=new Intl.DateTimeFormat('en-GB',{timeZone:'Europe/London',hour:'2-digit',minute:'2-digit',hour12:false});
   const clock=()=>{document.getElementById('xmT1').textContent=f1.format(new Date());document.getElementById('xmT2').textContent=f2.format(new Date());document.getElementById('xmT3').textContent=f3.format(new Date());};let ck=0;
   addEventListener('resize',()=>{if(xp.classList.contains('open'))place();});
@@ -2215,7 +2217,7 @@ io.observe(ol);lis.forEach(function(l){io.observe(l)});})();
         if(tw>.75){g.strokeStyle=`rgba(255,255,250,${(tw-.75)*1.2})`;g.lineWidth=.8*u;g.beginPath();g.moveTo(x-r*4,y);g.lineTo(x+r*4,y);g.moveTo(x,y-r*3);g.lineTo(x,y+r*3);g.stroke();}}
       g.globalCompositeOperation='overlay';g.globalAlpha=.18;for(let y=0;y<H;y+=256)for(let x=0;x<W;x+=256)g.drawImage(grain,x,y);g.globalAlpha=1;g.globalCompositeOperation='source-over';}
   const hero=document.getElementById('sndHero');
-  function drawViz(){if(!viz)return;cancelAnimationFrame(vr);if(!grain)grain=makeGrain();const data=new Uint8Array(256);
+  function drawViz(){if(!viz)return;cancelAnimationFrame(vr);if(!grain)grain=makeGrain();{const m=innerWidth<=760,w=m?900:1200,h=m?900:520;if(viz.width!==w||viz.height!==h){viz.width=w;viz.height=h;}}   /* a taller canvas on phones */const data=new Uint8Array(256);
     const f=now=>{const t=(now||0)/1000;let e=0,l=0,h=0;if(an&&pageWant){an.getByteFrequencyData(data);for(let i=2;i<60;i++)e+=data[i];e/=58*255;for(let i=2;i<12;i++)l+=data[i];l/=10*255;for(let i=40;i<120;i++)h+=data[i];h/=80*255;}lvl+=(e-lvl)*.08;lo+=(l-lo)*.06;hi+=(h-hi)*.2;
       const tg=TINT[tintTo];for(let k=0;k<3;k++)tint[k]+=((pageWant?tg[k]:tint[k])-tint[k])*.01;
       paint(viz,t);if(hero)paint(hero,t+40);{const n=performance.now();for(let i=FX.length-1;i>=0;i--)if(n-FX[i].at>FX[i].life)FX.splice(i,1);}
