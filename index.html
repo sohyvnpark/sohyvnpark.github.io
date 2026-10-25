@@ -642,8 +642,6 @@ html.intro .scrollcue,html.intro canvas.horse{opacity:0}   /* the name and title
 @media (max-width:900px){.kd{grid-template-columns:1fr}.kd-card{margin-bottom:clamp(14px,1.6vw,24px)}}
 /* ===== Exploring: the letters of my name drift around a calm centre; grab and throw them ===== */
 .xp{background:#161616;padding-top:0!important}
-.xp.open{animation:xpDim 1.4s cubic-bezier(.4,0,.2,1) both}
-.proj.xp.open{transition:none}   /* the page and the header dim together, frame for frame */
 @keyframes xpDim{0%{background:#F4F4F2}45%{background:#A9A9A6}100%{background:#161616}}
 @keyframes xpInk{0%,40%{color:#141414}62%,100%{color:#EDEDEA}}
 html.xpopen,html.xpopen body{background:#161616}   /* the browser bars at the bottom of phones take the page colour, so the body goes dark too */
@@ -657,17 +655,16 @@ html.projflow .proj:not(.flow){display:none}
 main,footer{transition:opacity .35s ease}
 html.pgout main,html.pgout footer{opacity:0}
 html.pgout .totop{opacity:0!important;pointer-events:none}
-html.xpopen:not(.xpstay),html.xpopen:not(.xpstay) body{animation:xpDim 1.4s cubic-bezier(.4,0,.2,1) both}   /* the page behind dims with the lab, so the strip under the phone toolbar never runs ahead */
 html.pgout .proj.flow{opacity:0;transition:opacity .3s ease}
 html.swap .proj{transition:none!important}
-html.tolight,html.tolight body{background:#F4F4F2!important;transition:background .35s ease}
-html.tolight header{animation:xpLeave .35s ease both!important}
-html.tolight header .burger,html.tolight header .brand{color:inherit}   /* no fixed layer may touch the bottom edge: Safari would paint a solid band under its toolbar */
+.xm-credit,footer .bar,.pj-credit{transition:opacity 1s ease}
+html.pgin .xm-credit,html.pgin footer .bar,html.pgin .pj-credit{opacity:0;transition:none}   /* after a page change the credit fades in last */
+   /* no fixed layer may touch the bottom edge: Safari would paint a solid band under its toolbar */
 @keyframes xpLeave{0%{background:#161616;color:#EDEDEA}100%{background:#F4F4F2;color:#141414}}
-html.xpleave header{animation:xpLeave .6s cubic-bezier(.4,0,.2,1) both}   /* on the way back the header lightens with the page, not before it */
+   /* on the way back the header lightens with the page, not before it */
 html.xpleave header .bar,html.xpleave header .brand,html.xpleave .burger{transition:none}
 html.xpleave .burger{color:inherit}
-html.xpopen header{animation:xpDim 1.4s cubic-bezier(.4,0,.2,1) both,xpInk 1.4s cubic-bezier(.4,0,.2,1) both}
+html.xpopen header{background:#161616;color:#EDEDEA}   /* colours change in one step while the screen is empty: Safari tints its status bar from the header and lags behind any fade */
 html.xpopen .burger{display:none}   /* Exploring is a side room: a Back link replaces the menu */
 .xback{display:none;align-items:center;gap:8px;font-size:clamp(14px,1.1vw,16px);font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:inherit}
 .xback svg{width:18px;height:18px;transition:transform .3s cubic-bezier(.2,.8,.2,1)}
@@ -823,7 +820,6 @@ footer .bar,.pj-credit,.menu-credit{color:#A9A9A5}   /* the credit sits quieter 
 @media (max-width:600px){.wb-loop{grid-template-columns:1fr}}
 /* moving between the lab and the case study stays dark: no dimming replay */
 html.xpstay header,html.xpstay .xp.open{animation:none!important;background:#161616}
-html.xpstay .proj.xp,html.xpstay .proj.pweb.open{transition:none!important}   /* swapping lab and case study is instant, so the light home page never flashes through */
 html.xpstay header{color:#EDEDEA}
 /* letters whose projects aren't ready yet sit quieter */
 .xp.in .xl.soon{opacity:.3}
@@ -1989,7 +1985,7 @@ b.addEventListener('click',()=>{const ok=()=>{b.textContent='Copied';setTimeout(
   {const hd=document.querySelector('header');const hs=()=>DE.style.setProperty('--hhn',hd.offsetHeight+'px');hs();new ResizeObserver(hs).observe(hd);}
   const isDark=pg=>!!pg&&(pg.id==='pExp'||pg.classList.contains('pweb'));
   function swap(pg){
-    DE.classList.add('swap');
+    DE.classList.add('swap','pgin');clearTimeout(lightT);lightT=setTimeout(()=>DE.classList.remove('pgin'),900);
     if(cur){cur.classList.remove('open','flow');cur.setAttribute('aria-hidden','true');cur.querySelectorAll('video').forEach(v=>v.pause());}
     cur=pg;DE.classList.toggle('projopen',!!pg);DE.classList.toggle('projflow',!!pg);
     DE.style.overflowAnchor='none';setTimeout(()=>DE.style.overflowAnchor='',1500);
@@ -2001,7 +1997,6 @@ b.addEventListener('click',()=>{const ok=()=>{b.textContent='Copied';setTimeout(
     if(!routed){routed=true;if(pg)swap(pg);return;}
     if(pg===cur)return;clearTimeout(swapT);
     if(!cur&&!DE.classList.contains('pgout'))homeY=scrollY;
-    if(DE.classList.contains('xpopen')&&!isDark(pg)){DE.classList.add('tolight');clearTimeout(lightT);lightT=setTimeout(()=>DE.classList.remove('tolight'),1100);}
     DE.classList.add('pgout');swapT=setTimeout(()=>swap(pg),350);}
 
   /* dashed route in "My learnings": the line breaks cleanly around a horse galloping in its middle */
