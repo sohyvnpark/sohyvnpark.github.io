@@ -670,6 +670,7 @@ html.desk .xp.open{animation:xpDim 1.4s cubic-bezier(.4,0,.2,1) both}   /* compu
 html.desk .proj.xp.open{transition:none}
 html.desk.xpopen header{animation:xpDim 1.4s cubic-bezier(.4,0,.2,1) both,xpInk 1.4s cubic-bezier(.4,0,.2,1) both}
 html.desk.xpleave header{animation:xpLeave .6s cubic-bezier(.4,0,.2,1) both}
+html.desk.xpleave main,html.desk.xpleave footer{opacity:0;transition:none}   /* leaving the lab: the dark fades to light first, then the home page fades in, so the two never overlap */
 html.desk.xpstay .proj.xp,html.desk.xpstay .proj.pweb.open{transition:none!important}
 html.desk.xpstay header{animation:none!important}
 .xm-credit,footer .bar,.pj-credit{transition:opacity 1s ease}
