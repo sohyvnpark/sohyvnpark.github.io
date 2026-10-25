@@ -275,7 +275,7 @@ footer .bar{justify-content:center;color:var(--muted);font-size:clamp(13px,1vw,1
 html.projopen{overflow:hidden}
 html.projflow{overflow:visible}
 html.projflow main,html.projflow footer{display:none}
-html.projflow header{position:fixed;top:env(safe-area-inset-top,0px);left:0;right:0}
+html.projflow .proj.flow{margin-top:calc(-1 * var(--hhn,0px))}   /* the header stays sticky (Safari tints the status bar from it); the page slides up under it */
 .proj.flow{position:relative;inset:auto;z-index:auto;overflow:visible;min-height:100lvh}   /* once open, a project scrolls with the page itself, so phones show it under the browser toolbar like the home page, not cut off above it */
 .proj .wrap{padding-bottom:clamp(56px,5vw,88px)}
 .pj-back{display:inline-flex;align-items:center;gap:8px;margin:clamp(10px,1.2vw,18px) 0 clamp(20px,2vw,32px);font-size:clamp(13px,.9vw,15px);font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);transition:color .2s}
@@ -656,6 +656,8 @@ html.projflow.labopen{overflow:hidden}
 html.projflow .proj:not(.flow){display:none}
 main,footer{transition:opacity .35s ease}
 html.pgout main,html.pgout footer{opacity:0}
+html.pgout .totop{opacity:0!important;pointer-events:none}
+html.xpopen:not(.xpstay),html.xpopen:not(.xpstay) body{animation:xpDim 1.4s cubic-bezier(.4,0,.2,1) both}   /* the page behind dims with the lab, so the strip under the phone toolbar never runs ahead */
 html.pgout .proj.flow{opacity:0;transition:opacity .3s ease}
 html.swap .proj{transition:none!important}
 html.tolight,html.tolight body{background:#F4F4F2!important;transition:background .35s ease}
@@ -774,9 +776,10 @@ html.xpopen header .bar,html.xpopen header .brand,html.xpopen .burger{transition
 .wb-pile .p2{left:30%;top:2%;width:40%;transform:rotate(4deg);z-index:2}
 .wb-pile .p3{left:52%;top:20%;width:42%;transform:rotate(-3deg);z-index:3}
 .wb-pile .pol:hover{transform:rotate(0) scale(1.04);z-index:5}
-.wb-pile .pj-cap{position:absolute;left:0;right:0;bottom:-2px;margin:0;text-align:left}
-@media (max-width:760px){.wb-pile .pj-cap{text-align:center}}
-@media (max-width:900px){.wb-pile{max-width:none;margin-bottom:24px}}
+.wb-pile .pj-cap{position:absolute;left:0;right:0;top:calc(100% - 4px);margin:0;text-align:left}
+.wb-pile{margin-bottom:clamp(40px,3.6vw,56px)}
+@media (max-width:760px){.wb-pile .pj-cap{text-align:center;top:calc(100% - 6px)}}
+@media (max-width:900px){.wb-pile{max-width:none;margin-bottom:44px}}
 .wb-collage{position:relative;height:clamp(420px,44vw,720px);margin-top:clamp(36px,3.6vw,64px)}
 .wb-collage img{position:absolute;display:block;object-fit:cover;border-radius:4px;box-shadow:0 24px 50px -20px rgba(0,0,0,.7)}
 .wb-collage .c1{left:4%;top:4%;width:32%;height:86%}
@@ -1627,7 +1630,7 @@ const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
 po.querySelectorAll('.w').forEach(w=>{w.setAttribute('aria-hidden','true');w.innerHTML=[...w.textContent].map(ch=>ch===' '?'<span class="c">&nbsp;</span>':`<span class="c"><span class="n">${ch}</span><span class="p">${ch}</span></span>`).join('');});
 const cs=[...po.querySelectorAll('.c')];
 /* scale the type so EXPLORER spans the full width */
-function fit(){po.style.fontSize='100px';const rows=[...po.querySelectorAll('.w')];const w=Math.max(...rows.map(r=>r.scrollWidth));const avail=po.clientWidth*(innerWidth>900?.7:innerWidth>600?.85:.96);const byH=(innerHeight-(document.querySelector('header').offsetHeight||64))*.24;   /* short windows: keep the title (and the horse sized from it) inside the first screen */
+function fit(){if(!po.offsetParent)return;   /* hidden while a project is open: measure again when it comes back */po.style.fontSize='100px';const rows=[...po.querySelectorAll('.w')];const w=Math.max(...rows.map(r=>r.scrollWidth));const avail=po.clientWidth*(innerWidth>900?.7:innerWidth>600?.85:.96);const byH=(innerHeight-(document.querySelector('header').offsetHeight||64))*.24;   /* short windows: keep the title (and the horse sized from it) inside the first screen */
   po.style.fontSize=Math.min(260,100*avail/w*0.985,innerWidth>600?byH:1e9)+'px';   /* calmer on large screens */}
 fit();(document.fonts?document.fonts.ready:Promise.resolve()).then(fit);addEventListener('resize',()=>{clearTimeout(fit.t);fit.t=setTimeout(fit,100);});
 /* U and X: stacked alternates in other faces and colours, swapped without moving the line */
@@ -1981,6 +1984,7 @@ b.addEventListener('click',()=>{const ok=()=>{b.textContent='Copied';setTimeout(
   /* page changes never use a full-screen fixed layer (iPhone Safari would paint its colour under the toolbar):
      the current page fades out, the pages swap in the normal flow, the new one fades in */
   let homeY=0,swapT=0,lightT=0,routed=false;const DE=document.documentElement;
+  {const hd=document.querySelector('header');const hs=()=>DE.style.setProperty('--hhn',hd.offsetHeight+'px');hs();new ResizeObserver(hs).observe(hd);}
   const isDark=pg=>!!pg&&(pg.id==='pExp'||pg.classList.contains('pweb'));
   function swap(pg){
     DE.classList.add('swap');
@@ -1988,7 +1992,7 @@ b.addEventListener('click',()=>{const ok=()=>{b.textContent='Copied';setTimeout(
     cur=pg;DE.classList.toggle('projopen',!!pg);DE.classList.toggle('projflow',!!pg);
     DE.style.overflowAnchor='none';setTimeout(()=>DE.style.overflowAnchor='',1500);
     if(pg){setMenu(false);pg.classList.add('open','flow');pg.style.setProperty('--xpad',getComputedStyle(pg).paddingTop);pg.setAttribute('aria-hidden','false');pg.querySelectorAll('video').forEach(v=>{v.play().catch(()=>{});});scrollTo({top:0,behavior:'instant'});}
-    else scrollTo({top:homeY,behavior:'instant'});
+    else{dispatchEvent(new Event('resize'));scrollTo({top:homeY,behavior:'instant'});requestAnimationFrame(()=>{dispatchEvent(new Event('resize'));scrollTo({top:homeY,behavior:'instant'});});}   /* the home page was hidden: let everything that measures it size itself again */
     void DE.offsetWidth;DE.classList.remove('swap');
     requestAnimationFrame(()=>requestAnimationFrame(()=>DE.classList.remove('pgout')));}
   function route(){const pg=pages[key()]||null;
