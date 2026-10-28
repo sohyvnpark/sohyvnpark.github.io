@@ -291,9 +291,11 @@ html.projflow .proj.flow{margin-top:calc(-1 * var(--hhn,0px))}   /* the header s
 .pj-title.one{white-space:nowrap}.pj-title.one small{white-space:normal;font-size:.55em}
 .pj-title small{display:block;margin-top:.6em;font-size:.4em;font-weight:600;line-height:1.2;letter-spacing:.08em;color:var(--ink)}
 .pj-img{display:block;width:100%;height:auto;border-radius:4px;background:#e9e9e6}
+.pj-nda{margin:clamp(12px,1.2vw,18px) 0 0;font-size:clamp(13px,.95vw,15px);line-height:1.5;color:var(--muted)}
 .pj-meta{margin-top:clamp(22px,2.2vw,36px);background:rgba(228,228,224,.7);border-radius:6px;padding:clamp(20px,2vw,30px) clamp(22px,2.4vw,36px);display:grid;grid-template-columns:1.25fr .8fr 1.25fr .6fr;gap:clamp(16px,2.4vw,40px)}
 .pj-meta h4{margin:0 0 8px;font-size:clamp(13px,.9vw,15px);font-weight:600;letter-spacing:.07em;text-transform:uppercase;color:var(--ink)}
 .pj-meta p{margin:0;font-size:clamp(15px,1.05vw,18px);line-height:1.45;color:var(--body)}
+.pj-meta .pos{display:block;margin-bottom:4px;font-weight:600;color:var(--ink)}
 /* sections: a rule, then label + bold title on the left, text on the right */
 .pj-s{margin-top:clamp(48px,4.4vw,80px);padding-top:clamp(48px,4.4vw,80px);border-top:1px solid var(--rule)}
 .pj-s.flush{border-top:0;padding-top:0}
@@ -506,6 +508,10 @@ html.projflow .proj.flow{margin-top:calc(-1 * var(--hhn,0px))}   /* the header s
 .pj-colset.mis{grid-auto-flow:row;grid-template-columns:1fr 1fr;column-gap:clamp(24px,3vw,56px)}
 .pj-colset.mis .pj-col,.pj-colset.mis .pj-col+.pj-col{display:grid;grid-row:span 5;grid-template-rows:subgrid;padding:0;align-content:start}
 .pj-colset.mis .pj-sub{align-self:end}
+.pj-colset.mis.mis1{grid-template-columns:1fr}
+.pj-colset.mis.mis1 .pj-col{display:block}
+.mis-2{display:grid;grid-template-columns:1fr 1fr;column-gap:clamp(24px,3vw,56px)}
+@media (max-width:767px){.mis-2{grid-template-columns:1fr}}
 @media (max-width:767px){.pj-colset.mis{grid-template-columns:1fr}.pj-colset.mis .pj-col+.pj-col{padding-top:22px;border-top:0}}
 
 .pj-sol .pj-card h4{font-size:clamp(18px,1.32vw,23px);text-wrap:balance}
@@ -562,6 +568,7 @@ html.projflow .proj.flow{margin-top:calc(-1 * var(--hhn,0px))}   /* the header s
 @media (max-width:767px){.pj-next{grid-template-columns:1fr}}
 
 .pj-gr+.pj-media{margin-top:clamp(40px,4.4vw,80px)}
+.pj-2+.pj-gr{margin-top:clamp(56px,6vw,104px)}   /* Goal/Result under an overview gets its own breathing room */
 .pj-gr p.g{padding-right:clamp(12px,2.2vw,44px)}
 @media (max-width:767px){.pj-gr p.g{padding-right:0}}
 /* about: a deck of photos you flip through */
@@ -1085,7 +1092,7 @@ html.labopen .xsnd{display:block;order:2}
    <img class="pj-img" src="/p/info/hero.webp" alt="ccNC infotainment home screen" width="1000" height="533">
   </div>
   <div class="pj-meta">
-   <div><h4>My role</h4><p>Infotainment UI Design, Global Market Research, GUI Guideline Update</p></div>
+   <div><h4>My role</h4><p><b class="pos">Core member</b>GUI Guideline Analysis &amp; Update, New Feature UI, Design System &amp; Resources, Developer &amp; Client Collaboration</p></div>
    <div><h4>Client</h4><p>Hyundai MOBIS</p></div>
    <div><h4>Tools</h4><p>Figma, Adobe Photoshop, Adobe Illustrator, Microsoft PowerPoint</p></div>
    <div><h4>Duration</h4><p>5 months</p></div>
@@ -1096,7 +1103,7 @@ html.labopen .xsnd{display:block;order:2}
   </section>
 
   <section class="pj-s">
-   <div class="pj-gr"><h3 class="g">Goal</h3><h3 class="r">Result</h3><p class="g">Incorporate 10+ features unique to each upcoming vehicle.</p><p class="r">Developed a novel design system and reduced design iteration time by 20%.</p><p class="g">Ensure visual consistency of automotive functions across sedans, SUVs, and trucks.</p><p class="r">Successfully designed and updated 50+ <span style="white-space:nowrap">high-fidelity</span> screens within the timeline.</p><p class="g">Deliver fully refined UI and GUI Guidelines within a 2-week timeline per vehicle.</p><p class="r">Implemented multilingual support for smooth adaptation across 5 different countries.</p></div>
+   <div class="pj-gr"><h3 class="g">Goal</h3><h3 class="r">Result</h3><p class="g">Incorporate 10+ features unique to each upcoming vehicle.</p><p class="r">Built a structured design system that made iterations faster and more consistent across teams.</p><p class="g">Ensure visual consistency of automotive functions across sedans, SUVs, and trucks.</p><p class="r">Successfully designed and updated 50+ <span style="white-space:nowrap">high-fidelity</span> screens within the timeline.</p><p class="g">Deliver fully refined UI and GUI Guidelines within a 2-week timeline per vehicle.</p><p class="r">Implemented multilingual support for smooth adaptation across 5 different countries.</p></div>
    
   </section>
 
@@ -1128,7 +1135,7 @@ html.labopen .xsnd{display:block;order:2}
   <section class="pj-s">
    <p class="pj-lbl">My key decisions</p><div class="pj-2"><div><h2 class="pj-h2">The calls that shaped the work</h2></div><div><p class="pj-body">Three decisions that kept a growing, multi-brand infotainment system consistent and buildable.</p></div></div>
    <div class="kd">
-    <div class="kd-card"><span class="n">01</span><h4>Treat the guideline as the source of truth</h4><dl><dt>Challenge</dt><dd>Engineers struggled to follow the GUI guidelines accurately as new features kept arriving.</dd><dt>My decision</dt><dd>I placed every new feature against the guideline and updated the guideline alongside the screens, instead of designing screens first.</dd><dt>Impact</dt><dd>Clearer handover to development and a design system that cut iteration time by 20%.</dd></dl></div>
+    <div class="kd-card"><span class="n">01</span><h4>Treat the guideline as the source of truth</h4><dl><dt>Challenge</dt><dd>Engineers struggled to follow the GUI guidelines accurately as new features kept arriving.</dd><dt>My decision</dt><dd>I placed every new feature against the guideline and updated the guideline alongside the screens, instead of designing screens first.</dd><dt>Impact</dt><dd>Clearer handover to development and a design system that made each iteration faster.</dd></dl></div>
     <div class="kd-card"><span class="n">02</span><h4>One system, two brands</h4><dl><dt>Challenge</dt><dd>Hyundai and Kia share the same services and layouts, but each has its own design identity.</dd><dt>My decision</dt><dd>I kept layouts and components shared, and let each brand speak through its shapes: sharp, angular corners for Kia, echoing the edges of its logo, and soft, rounded corners for Hyundai's more classic, timeless look.</dd><dt>Impact</dt><dd>Consistent functions across sedans, SUVs and trucks, with 50+ high-fidelity screens delivered on time.</dd></dl></div>
     <div class="kd-card"><span class="n">03</span><h4>Design for every language from the start</h4><dl><dt>Challenge</dt><dd>With over 7.3 million users worldwide, screens had to work in many languages without breaking.</dd><dt>My decision</dt><dd>I adapted the design system so layouts held up across languages such as Korean, English and Japanese.</dd><dt>Impact</dt><dd>Multilingual support rolled out smoothly across 5 countries.</dd></dl></div>
    </div>
@@ -1160,7 +1167,7 @@ html.labopen .xsnd{display:block;order:2}
    <figure class="pj-heroimg"><img class="pj-img" src="/p/tech/hero.webp" alt="Hyundai Motor Group Open Innovation Lounge" width="1800" height="1013"><span>*Image from Hyundai Motor Group</span></figure>
   </div>
   <div class="pj-meta">
-   <div><h4>My role</h4><p>Video Edit, Motion Design, UI Design, Technology Research, Footage Search, Sound Level Adjustment</p></div>
+   <div><h4>My role</h4><p><b class="pos">Core member</b>Scenario &amp; Storyboard, UI Design, Motion Design, Video Edit</p></div>
    <div><h4>Client</h4><p>Hyundai Motor Group (B2B)</p></div>
    <div><h4>Tools</h4><p>Adobe After Effects, Adobe Photoshop, Figma, Microsoft Excel</p></div>
    <div><h4>Duration</h4><p>2 months</p></div>
@@ -1216,7 +1223,7 @@ html.labopen .xsnd{display:block;order:2}
    <figure class="pj-heroimg"><img class="pj-img" decoding="sync" fetchpriority="high" src="/p/lg/hero.webp" alt="CID with AI-themed playlist recommendations next to the driving view" width="1920" height="1080"><span>*Image from LG Electronics (Tech Showcase video)</span></figure>
   </div>
   <div class="pj-meta">
-   <div><h4>My role</h4><p>UI Design, AI-assisted Motion &amp; Playlist Visuals, Cross-team Collaboration</p></div>
+   <div><h4>My role</h4><p><b class="pos">Design lead</b>Scenario &amp; Concept, AI-assisted Motion &amp; Visuals, Cockpit UI Design, Cross-team Collaboration</p></div>
    <div><h4>Client</h4><p>LG Electronics<br>(Vehicle Solution)</p></div>
    <div><h4>Tools</h4><p>Figma, Midjourney</p></div>
    <div><h4>Recognition</h4><p>PACE Pilot Award Finalist<br>(2026 Automotive News)</p></div>
@@ -1288,11 +1295,12 @@ html.labopen .xsnd{display:block;order:2}
    <figure class="pj-heroimg"><img class="pj-img" src="/p/cur/hero.webp" alt="Curation infotainment screen" width="1000" height="535"><span>*Confidential image</span></figure>
   </div>
   <div class="pj-meta">
-   <div><h4>My role</h4><p>UX Research (User Interview/Testing, Data/Competitor Analysis), UI/UX Design, <span style="white-space:nowrap">High-Fidelity</span> Prototyping, Team Collaboration</p></div>
+   <div><h4>My role</h4><p><b class="pos">Core member</b>Research Design, Workshops &amp; Interviews, Data Analysis, Wireframes &amp; Prototyping, Client Presentation</p></div>
    <div><h4>Client</h4><p>Confidential<br>(Automotive Industry - B2B)</p></div>
    <div><h4>Tools</h4><p>Figma, ProtoPie, Adobe Photoshop, Microsoft Teams, Microsoft Excel, Google Forms, Google Analytics</p></div>
    <div><h4>Duration</h4><p>4.5 months</p></div>
   </div>
+  <p class="pj-nda">*This project is under NDA, so only selected parts and rounded figures are shown. I'm happy to walk you through the full process on a call.</p>
 
   <section class="pj-s">
    <h2 class="pj-h2 pj-lines" style="text-align:center;margin:0 auto"><span>The automotive industry is focusing on delivering</span> <span><span style="color:#6B87FF">personalised &amp; <span style="white-space:nowrap">real-time</span> curated</span> information</span> <span>to enhance users' <span style="white-space:nowrap">in-vehicle</span> experience.</span></h2>
@@ -1301,19 +1309,19 @@ html.labopen .xsnd{display:block;order:2}
   <section class="pj-s">
    <div class="pj-gr"><h3 class="g">Goal</h3><h3 class="r">Result</h3>
     <p class="g">Design a unique, real-time infotainment app within 4.5 months.</p><p class="r">Engaged 120+ drivers across a pilot test, a UPD workshop, a 100+ person survey and in-depth interviews.</p>
-    <p class="g">Enhance in-vehicle location discovery and media exploration experiences for the client.</p><p class="r">Tested 9 wireframe variants, including a usability test in a real car, and delivered a clear app structure with a rollout plan.</p></div>
+    <p class="g">Enhance in-vehicle destination discovery for drivers.</p><p class="r">Tested 9 wireframe variants, including a usability test in a real car, and delivered a clear app structure with a rollout plan.</p></div>
   </section>
 
   <section class="pj-s">
    <p class="pj-lbl">Project mission</p>
-<div class="pj-2"><div><h2 class="pj-h2">Creating a 'unique' and 'new' <span style="white-space:nowrap">in-vehicle</span> experience</h2></div><div><p class="pj-body">Working with a major client in the automotive industry, our team needed to fully grasp the essence of their project. Below is a diagram I created to illustrate the experience they aimed to achieve.</p></div></div>
-   <div class="pj-colset pj-media mis"><div class="pj-col"><h4>Destination (Places to visit) Curation</h4><p class="pj-sub">Expected Target Users:</p><ul class="pj-ul"><li>Users who want an easy comparison of locations.</li><li>Users interested in discovering new places.</li></ul><p class="pj-sub">Expected Impact:</p><ul class="pj-ul"><li>Provide tailored POI information relevant to the user's context.</li><li>Reducing decision-making and exploration time for destinations.</li></ul></div><div class="pj-col"><h4>Content (Media) Curation</h4><p class="pj-sub">Expected Target Users:</p><ul class="pj-ul"><li>Users who want context-driven, differentiated experiences.</li><li>Users who need media recommendations based on their preferences.</li></ul><p class="pj-sub">Expected Impact:</p><ul class="pj-ul"><li>Deliver immersive media experiences with context-driven content.</li><li>Improve content accessibility through personalised curation</li></ul></div></div>
+<div class="pj-2"><div><h2 class="pj-h2">Creating a 'unique' and 'new' <span style="white-space:nowrap">in-vehicle</span> experience</h2></div><div><p class="pj-body">Working with a major client in the automotive industry, our team needed to fully grasp the essence of their project. Below is a diagram I created to illustrate the experience they aimed to achieve. This case study focuses on destination curation: helping drivers decide where to go.</p></div></div>
+   <div class="pj-colset pj-media mis mis1"><div class="pj-col"><h4>Destination (Places to visit) Curation</h4><div class="mis-2"><div><p class="pj-sub">Expected Target Users:</p><ul class="pj-ul"><li>Users who want an easy comparison of locations.</li><li>Users interested in discovering new places.</li></ul></div><div><p class="pj-sub">Expected Impact:</p><ul class="pj-ul"><li>Provide tailored POI information relevant to the user's context.</li><li>Reducing decision-making and exploration time for destinations.</li></ul></div></div></div></div>
    <svg class="pj-flow" viewBox="0 0 16 72" preserveAspectRatio="none" aria-hidden="true"><path d="M8 2 V64" stroke-dasharray="6 5"/><path d="M2.5 58 L8 66 L13.5 58"/></svg>
    <p class="pj-q">= How can we make 'curation' actually useful?</p>
   </section>
 
   <section class="pj-s">
-   <p class="pj-lbl">The solution - Destination curation</p><div class="pj-2"><div><h2 class="pj-h2"><span style="white-space:nowrap">Real-time</span> and personalised <span style="white-space:nowrap">in-vehicle</span> experience</h2></div><div><p class="pj-body">We aimed to turn the uncertainty drivers feel at the start of their journey into a confident, exciting experience by offering real-time, personalised location and media recommendations.</p></div></div>
+   <p class="pj-lbl">The solution - Destination curation</p><div class="pj-2"><div><h2 class="pj-h2"><span style="white-space:nowrap">Real-time</span> and personalised <span style="white-space:nowrap">in-vehicle</span> experience</h2></div><div><p class="pj-body">We aimed to turn the uncertainty drivers feel at the start of their journey into a confident, exciting experience by offering real-time, personalised place recommendations.</p></div></div>
    <div class="pj-cards pj-sol" style="margin-top:clamp(24px,2.2vw,36px)">
     <div class="pj-card"><span class="n">01</span><h4>Real-time based trending information</h4><p>Collects high-demand information based on the user's current location and provides real-time data to the user.</p></div>
     <div class="pj-card"><span class="n">02</span><h4>Customised recommendations based on driving situation</h4><p>Gathers information about the user's current driving situation and provides real-time data that suits the specific circumstances.</p></div>
@@ -1339,11 +1347,10 @@ html.labopen .xsnd{display:block;order:2}
   </section>
 
   <section class="pj-s">
-   <p class="pj-lbl">Key findings</p><div class="pj-2"><div><h2 class="pj-h2">What the data told us</h2></div><div><p class="pj-body">120+ drivers took part across four rounds: a pilot test, a UPD workshop, an online survey and in-depth interviews. Four findings shaped the design most.</p></div></div>
-   <div class="rd rd3 rd4">
+   <p class="pj-lbl">Key findings</p><div class="pj-2"><div><h2 class="pj-h2">What the data told us</h2></div><div><p class="pj-body">120+ drivers took part across four rounds: a pilot test, a UPD workshop, an online survey and in-depth interviews. Three findings shaped the design most.</p></div></div>
+   <div class="rd rd3">
     <div class="rd-c"><b>60%+</b><p>look for places before setting off</p><span>Home leads with recommendations before the drive starts.</span></div>
     <div class="rd-c"><b>40%+</b><p>prefer a pop-up with a voice alert</p><span>Alerts combine both, so drivers look at the screen less.</span></div>
-    <div class="rd-c"><b>45%+</b><p>listen to music most in the car</p><span>An audio-first media tab with playlists from listening history.</span></div>
     <div class="rd-c"><b>40%+</b><p>want memories recalled by location</p><span>Saved courses and places resurface when drivers are nearby.</span></div>
    </div>
   </section>
@@ -1381,6 +1388,15 @@ html.labopen .xsnd{display:block;order:2}
   </section>
 
   <section class="pj-s">
+   <p class="pj-lbl">My key decisions</p><div class="pj-2"><div><h2 class="pj-h2">The calls that shaped the work</h2></div><div><p class="pj-body">Three decisions that turned a broad brief for 'unique' curation into something drivers actually found useful.</p></div></div>
+   <div class="kd">
+    <div class="kd-card"><span class="n">01</span><h4>Research before features</h4><dl><dt>Challenge</dt><dd>The client wanted a 'unique and new' curation service, but it was unclear what drivers would really use.</dd><dt>My decision</dt><dd>We ran a UPD workshop with 10 drivers and surveyed 100+ vehicle owners before defining any features.</dd><dt>Impact</dt><dd>A clear priority order (distance, parking, congestion, time of day) that set the information shown on every card.</dd></dl></div>
+    <div class="kd-card"><span class="n">02</span><h4>Make personalisation explainable</h4><dl><dt>Challenge</dt><dd>Users wanted recommendations based on their preferences, plus control over the results.</dd><dt>My decision</dt><dd>I showed why each place is recommended and added filters and sorting, so suggestions never feel random.</dd><dt>Impact</dt><dd>Condition filters and a clear reason for each pick became core parts of the final concept.</dd></dl></div>
+    <div class="kd-card"><span class="n">03</span><h4>Test with a prototype that feels real</h4><dl><dt>Challenge</dt><dd>Static screens couldn't show how drivers would actually browse, filter and react to recommendations.</dd><dt>My decision</dt><dd>I built the high-fidelity prototype in ProtoPie, with real interactions, and used it for user testing.</dd><dt>Impact</dt><dd>Testing felt far more natural, so participants reacted as they would in the car and gave more realistic feedback.</dd></dl></div>
+   </div>
+  </section>
+
+  <section class="pj-s">
    <p class="pj-lbl">My evaluation session</p><div class="pj-2"><div><h2 class="pj-h2">If I had more time what I would do better:</h2></div><div><p class="pj-body">Here are the 3 things I would have explored further with more time on this project.</p></div></div>
    <div class="pj-cards pj-eval">
     <div class="pj-card"><span class="n">01</span><p class="t">Do more in-depth market/competitive research (e.g. China and Japan)</p></div>
@@ -1389,14 +1405,6 @@ html.labopen .xsnd{display:block;order:2}
    </div>
   </section>
 
-  <section class="pj-s">
-   <p class="pj-lbl">My key decisions</p><div class="pj-2"><div><h2 class="pj-h2">The calls that shaped the work</h2></div><div><p class="pj-body">Three decisions that turned a broad brief for 'unique' curation into something drivers actually found useful.</p></div></div>
-   <div class="kd">
-    <div class="kd-card"><span class="n">01</span><h4>Research before features</h4><dl><dt>Challenge</dt><dd>The client wanted a 'unique and new' curation service, but it was unclear what drivers would really use.</dd><dt>My decision</dt><dd>We ran a UPD workshop with 10 drivers and surveyed 100+ vehicle owners before defining any features.</dd><dt>Impact</dt><dd>A clear priority order (distance, parking, congestion, time of day) that set the information shown on every card.</dd></dl></div>
-    <div class="kd-card"><span class="n">02</span><h4>Test with a prototype that feels real</h4><dl><dt>Challenge</dt><dd>Static screens couldn't show how drivers would actually browse, filter and react to recommendations.</dd><dt>My decision</dt><dd>I built the high-fidelity prototype in ProtoPie, with real interactions, and used it for user testing.</dd><dt>Impact</dt><dd>Testing felt far more natural, so participants reacted as they would in the car and gave more realistic feedback.</dd></dl></div>
-    <div class="kd-card"><span class="n">03</span><h4>Make personalisation explainable</h4><dl><dt>Challenge</dt><dd>Users wanted recommendations based on their preferences, plus control over the results.</dd><dt>My decision</dt><dd>I showed why each place is recommended and added filters and sorting, so suggestions never feel random.</dd><dt>Impact</dt><dd>Condition filters and a clear reason for each pick became core parts of the final concept.</dd></dl></div>
-   </div>
-  </section>
 
   <section class="pj-s pj-learn">
    <div class="pj-2"><div><h2 class="pj-h2">My key learnings from this project:</h2>
@@ -1425,7 +1433,7 @@ html.labopen .xsnd{display:block;order:2}
    <figure class="pj-heroimg"><canvas class="pj-img snd-hero" id="sndHero" width="1600" height="900" role="img" aria-label="Soft drifting colour gradient in teal, mint and sunny yellow"></canvas></figure>
   </div>
   <div class="pj-meta">
-   <div><h4>My role</h4><p>Concept, Sound &amp; interaction design, Art direction</p></div>
+   <div><h4>My role</h4><p><b class="pos">Solo project</b>Concept, Sound &amp; interaction design, Art direction</p></div>
    <div><h4>Made with</h4><p>Web Audio API, JavaScript, Claude (AI coding partner)</p></div>
    <div><h4>Sound</h4><p>Warm chords, kalimba notes, breeze and birdsong</p></div>
    <div><h4>Used in</h4><p>S(AI) LAB</p></div>
@@ -1510,7 +1518,7 @@ html.labopen .xsnd{display:block;order:2}
    <figure class="pj-heroimg"><img class="pj-img" src="/p/horse/hero.webp" alt="A dot-matrix horse and jockey galloping" width="1600" height="900" loading="lazy"></figure>
   </div>
   <div class="pj-meta">
-   <div><h4>My role</h4><p>Concept, Motion &amp; interaction design, Art direction, Design QA</p></div>
+   <div><h4>My role</h4><p><b class="pos">Solo project</b>Concept, Motion &amp; interaction design, Art direction, Design QA</p></div>
    <div><h4>Made with</h4><p>HTML Canvas, JavaScript, Claude (AI coding partner)</p></div>
    <div><h4>Motion</h4><p>12-frame gallop loop, hover interaction, mini sprites</p></div>
    <div><h4>Used in</h4><p>sohyunpark.com</p></div>
@@ -1657,7 +1665,7 @@ html.labopen .xsnd{display:block;order:2}
 const P=[
  {t:"Infotain*ment|E*xperience",c:"Hyundai &amp; Kia · Infotainment",d:"Created Hyundai & Kia's in-vehicle infotainment and GUI Guidelines, focusing on the RSPA, Split Screens, and My Vehicle features for Hyundai MOBIS.",img:"/p/info/thumb.webp",href:"/infotainment-experience"},
  {t:"Beyond t*he|Winds*hield",c:"LG Electronics · AR-HUD",d:"Designed UI screens and AI-made motion for LG Electronics' UltraView Windshield Display, a 2026 Automotive News PACE Pilot Award finalist.",img:"/p/lg/hero.webp",note:"*Image from LG Electronics (Tech Showcase video)",href:"/beyond-the-windshield"},
- {t:"Personali*sed &|Live C*uration",c:"Automotive client · UX research",d:"Led UX research with 120+ drivers to design a personalised, location-based live curation infotainment app for an automotive client, tested in a real car.",img:"/p/cur/thumb.webp",note:"*Confidential image",href:"/personalised-live-curation"},
+ {t:"Personali*sed &|Live C*uration",c:"Automotive client · UX research",d:"Designed and ran UX research with 120+ drivers to shape a personalised, location-based live curation infotainment app for an automotive client, tested in a real car.",img:"/p/cur/thumb.webp",note:"*Confidential image",href:"/personalised-live-curation"},
  {t:"Shared S*ystem,|Own Iden*tity",c:"MAN Truck &amp; Bus · Design system",d:"MAN shares a design system with other truck brands in its group, yet its colours, design and use cases are its own. I built MAN's own layer of design tokens for the cluster and infotainment, and a clear overview of every update cut hands-on design time by approximately 40%.",img:"/p/man/thumb.webp",nda:true},
  {t:"Technolo*gy|into Reality",c:"Hyundai Motor Group · Concept video",d:"Produced a conceptual UX video showcasing Noveto x Blink’s PoC technologies (featured at the Hyundai Motor Group’s 2024 Open Innovation Lounge).",img:"/p/tech/hero.webp",note:"*Image from Hyundai Motor Group",href:"/technology-into-reality"}
 ];
