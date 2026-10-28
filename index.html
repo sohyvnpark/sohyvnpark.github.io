@@ -317,6 +317,18 @@ html.projflow .proj.flow{margin-top:calc(-1 * var(--hhn,0px))}   /* the header s
 .pj-gr p::before{content:"\2013";position:absolute;left:0;color:var(--muted)}
 .pj-cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(14px,1.6vw,24px);margin-top:clamp(36px,3.6vw,64px)}
 .pj-card{background:rgba(255,255,255,.6);border-radius:6px;padding:clamp(22px,2.2vw,34px)}
+.rf{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:clamp(12px,1.4vw,20px);margin-top:clamp(36px,3.6vw,64px)}
+.rf-s{background:rgba(255,255,255,.6);border-radius:6px;padding:clamp(20px,2vw,30px);display:flex;flex-direction:column;gap:6px}
+.rf-s b{font-size:clamp(34px,3.4vw,56px);font-weight:600;line-height:1;letter-spacing:-.02em;color:#1E36C8}
+.rf-s span{font-weight:600;font-size:clamp(15px,1.1vw,18px);color:var(--ink)}
+.rf-s small{font-size:clamp(13px,.95vw,15px);color:var(--muted)}
+.dd{margin-top:clamp(20px,2vw,32px);border-radius:6px;overflow:hidden;background:rgba(255,255,255,.6)}
+.dd-r{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.2fr);gap:clamp(16px,2vw,36px);padding:clamp(14px,1.4vw,20px) clamp(20px,2vw,30px);border-top:1px solid var(--rule);font-size:clamp(15px,1.1vw,18px);line-height:1.5;color:var(--body)}
+.dd-r b{color:#1E36C8;font-weight:600}
+.dd-r:not(.dd-h) span:first-child{color:var(--ink);font-weight:500}
+.dd-h{border-top:0;font-size:clamp(12px,.9vw,14px);font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+@media (max-width:760px){.rf{grid-template-columns:repeat(2,minmax(0,1fr))}.dd-r{grid-template-columns:1fr;gap:4px}.dd-h{display:none}}
+
 .pj-card .n{display:block;font-size:clamp(13px,.9vw,15px);font-weight:600;letter-spacing:.08em;color:var(--muted)}
 .pj-card h4{margin:.5em 0 .6em;font-weight:600;font-size:clamp(20px,1.6vw,28px);letter-spacing:-.005em}
 .pj-card p{margin:0;font-size:clamp(16px,1.15vw,19px);line-height:1.6;color:var(--body)}
@@ -1274,7 +1286,7 @@ html.labopen .xsnd{display:block;order:2}
    <div><h4>My role</h4><p>UX Research (User Interview/Testing, Data/Competitor Analysis), UI/UX Design, <span style="white-space:nowrap">High-Fidelity</span> Prototyping, Team Collaboration</p></div>
    <div><h4>Client</h4><p>Confidential<br>(Automotive Industry - B2B)</p></div>
    <div><h4>Tools</h4><p>Figma, ProtoPie, Adobe Photoshop, Microsoft Teams, Microsoft Excel, Google Forms, Google Analytics</p></div>
-   <div><h4>Duration</h4><p>4 months</p></div>
+   <div><h4>Duration</h4><p>4.5 months</p></div>
   </div>
 
   <section class="pj-s">
@@ -1283,8 +1295,8 @@ html.labopen .xsnd{display:block;order:2}
 
   <section class="pj-s">
    <div class="pj-gr"><h3 class="g">Goal</h3><h3 class="r">Result</h3>
-    <p class="g">Design and develop a unique infotainment app within 4 months.</p><p class="r">Successfully conducted 7 user interview sessions (2 UPD &amp; 5 IDI) within the timeline.</p>
-    <p class="g">Enhance in-vehicle location discovery and media exploration experiences for the client.</p><p class="r">Achieved a 20% improvement in infotainment usability experience.</p></div>
+    <p class="g">Design a unique, real-time infotainment app within 4.5 months.</p><p class="r">Engaged 124 drivers across a pilot test, a UPD workshop, a 103-person survey and in-depth interviews.</p>
+    <p class="g">Enhance in-vehicle location discovery and media exploration experiences for the client.</p><p class="r">Tested 9 wireframe variants, including a usability test in a real car, and delivered a 5-tab structure with a 3-phase roadmap.</p></div>
   </section>
 
   <section class="pj-s">
@@ -1314,10 +1326,28 @@ html.labopen .xsnd{display:block;order:2}
   </section>
 
   <section class="pj-s">
-   <p class="pj-lbl">User research - Destination curation</p><div class="pj-2"><div><h2 class="pj-h2">Users wanted locations recommended based on their preference</h2></div><div><p class="pj-body">Our team conducted an online survey with 100 vehicle owners aged 20 to 60 and user interviews with 10 users from the online survey. to understand users' in-vehicle information exploration patterns and preferences. The goal was to establish the direction for information recommendations and prioritise items based on users' needs.</p></div></div>
-   <div class="pj-flowrow pj-media"><div class="pj-colset vert"><div class="pj-col"><h4>Online Survey</h4><ul class="pj-ul"><li>Users prioritise distance &gt; parking availability &gt;  congestion &gt; time of day when exploring locations.</li><li>Users prefer recommendations based on keywords, internal behaviour patterns, and external behaviour patterns.</li></ul></div><div class="pj-col"><h4>User Interviews</h4><ul class="pj-ul"><li>High demand for filtering and sorting options to refine results.</li><li>Desire for recommendations based on previous visits or preferences.</li><li>Trust in ratings and visit frequency as reliability indicators.</li></ul></div></div>
+   <p class="pj-lbl">User research - Destination curation</p><div class="pj-2"><div><h2 class="pj-h2">Users wanted locations recommended based on their preference</h2></div><div><p class="pj-body">Our team ran a 2-day UPD workshop with 10 vehicle owners, then an online survey (35 questions) with 103 vehicle owners aged 20 to 60, to understand users' in-vehicle information exploration patterns and preferences. The goal was to establish the direction for information recommendations and prioritise items based on users' needs.</p></div></div>
+   <div class="pj-flowrow pj-media"><div class="pj-colset vert"><div class="pj-col"><h4>Online Survey</h4><ul class="pj-ul"><li>Users prioritise distance &gt; parking availability &gt;  congestion &gt; time of day when exploring locations.</li><li>Users prefer recommendations based on keywords, internal behaviour patterns, and external behaviour patterns.</li></ul></div><div class="pj-col"><h4>UPD workshop</h4><ul class="pj-ul"><li>High demand for filtering and sorting options to refine results.</li><li>Desire for recommendations based on previous visits or preferences.</li><li>Trust in ratings and visit frequency as reliability indicators.</li></ul></div></div>
    <span class="pj-harrow" aria-hidden="true"><svg viewBox="0 0 72 24"><path d="M2 12 H66" stroke-dasharray="7 6"/><path d="M58 4 L68 12 L58 20"/></svg></span>
    <div class="pj-icards vert"><div class="pj-icard"><span class="pj-no">Insight 1</span><p>Provide personalised curation information based on keywords, internal behaviour patterns, and external behaviour patterns.</p></div><div class="pj-icard"><span class="pj-no">Insight 2</span><p>Prioritise providing information on distance, parking availability, congestion, and the number of visitors.</p></div><div class="pj-icard"><span class="pj-no">Insight 3</span><p>Recommend optimised locations by combining condition values.</p></div></div>
+   </div>
+  </section>
+
+  <section class="pj-s">
+   <p class="pj-lbl">Research in numbers</p><div class="pj-2"><div><h2 class="pj-h2">From 124 drivers to design decisions</h2></div><div><p class="pj-body">Each round narrowed the direction. Ideas spread out in the workshops, then the survey and interviews brought them back to what drivers actually needed.</p></div></div>
+   <div class="rf">
+    <div class="rf-s"><b>5</b><span>Pilot test</span><small>Car owners · 1 day</small></div>
+    <div class="rf-s"><b>10</b><span>UPD workshop</span><small>Card sorting &amp; ideation · 2 days</small></div>
+    <div class="rf-s"><b>103</b><span>Online survey</span><small>35 questions · 10 days</small></div>
+    <div class="rf-s"><b>6</b><span>In-depth interviews</span><small>Incl. an in-car usability test · 4 days</small></div>
+   </div>
+   <div class="dd">
+    <div class="dd-r dd-h"><span>Finding</span><span>Design decision</span></div>
+    <div class="dd-r"><span><b>62.2%</b> look for places before setting off</span><span>Home leads with recommendations before the drive starts.</span></div>
+    <div class="dd-r"><span><b>43.7%</b> prefer a pop-up with a voice alert</span><span>Alerts combine both, so drivers need to look at the screen less.</span></div>
+    <div class="dd-r"><span><b>45.6%</b> listen to music most in the car</span><span>An audio-first media tab with playlists from listening history.</span></div>
+    <div class="dd-r"><span><b>40.8%</b> want memories recalled by current location</span><span>Saved courses and places resurface when drivers are nearby.</span></div>
+    <div class="dd-r"><span>Layout preferences changed in the real car</span><span>Mixed layouts and one large item per view in portrait screens.</span></div>
    </div>
   </section>
 
@@ -1347,14 +1377,14 @@ html.labopen .xsnd{display:block;order:2}
    <p class="pj-lbl">What happened next?</p>
    <h2 class="pj-h2">Prototyping and more user testing</h2>
    <div class="pj-2 pj-next"><div>
-     <p class="pj-body">As this project is confidential, I can't share the final product. After several wireframe iterations, I ran further user testing and interviews with 20 users to validate our direction, uncovering deeper insights into in-vehicle content discovery.</p>
+     <p class="pj-body">As this project is confidential, I can't share the final product. After several wireframe iterations, we ran in-depth interviews with 6 drivers aged 20 to 60, ending with a usability test inside a real car. Some layout preferences changed between the office and the car, and that set the final layout direction.</p>
      <p class="pj-body">With the final concept prototype, I conducted usability testing and presented the outcomes to the client's Infotainment Department Lead, linking key insights and data-driven decisions to both user needs and business goals. Answering questions from designers and engineers led to productive discussions and a successful handoff.</p></div>
     <figure class="pj-nextfig"><img class="pj-img" src="/p/cur/me.webp" alt="Sohyun pre-testing the user interview" loading="lazy"><figcaption class="pj-cap">Me pre-testing the user interview!</figcaption></figure>
    </div>
   </section>
 
   <section class="pj-s">
-   <p class="pj-lbl">My evaluation session</p><div class="pj-2"><div><h2 class="pj-h2">If I had more time what I would do better:</h2></div><div><p class="pj-body">Here are the 3 things I would have explored further if I had more than four months for this project.</p></div></div>
+   <p class="pj-lbl">My evaluation session</p><div class="pj-2"><div><h2 class="pj-h2">If I had more time what I would do better:</h2></div><div><p class="pj-body">Here are the 3 things I would have explored further with more time on this project.</p></div></div>
    <div class="pj-cards pj-eval">
     <div class="pj-card"><span class="n">01</span><p class="t">Do more in-depth market/competitive research (e.g. China and Japan)</p></div>
     <div class="pj-card"><span class="n">02</span><p class="t">Longer idea brainstorming session (after interviews) about ‘destination’ with the team and the client.</p></div>
@@ -1365,9 +1395,9 @@ html.labopen .xsnd{display:block;order:2}
   <section class="pj-s">
    <p class="pj-lbl">My key decisions</p><div class="pj-2"><div><h2 class="pj-h2">The calls that shaped the work</h2></div><div><p class="pj-body">Three decisions that turned a broad brief for 'unique' curation into something drivers actually found useful.</p></div></div>
    <div class="kd">
-    <div class="kd-card"><span class="n">01</span><h4>Research before features</h4><dl><dt>Challenge</dt><dd>The client wanted a 'unique and new' curation service, but it was unclear what drivers would really use.</dd><dt>My decision</dt><dd>We surveyed 100 vehicle owners and interviewed 10 of them before defining any features.</dd><dt>Impact</dt><dd>A clear priority order (distance, parking, congestion, time of day) that set the information shown on every card.</dd></dl></div>
+    <div class="kd-card"><span class="n">01</span><h4>Research before features</h4><dl><dt>Challenge</dt><dd>The client wanted a 'unique and new' curation service, but it was unclear what drivers would really use.</dd><dt>My decision</dt><dd>We ran a UPD workshop with 10 drivers and surveyed 103 vehicle owners before defining any features.</dd><dt>Impact</dt><dd>A clear priority order (distance, parking, congestion, time of day) that set the information shown on every card.</dd></dl></div>
     <div class="kd-card"><span class="n">02</span><h4>Test with a prototype that feels real</h4><dl><dt>Challenge</dt><dd>Static screens couldn't show how drivers would actually browse, filter and react to recommendations.</dd><dt>My decision</dt><dd>I built the high-fidelity prototype in ProtoPie, with real interactions, and used it for user testing.</dd><dt>Impact</dt><dd>Testing felt far more natural, so participants reacted as they would in the car and gave more realistic feedback.</dd></dl></div>
-    <div class="kd-card"><span class="n">03</span><h4>Make personalisation explainable</h4><dl><dt>Challenge</dt><dd>Users wanted recommendations based on their preferences, plus control over the results.</dd><dt>My decision</dt><dd>I showed why each place is recommended and added filters and sorting, so suggestions never feel random.</dd><dt>Impact</dt><dd>A 20% improvement in infotainment usability.</dd></dl></div>
+    <div class="kd-card"><span class="n">03</span><h4>Make personalisation explainable</h4><dl><dt>Challenge</dt><dd>Users wanted recommendations based on their preferences, plus control over the results.</dd><dt>My decision</dt><dd>I showed why each place is recommended and added filters and sorting, so suggestions never feel random.</dd><dt>Impact</dt><dd>Condition filters and a clear reason for each pick became core parts of the final concept.</dd></dl></div>
    </div>
   </section>
 
@@ -1630,7 +1660,7 @@ html.labopen .xsnd{display:block;order:2}
 const P=[
  {t:"Infotain*ment|E*xperience",c:"Hyundai &amp; Kia · Infotainment",d:"Created Hyundai & Kia's in-vehicle infotainment and GUI Guidelines, focusing on the RSPA, Split Screens, and My Vehicle features for Hyundai MOBIS.",img:"/p/info/thumb.webp",href:"/infotainment-experience"},
  {t:"Beyond t*he|Winds*hield",c:"LG Electronics · AR-HUD",d:"Designed UI screens and AI-made motion for LG Electronics' UltraView Windshield Display, a 2026 Automotive News PACE Pilot Award finalist.",img:"/p/lg/hero.webp",note:"*Image from LG Electronics (Tech Showcase video)",href:"/beyond-the-windshield"},
- {t:"Personali*sed &|Live C*uration",c:"Automotive client · UX research",d:"Designed a personalised and location-based live curation infotainment app for an automotive industry client, achieving a 20% improvement in usability.",img:"/p/cur/thumb.webp",note:"*Confidential image",href:"/personalised-live-curation"},
+ {t:"Personali*sed &|Live C*uration",c:"Automotive client · UX research",d:"Led UX research with 124 drivers to design a personalised, location-based live curation infotainment app for an automotive client, tested in a real car.",img:"/p/cur/thumb.webp",note:"*Confidential image",href:"/personalised-live-curation"},
  {t:"Shared S*ystem,|Own Iden*tity",c:"MAN Truck &amp; Bus · Design system",d:"MAN shares a design system with other truck brands in its group, yet its colours, design and use cases are its own. I built MAN's own layer of design tokens for the cluster and infotainment, and a clear overview of every update cut hands-on design time by approximately 40%.",img:"/p/man/thumb.webp",nda:true},
  {t:"Technolo*gy|into Reality",c:"Hyundai Motor Group · Concept video",d:"Produced a conceptual UX video showcasing Noveto x Blink’s PoC technologies (featured at the Hyundai Motor Group’s 2024 Open Innovation Lounge).",img:"/p/tech/hero.webp",note:"*Image from Hyundai Motor Group",href:"/technology-into-reality"}
 ];
