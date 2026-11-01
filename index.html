@@ -14,7 +14,7 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400..900&family=Pixelify+Sans:wght@500&family=Doto:wght@800;900&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
 <style>
 /* Layout: one bold sentence anchored to the bottom of the first screen (letters pixelate on hover), then a plain project list, about, contact. Single light look by choice. */
-:root{
+:root{--t-body:clamp(16px,1.15vw,19px);--t-body-lh:1.7;
   --bg:#F4F4F2;
   --ink:#141414;
   --muted:#7A7A76;--body:#5C5C58;
@@ -242,7 +242,7 @@ main>section{scroll-margin-top:calc(var(--hh,64px) + 8px)}   /* anchor jumps lan
 .about .right{display:flex;flex-direction:column;gap:clamp(18px,2vw,28px);min-width:0}
 .about .hi{margin:0;font-weight:600;font-size:clamp(22px,2vw,34px);line-height:1.25;letter-spacing:-.01em;color:var(--ink)}   /* same voice as the lead */
 .about .lead{margin:0;font-weight:600;font-size:clamp(22px,2vw,34px);line-height:1.25;letter-spacing:-.01em;color:var(--ink)}
-.about p.body{margin:0;color:var(--muted);font-size:clamp(15px,1.05vw,17px);line-height:1.6}
+.about p.body{margin:0;color:var(--body);font-size:var(--t-body);line-height:var(--t-body-lh)}
 @media (max-width:760px){.about{grid-template-columns:1fr}.about .why,.about .right{grid-row:auto}.about .why .leap{max-width:none}}
 @media (max-width:760px){.about{grid-template-columns:1fr}}
 
@@ -301,7 +301,7 @@ html.projflow .proj.flow{margin-top:calc(-1 * var(--hhn,0px))}   /* the header s
 .proj section.pj-s{padding-bottom:0;padding-left:0;padding-right:0}
 .pj-lbl{margin:0 0 clamp(12px,1.1vw,18px);font-size:clamp(13px,.9vw,15px);font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
 .pj-h2{margin:-.14em 0 0;font-weight:600;font-size:clamp(26px,2.4vw,44px);line-height:1.16;letter-spacing:-.005em}
-.pj-body{margin:0;font-size:clamp(16px,1.15vw,19px);line-height:1.7;color:var(--body)}
+.pj-body{margin:0;font-size:var(--t-body);line-height:var(--t-body-lh);color:var(--body)}
 .pj-h2.wide{max-width:none}
 .pj-under{margin-top:clamp(18px,1.6vw,26px)}
 .pj-body+.pj-body{margin-top:1.3em}
@@ -888,11 +888,11 @@ html.xpstay header{color:#EDEDEA}
 .ilink{display:inline-flex;align-self:flex-start;align-items:center;gap:8px;font-size:clamp(14px,1.1vw,16px);font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:#141414;text-decoration:none}   /* a plain text link, styled like BACK */
 .ilink svg{width:18px;height:18px;transition:transform .3s cubic-bezier(.2,.8,.2,1)}
 @media (hover:hover){.ilink:hover svg{transform:translateX(4px)}}
-.txt p:not(.it-tag){font-size:clamp(16px,1.25vw,20px);line-height:1.55;color:#3E3E3B}
+.txt p:not(.it-tag){font-size:var(--t-body);line-height:var(--t-body-lh);color:var(--body)}
 @media (max-width:760px){
  .item .row,.item:nth-child(even) .row{grid-template-columns:minmax(0,1fr)}
  .item{padding-block:36px}   /* same space above and below each divider, matching the project pages */
- .txt p:not(.it-tag){font-size:16px}
+ .txt p:not(.it-tag){font-size:var(--t-body)}
  .it-tag{font-size:12px!important;margin-bottom:10px!important}
 }
 /* phones: no rearrange button; the welcome note fades out after it has been read */
@@ -1219,7 +1219,7 @@ html.labopen .xsnd{display:block;order:2}
  <div class="wrap">
   <div class="pj-2 pj-hero-row">
    <h1 class="pj-title">Beyond the Windshield<small>(LG Electronics)</small></h1>
-   <figure class="pj-heroimg"><img class="pj-img" decoding="sync" fetchpriority="high" src="/p/lg/hero.webp" alt="CID with AI-themed playlist recommendations next to the driving view" width="1920" height="1080"><span>*Image from LG Electronics (Tech Showcase video)</span></figure>
+   <figure class="pj-heroimg"><img class="pj-img" decoding="sync" fetchpriority="high" src="/p/lg/hero.webp" alt="AR-HUD on the windshield showing navigation and an AI-themed playlist card, with the CID below" width="1920" height="1080"><span>*Image from LG Electronics (Tech Showcase video)</span></figure>
   </div>
   <div class="pj-meta">
    <div><h4>My role</h4><p>Scenario &amp; Concept, AI-assisted Motion &amp; Visuals, Cockpit UI Design, Cross-team Collaboration</p></div>
@@ -1456,19 +1456,19 @@ html.labopen .xsnd{display:block;order:2}
   </section>
 
   <section class="pj-s">
+   <p class="pj-lbl">Listen</p><div class="pj-2"><div><h2 class="pj-h2">Press play and relax</h2></div><div><p class="pj-body">This is the same sound that plays in S(AI) LAB. The colours drift like sunlight through leaves and breathe with the music. Take a moment and enjoy :)</p></div></div>
+   <div class="snd-player">
+    <canvas class="snd-viz" id="sndViz" width="1200" height="520" aria-hidden="true"></canvas>
+    <button class="btn snd-play" id="sndPlay" type="button" aria-pressed="false"><span>Play the sound</span></button>
+   </div>
+  </section>
+
+  <section class="pj-s">
    <p class="pj-lbl">Research</p><div class="pj-2"><div><h2 class="pj-h2">Why calm sound matters</h2></div><div><p class="pj-body">Before shaping the sound, I looked at what research says about stress, music and nature. It pointed me towards slow, warm music with a touch of natural sound.</p></div></div>
    <div class="pj-cards">
     <div class="pj-card"><span class="snd-stat">41%</span><h4>Daily stress is common</h4><p>of employees worldwide said they felt a lot of stress during the previous day.</p><small class="snd-src">Gallup, State of the Global Workplace 2024</small></div>
     <div class="pj-card"><span class="snd-stat">104</span><h4>Music lowers stress</h4><p>randomised trials in a meta-analysis showed that music reduces both physical and psychological signs of stress.</p><small class="snd-src">de Witte et al., Health Psychology Review, 2020</small></div>
     <div class="pj-card"><span class="snd-stat">Nature</span><h4>Natural sounds help too</h4><p>A review of studies found that sounds like birdsong and water lower stress and annoyance and improve mood.</p><small class="snd-src">Buxton et al., PNAS, 2021</small></div>
-   </div>
-  </section>
-
-  <section class="pj-s">
-   <p class="pj-lbl">Listen</p><div class="pj-2"><div><h2 class="pj-h2">Press play and relax</h2></div><div><p class="pj-body">This is the same sound that plays in S(AI) LAB. The colours drift like sunlight through leaves and breathe with the music. Take a moment and enjoy :)</p></div></div>
-   <div class="snd-player">
-    <canvas class="snd-viz" id="sndViz" width="1200" height="520" aria-hidden="true"></canvas>
-    <button class="btn snd-play" id="sndPlay" type="button" aria-pressed="false"><span>Play the sound</span></button>
    </div>
   </section>
 
